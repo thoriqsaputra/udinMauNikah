@@ -1,3 +1,5 @@
+package org.AwalUdin.Programming;
+
 enum ProductType {
     UNDEFINED, //ini bisa juga kalo suatu object "typeless"
     PLANT,

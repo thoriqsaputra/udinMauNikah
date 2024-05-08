@@ -1,3 +1,5 @@
+package org.AwalUdin.Programming;
+
 public abstract class GameObject {
     protected int gulden_value;
     private String name;

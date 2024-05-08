@@ -1,3 +1,5 @@
+package org.AwalUdin.Programming;
+
 public class Ladang {
     //something something of GameObject implements IHarvestable
 
