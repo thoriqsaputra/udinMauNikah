@@ -53,7 +53,7 @@ class CardDeck {
             this.graveyard.remove(0);
         }
 
-        assert graveyard.size() == 0;
+        assert graveyard.isEmpty();
     };
 
     //draws 1 random available card
@@ -115,7 +115,7 @@ class CardDeck {
             remainingCards.remove(0);
         }
 
-        assert remainingCards.size() == 0;
+        assert remainingCards.isEmpty();
     }
 
     //Add new permanent cards to the deck
@@ -134,7 +134,25 @@ class CardDeck {
 
         cardCount++;
     };
-    
+
+    //deck related shit
+
+    public List<Card> getHand() {
+        return hand;
+    }
+
+    public void addToHand(Card card){
+        hand.add(card);
+    }
+
+    public boolean useHand(Card card){
+        if (hand.contains(card)){
+            hand.remove(card);
+            return true;
+        }
+
+        return false;
+    }
 }
 
 class CardSlot{ //kenapa? store more than 1 card with less memory
