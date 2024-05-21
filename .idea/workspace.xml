@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7a360e6-fcfd-4492-b91d-0dbf54683c2e" name="Changes" comment="jj">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/AwalUdin/GUI/Controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Fxml/Home.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/AwalUdin/GUI/stand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/AwalUdin/GUI/stand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/AwalUdin/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/AwalUdin/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +19,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -26,6 +31,9 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2g8iLW0b1Uu7dAWOyvmP6dfBfRG" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -33,19 +41,39 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.stand.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;Z:/Softwares/IntelliJ IDEA 2024.1.1/javafx-sdk-21.0.3/lib&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/saput/IdeaProjects/UdinMauNikah/src/main/java/org/AwalUdin/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\saput\OneDrive\Desktop\Kuliah\Semester 4\PBO\udinMauNikah\src\main\resources\Fxml" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.AwalUdin.Main" />
+      <module name="udinMauNikah" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;Z:\Softwares\IntelliJ IDEA 2024.1.1\javafx-sdk-21.0.3\lib&quot; --add-modules=javafx.controls" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -67,6 +95,9 @@
       <workItem from="1715085951158" duration="519000" />
       <workItem from="1715086498058" duration="483000" />
       <workItem from="1715087517297" duration="2177000" />
+      <workItem from="1716297944644" duration="913000" />
+      <workItem from="1716300137194" duration="1875000" />
+      <workItem from="1716306150104" duration="402000" />
     </task>
     <task id="LOCAL-00001" summary="jj">
       <option name="closed" value="true" />
