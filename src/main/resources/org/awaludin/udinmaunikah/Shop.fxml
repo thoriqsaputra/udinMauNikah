@@ -77,7 +77,7 @@
                               <Image url="@Image/hiudarat.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="13.0" layoutY="2.0" styleClass="shopItemName" text="HIU DARAT">
+                        <Label layoutX="13.0" layoutY="2.0" styleClass="outlined" text="HIU DARAT">
                            <font>
                               <Font name="Snap ITC" size="16.0" />
                            </font>
