@@ -18,4 +18,8 @@ public abstract class GameObject {
     public int get_value(){
         return gulden_value;
     };
+
+    public String GetName(){
+        return name;
+    }
 }

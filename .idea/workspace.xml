@@ -4,23 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e590749-3ac4-4a9a-afea-611f1be7b884" name="Changes" comment="" />
+    <list default="true" id="49bc364f-6ad4-4483-af41-11a91ea4bf76" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Home.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/hello-view.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="FxmlFile" />
-      </list>
-    </option>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="KubernetesApiPersistence">{}</component>
-  <component name="KubernetesApiProvider">{
-  &quot;isMigrated&quot;: true
-}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -28,14 +29,11 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
-  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 6
 }</component>
-  <component name="ProjectId" id="2goPsakhCzSKu96UkZg6sC59OZa" />
+  <component name="ProjectId" id="2goeYLQPPfV4cPoEinkfoTS05t1" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -45,26 +43,23 @@
     "Application.Application.executor": "Run",
     "Application.HelloApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ignore.virus.scanning.warn.message": "true",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Global Libraries",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
+    "project.structure.side.proportion": "0.0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\saput\IdeaProjects\UdinMauNikah\src\main\resources\org\awaludin\udinmaunikah\Image" />
-      <recent name="C:\Users\saput\IdeaProjects\UdinMauNikah\src\main\java\org\awaludin\udinmaunikah" />
       <recent name="C:\Users\saput\IdeaProjects\UdinMauNikah\src\main\resources\org\awaludin\udinmaunikah" />
-      <recent name="C:\Users\saput\IdeaProjects\UdinMauNikah\src\main\resources" />
-      <recent name="C:\Users\saput\IdeaProjects\UdinMauNikah\src\main\resources\org\awaludin\udinmaunikah\Fxml" />
+      <recent name="C:\Users\saput\IdeaProjects\UdinMauNikah\src\main\java\org\awaludin\udinmaunikah" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -78,17 +73,13 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2e590749-3ac4-4a9a-afea-611f1be7b884" name="Changes" comment="" />
-      <created>1716361168704</created>
+      <changelist id="49bc364f-6ad4-4483-af41-11a91ea4bf76" name="Changes" comment="" />
+      <created>1716368406239</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1716361168704</updated>
-      <workItem from="1716361169762" duration="276000" />
-      <workItem from="1716361457452" duration="96000" />
-      <workItem from="1716361622399" duration="93000" />
-      <workItem from="1716361920736" duration="162000" />
-      <workItem from="1716362692360" duration="3000" />
-      <workItem from="1716366630563" duration="1081000" />
+      <updated>1716368406239</updated>
+      <workItem from="1716368407388" duration="596000" />
+      <workItem from="1716369147423" duration="147000" />
     </task>
     <servers />
   </component>
