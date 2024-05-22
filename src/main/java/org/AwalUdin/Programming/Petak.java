@@ -1,3 +1,5 @@
+package org.AwalUdin.Programming;
+
 public class Petak implements IHarvestable{
     private GameObject gameObject;
     private Item item;
@@ -28,8 +30,17 @@ public class Petak implements IHarvestable{
         this.item = item;
     }
 
+    public void pakaiItem() {
+        item.use(this.gameObject);
+    }
+
     @Override
     public GameObject Harvest() {
         return gameObject;
+    }
+
+    @Override
+    public boolean isReadyToHarvest() {
+        return true;
     }
 }
