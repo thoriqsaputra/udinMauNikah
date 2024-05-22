@@ -1,0 +1,7 @@
+.outlined-text {
+    -fx-font-family: 'Berlin Sans FB Bold';
+    -fx-font-size: 100px;
+    -fx-effect:
+            dropshadow(one-pass-box, white, 20, 1, 1, 1),
+            dropshadow(one-pass-box, white, 20, 1, 1, 1);
+}
