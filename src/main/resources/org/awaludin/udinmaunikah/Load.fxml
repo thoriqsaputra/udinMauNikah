@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.awaludin.udinmaunikah.LoadController">
     <children>
@@ -9,25 +11,58 @@
             <children>
                 <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@./Image/bgShop.png" />
+                        <Image url="@Image/bgShop.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="174.0" fitWidth="265.0" layoutX="518.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="432.0" fitWidth="874.0" layoutX="211.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@./Image/textShop.png" />
+                        <Image url="@Image/container.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="422.0" fitWidth="921.0" layoutX="171.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="92.0" fitWidth="315.0" layoutX="499.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@./Image/containerShop.png" />
+                        <Image url="@Image/loadTitle.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="314.0" fitWidth="1286.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true">
+            <Pane layoutX="337.0" layoutY="250.0">
+               <children>
+                      <ImageView fitHeight="177.0" fitWidth="495.0" layoutX="170.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@Image/textContainer.png" />
+                          </image>
+                      </ImageView>
+                      <ImageView fitHeight="152.0" fitWidth="578.0" layoutX="171.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@Image/textContainer.png" />
+                          </image>
+                      </ImageView>
+                      <Label layoutX="2.0" layoutY="53.0" styleClass="outlined" text=" FORMAT  :" textFill="WHITE">
+                          <font>
+                              <Font name="Snap ITC" size="27.0" />
+                          </font>
+                      </Label>
+                      <Label layoutX="36.0" layoutY="104.0" prefHeight="33.0" prefWidth="156.0" styleClass="outlined" text="FOLDER  :" textAlignment="CENTER" textFill="WHITE">
+                          <font>
+                              <Font name="Snap ITC" size="25.0" />
+                          </font>
+                      </Label>
+               </children>
+            </Pane>
+                <ImageView fitHeight="120.0" fitWidth="81.0" layoutX="972.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@./Image/grass.png" />
+                        <Image url="@Image/btnX.png" />
                     </image>
                 </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="260.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="548.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Image/btnLoad.png" />
+                    </image>
+                </ImageView>
+            <Label layoutX="561.0" layoutY="481.0" text="State loaded successfully!" textFill="#70db31" styleClass="outlined">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Label>
             </children>
         </Pane>
     </children>
