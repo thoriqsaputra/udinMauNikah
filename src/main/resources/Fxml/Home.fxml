@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Fxml.Home">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.AwalUdin.GUI.Controller.HomeController">
    <children>
       <Pane layoutX="-8.0" prefHeight="720.0" prefWidth="1280.0">
          <children>
@@ -14,48 +14,49 @@
                   <Image url="@../Image/bgHome.png" />
                </image>
             </ImageView>
-            <Pane layoutX="265.0" layoutY="303.0">
+            <Pane layoutX="170.0" layoutY="321.0" prefHeight="286.0" prefWidth="336.0">
                <children>
-                  <ImageView fitHeight="228.0" fitWidth="298.0" layoutX="-24.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="336.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Image/wooden-board.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="23.0" layoutY="85.0" prefHeight="17.0" prefWidth="135.0" text="NEW GAME" textFill="WHITE">
+                  <Label fx:id="newGameLabel" layoutX="72.0" layoutY="87.0" prefHeight="24.0" prefWidth="173.0" text="NEW GAME" textFill="WHITE">
                      <font>
-                        <Font name="Snap ITC" size="18.0" />
+                        <Font name="Snap ITC" size="25.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="228.0" fitWidth="384.0" layoutX="-24.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="336.0" layoutX="1.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Image/wooden-board.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="23.0" layoutY="158.0" prefHeight="24.0" prefWidth="135.0" text="LOAD GAME" textFill="WHITE">
+                  <Label fx:id="loadGameLabel" layoutX="73.0" layoutY="155.0" prefHeight="33.0" prefWidth="190.0" text="LOAD GAME" textFill="WHITE">
                      <font>
-                        <Font name="Snap ITC" size="18.0" />
+                        <Font name="Snap ITC" size="25.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="228.0" fitWidth="298.0" layoutX="-23.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="336.0" layoutX="1.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Image/wooden-board.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="40.0" layoutY="234.0" text="PLUGINS" textFill="WHITE">
+                  <Label fx:id="pluginsLabel" layoutX="98.0" layoutY="224.0" text="PLUGINS" textFill="WHITE">
                      <font>
-                        <Font name="Snap ITC" size="18.0" />
+                        <Font name="Snap ITC" size="25.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Label graphicTextGap="0.0" layoutX="255.0" layoutY="84.0" prefHeight="166.0" prefWidth="576.0" styleClass="outlined-text" text="HAILDAY" textFill="#c2d70f">
-               <font>
-                  <Font name="Berlin Sans FB" size="100.0" />
-               </font>
-            </Label>
             <ImageView fitHeight="408.0" fitWidth="420.0" layoutX="797.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Image/greg.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="217.0" fitWidth="718.0" layoutX="79.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/hailday.png" />
                </image>
             </ImageView>
          </children>
