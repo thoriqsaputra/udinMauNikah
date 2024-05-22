@@ -48,7 +48,7 @@
                   </Label>
                </children>
             </Pane>
-            <ImageView fitHeight="408.0" fitWidth="420.0" layoutX="797.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="455.0" fitWidth="454.0" layoutX="755.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Image/greg.png" />
                </image>
