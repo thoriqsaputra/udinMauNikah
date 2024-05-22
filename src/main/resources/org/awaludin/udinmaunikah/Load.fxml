@@ -16,7 +16,7 @@
                 </ImageView>
                 <ImageView fitHeight="432.0" fitWidth="874.0" layoutX="211.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Image/container.png" />
+                        <Image url="@Image/containerShop.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="92.0" fitWidth="315.0" layoutX="499.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
@@ -58,7 +58,7 @@
                         <Image url="@Image/btnLoad.png" />
                     </image>
                 </ImageView>
-            <Label layoutX="561.0" layoutY="481.0" text="State loaded successfully!" textFill="#70db31" styleClass="outlined">
+            <Label layoutX="561.0" layoutY="481.0" styleClass="outlined" text="State loaded successfully!" textFill="#70db31">
                <font>
                   <Font name="Arial Black" size="12.0" />
                </font>

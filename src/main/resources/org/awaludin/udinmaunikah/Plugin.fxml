@@ -16,7 +16,7 @@
                 </ImageView>
                 <ImageView fitHeight="432.0" fitWidth="874.0" layoutX="211.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Image/container.png" />
+                        <Image url="@Image/transparentContainer.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="92.0" fitWidth="315.0" layoutX="499.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
