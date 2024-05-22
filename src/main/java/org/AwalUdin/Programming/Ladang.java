@@ -2,7 +2,6 @@ package org.AwalUdin.Programming;
 
 public class Ladang {
     private Petak[][] grid;
-    private Item bonus;
 
     public Ladang() {
         grid = new Petak[4][5];
@@ -68,30 +67,37 @@ public class Ladang {
     }
 
     public boolean isHerbivoreAda(){
-        // mengecek apakah ada herbivore di ladang, jika ada, langsung return true
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                Animal hewan = (Animal) grid[i][j].getGameObject();
-                if (hewan.GetType() == AnimalType.HERBIVORE) {
-                    return true;
+        try {
+            for (int i = 0; i < grid.length; i++) {
+                for (int j = 0; j < grid[i].length; j++) {
+                    Animal hewan = (Animal) grid[i][j].getGameObject();
+                    if (hewan.GetType() == AnimalType.HERBIVORE) {
+                        return true;
+                    }
                 }
             }
-        }
 
-        return false;
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public boolean isCarnivoreAda(){
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                Animal hewan = (Animal) grid[i][j].getGameObject();
-                if (hewan.GetType() == AnimalType.CARNIVORE) {
-                    return true;
+        try {
+            for (int i = 0; i < grid.length; i++) {
+                for (int j = 0; j < grid[i].length; j++) {
+                    Animal hewan = (Animal) grid[i][j].getGameObject();
+                    if (hewan.GetType() == AnimalType.CARNIVORE) {
+                        return true;
+                    }
                 }
             }
-        }
 
-        return false;
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     //Public card/GameObject/Product tryToHarvest(){};
