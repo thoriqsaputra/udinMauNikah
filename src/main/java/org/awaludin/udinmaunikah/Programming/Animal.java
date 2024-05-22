@@ -1,12 +1,5 @@
 package org.awaludin.udinmaunikah.Programming;
 
-enum AnimalType {
-    UNDEFINED,
-    HERBIVORE,
-    CARNIVORE,
-    OMNIVORE
-}
-
 public class Animal extends GameObject implements IFeedable, IHarvestable{
     private int weight;
     private int weightToHarvest;
@@ -18,6 +11,13 @@ public class Animal extends GameObject implements IFeedable, IHarvestable{
         this.weight = weight;
         this.weightToHarvest = weightToHarvest;
         this.harvestProduct = harvestProduct;
+        this.type = type;
+    }
+
+    public Animal(String name, int weight, int weightToHarvest,  AnimalType type){
+        super(name, "animal");
+        this.weight = weight;
+        this.weightToHarvest = weightToHarvest;
         this.type = type;
     }
 
