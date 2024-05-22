@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.awaludin.udinmaunikah.SaveController">
+    <children>
+        <Pane layoutX="-8.0" prefHeight="720.0" prefWidth="1280.0">
+            <children>
+                <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Image/bgShop.png" />
+                    </image>
+                </ImageView>
+            <ImageView fitHeight="432.0" fitWidth="874.0" layoutX="211.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/container.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="92.0" fitWidth="315.0" layoutX="499.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/saveTitle.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="177.0" fitWidth="495.0" layoutX="477.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/textContainer.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="152.0" fitWidth="578.0" layoutX="478.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/textContainer.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="120.0" fitWidth="81.0" layoutX="972.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/btnX.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="548.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/btnSave.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="309.0" layoutY="315.0" styleClass="outlined" text=" FORMAT  :" textFill="WHITE">
+               <font>
+                  <Font name="Snap ITC" size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="343.0" layoutY="366.0" prefHeight="33.0" prefWidth="156.0" styleClass="outlined" text="FOLDER  :" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Snap ITC" size="25.0" />
+               </font>
+            </Label>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
