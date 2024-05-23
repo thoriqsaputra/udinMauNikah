@@ -1,4 +1,4 @@
-package org.AwalUdin.udinmaunikah.Programming;
+package org.awaludin.udinmaunikah.Programming;
 
 public class Petak implements IHarvestable{
    private GameObject gameObject;

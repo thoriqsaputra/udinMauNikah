@@ -1,4 +1,4 @@
-package org.AwalUdin.udinmaunikah.Programming;
+package org.awaludin.udinmaunikah.Programming;
 
 public class Item extends GameObject {
     private String name;

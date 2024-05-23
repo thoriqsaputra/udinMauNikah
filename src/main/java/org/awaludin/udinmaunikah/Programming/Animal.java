@@ -1,4 +1,4 @@
-package org.AwalUdin.udinmaunikah.Programming;
+package org.awaludin.udinmaunikah.Programming;
 
 public class Animal extends GameObject implements IFeedable, IHarvestable{
     private int weight;

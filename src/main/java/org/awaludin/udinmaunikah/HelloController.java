@@ -1,4 +1,4 @@
-package org.AwalUdin.udinmaunikah;
+package org.awaludin.udinmaunikah;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

@@ -1,4 +1,4 @@
-package org.AwalUdin.udinmaunikah.Programming;
+package org.awaludin.udinmaunikah.Programming;
 
 import java.util.ArrayList;
 import java.util.List;

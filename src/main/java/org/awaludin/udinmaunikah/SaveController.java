@@ -1,4 +1,4 @@
-package org.AwalUdin.udinmaunikah;
+package org.awaludin.udinmaunikah;
 
 public class SaveController {
 }

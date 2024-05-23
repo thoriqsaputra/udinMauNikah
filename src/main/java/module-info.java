@@ -6,6 +6,6 @@ module org.AwalUdin.udinmaunikah {
     requires org.kordamp.bootstrapfx.core;
     requires json.simple;
 
-    opens org.AwalUdin.udinmaunikah to javafx.fxml;
-    exports org.AwalUdin.udinmaunikah;
+    opens org.awaludin.udinmaunikah to javafx.fxml;
+    exports org.awaludin.udinmaunikah;
 }
