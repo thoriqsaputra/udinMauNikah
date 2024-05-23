@@ -1,6 +1,6 @@
 package org.awaludin.udinmaunikah.Programming;
 
-public abstract class GameObject {
+public class GameObject {
     protected int gulden_value;
     private String name;
     private String description;

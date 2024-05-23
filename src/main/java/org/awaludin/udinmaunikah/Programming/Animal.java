@@ -2,9 +2,9 @@ package org.awaludin.udinmaunikah.Programming;
 
 public class Animal extends GameObject implements IFeedable, IHarvestable{
     private int weight;
-    private int weightToHarvest;
+    private final int weightToHarvest;
     private Product harvestProduct;
-    private AnimalType type;
+    private final AnimalType type;
 
     public Animal(String name, int weight, int weightToHarvest, Product harvestProduct, AnimalType type){
         super(name, "animal");
@@ -42,11 +42,10 @@ public class Animal extends GameObject implements IFeedable, IHarvestable{
     }
 
     public boolean isEatAble(Product food){
-        boolean canEat = false;
 
         //Process
 
-        return canEat;
+        return false;
     }
 
     

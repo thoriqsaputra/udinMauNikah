@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.awaludin.udinmaunikah.GameController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.awaludin.udinmaunikah.GameController">
     <children>
         <Pane layoutX="-8.0" prefHeight="720.0" prefWidth="1280.0">
             <children>
-                <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="8.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="8.0" preserveRatio="true">
                     <image>
                         <Image url="@Image/bgShop.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="118.0" fitWidth="775.0" layoutX="286.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e5c24e" height="136.0" layoutX="419.0" layoutY="584.0" stroke="#b44040" strokeType="INSIDE" width="570.0" />
+                <ImageView fitHeight="78.0" fitWidth="389.0" layoutX="531.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Image/enemys-territories.png" />
                     </image>
@@ -31,217 +40,82 @@
             </ImageView>
             <Pane layoutX="2.0" layoutY="255.0" prefHeight="234.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="118.0" fitWidth="200.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Image/save.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="113.0" fitWidth="212.0" layoutX="15.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Image/save.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="113.0" fitWidth="200.0" layoutX="14.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Image/save.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="84.0" layoutY="60.0" styleClass="outlined" text="SHOP">
-                     <font>
-                        <Font name="Snap ITC" size="20.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="55.0" layoutY="120.0" styleClass="outlined" text="TURN">
-                     <font>
-                        <Font name="Snap ITC" size="20.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="42.0" layoutY="182.0" styleClass="outlined" text="NEXT TURN">
-                     <font>
-                        <Font name="Snap ITC" size="20.0" />
-                     </font>
-                  </Label>
+                  <Group layoutX="14.0" layoutY="16.0" onMouseClicked="#openShop">
+                     <children>
+                        <ImageView fitHeight="118.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Image/save.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <Label layoutX="66.0" layoutY="15.0" styleClass="outlined" text="SHOP">
+                           <font>
+                              <Font name="Snap ITC" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="12.0" layoutY="165.0">
+                     <children>
+                        <ImageView fitHeight="113.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Image/save.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <Label layoutX="30.0" layoutY="17.0" styleClass="outlined" text="NEXT TURN">
+                           <font>
+                              <Font name="Snap ITC" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="13.0" layoutY="92.0">
+                     <children>
+                        <ImageView fitHeight="113.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Image/save.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <Label layoutX="45.0" layoutY="15.0" styleClass="outlined" text="TURN">
+                           <font>
+                              <Font name="Snap ITC" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="136.0" layoutY="14.0" styleClass="outlined" text="X">
+                           <font>
+                              <Font name="Snap ITC" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
                </children>
             </Pane>
-            <ImageView fitHeight="99.0" fitWidth="90.0" layoutX="1162.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="59.0" fitWidth="65.0" layoutX="1186.0" layoutY="23.0" onMouseClicked="#openSetting" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Image/btnSettings.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
-            <ImageView fitHeight="220.0" fitWidth="210.0" layoutX="1033.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Image/cardDeck.png" />
-               </image>
-            </ImageView>
-            <Pane layoutX="328.0" layoutY="511.0" prefHeight="164.0" prefWidth="689.0">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="73.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Image/card.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="184.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Image/card.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="296.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Image/card.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="405.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Image/card.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="516.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Image/card.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-38.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Image/card.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane layoutX="435.0" layoutY="167.0">
-               <children>
-                  <Pane>
-                     <children>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="89.0">
-                     <children>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="182.0">
-                     <children>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="272.0">
-                     <children>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="360.0">
-                     <children>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="85.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Image/petak.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-               </children>
-            </Pane>
             <Label layoutX="54.0" layoutY="185.0" styleClass="outlined" text="JIN TORIK">
-               <font>
-                  <Font name="Snap ITC" size="20.0" />
-               </font>
-            </Label>
-            <Label layoutX="1101.0" layoutY="518.0" styleClass="outlined" text="DECK">
-               <font>
-                  <Font name="Snap ITC" size="20.0" />
-               </font>
-            </Label>
-            <Label layoutX="150.0" layoutY="376.0" styleClass="outlined" text="X">
                <font>
                   <Font name="Snap ITC" size="20.0" />
                </font>
@@ -254,6 +128,673 @@
             <ImageView fitHeight="62.0" fitWidth="61.0" layoutX="32.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Image/bitcoin.png" />
+               </image>
+            </ImageView>
+            <Group layoutX="1049.0" layoutY="547.0">
+               <children>
+                  <ImageView fx:id="deck" fitHeight="138.0" fitWidth="94.0" layoutX="102.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" rotate="31.3">
+                     <image>
+                        <Image url="@Image/kard.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="118.0" layoutY="66.0" rotate="31.0" styleClass="outlined" text="DECK">
+                     <font>
+                        <Font name="Snap ITC" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
+            <Rectangle fx:id="DA1" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="441.0" layoutY="599.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="DA2" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="530.0" layoutY="599.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="DA3" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="621.0" layoutY="599.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="DA4" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="710.0" layoutY="599.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="DA5" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="800.0" layoutY="599.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="DA6" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="891.0" layoutY="599.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN1" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="402.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN2" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="491.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN3" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="582.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN4" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="671.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN5" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="761.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LE1" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="852.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LE2" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="941.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN6" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="411.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN7" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="500.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN8" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="591.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN9" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="680.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN10" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="770.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LE3" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="861.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LE4" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="950.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LE5" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="1040.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN11" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="402.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN12" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="491.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN13" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="582.0" layoutY="334.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN14" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="671.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN15" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="761.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LE6" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="852.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LE7" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="941.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LE8" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="1031.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN16" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="412.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN17" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="501.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN18" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="592.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN19" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="681.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LN20" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="771.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LE9" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="862.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <Rectangle fx:id="LE10" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="951.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7593985199928284" green="0.09040458500385284" blue="0.09040458500385284" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Rectangle>
+            <ImageView fx:id="kard" fitHeight="112.0" fitWidth="82.0" layoutX="221.0" layoutY="578.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/kard.png" />
                </image>
             </ImageView>
             </children>

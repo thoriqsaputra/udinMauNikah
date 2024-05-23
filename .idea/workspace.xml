@@ -5,16 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49bc364f-6ad4-4483-af41-11a91ea4bf76" name="Changes" comment="fix : Fixed package naming inconsistency">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/game_objects.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/DraggableMaker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/kard.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/game_objects.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/HelloController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/LoadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/LoadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/PluginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/PluginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Petak.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Petak.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/SaveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/SaveController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/ShopController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Game.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Home.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btn-Sell.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btn-Sell.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btnBack.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btnBack.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btnLoadPlugin.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btnLoadPlugin.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btnLoadState.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btnLoadState.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btnPanen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btnPanen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btnSave.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btnSave.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btnSaveState.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btnSaveState.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btnSettings.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btnSettings.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btnX.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/btnX.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/card.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/enemys-territories.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/enemys-territories.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/save.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Image/save.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Load.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Load.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Plugin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Plugin.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Save.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Save.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Settings.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Shop.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Shop.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +75,9 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2goeYLQPPfV4cPoEinkfoTS05t1" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
