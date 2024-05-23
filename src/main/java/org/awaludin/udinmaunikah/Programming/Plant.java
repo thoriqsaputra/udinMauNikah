@@ -1,4 +1,4 @@
-package org.awaludin.udinmaunikah.Programming;
+package org.AwalUdin.udinmaunikah.Programming;
 
 public class Plant extends GameObject implements IHarvestable, IGrowable{
     private int age;

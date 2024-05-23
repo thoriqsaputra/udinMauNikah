@@ -1,4 +1,4 @@
-package org.awaludin.udinmaunikah;
+package org.AwalUdin.udinmaunikah;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

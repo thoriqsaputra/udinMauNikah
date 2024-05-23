@@ -1,4 +1,4 @@
-package org.awaludin.udinmaunikah.Programming;
+package org.AwalUdin.udinmaunikah.Programming;
 
 public abstract class GameObject {
     protected int gulden_value;

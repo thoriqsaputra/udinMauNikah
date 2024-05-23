@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49bc364f-6ad4-4483-af41-11a91ea4bf76" name="Changes" comment="">
+    <list default="true" id="49bc364f-6ad4-4483-af41-11a91ea4bf76" name="Changes" comment="fix : Fixed package naming inconsistency">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/game_objects.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/game_objects.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Home.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Load.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Load.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Plugin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Plugin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Save.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Save.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Shop.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Shop.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +24,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;BiZaRrE96&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/thoriqsaputra/udinMauNikah&quot;,
+    &quot;accountId&quot;: &quot;f1c44a37-d6a9-4612-a88b-ff0ea9c7f628&quot;
+  }
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -38,6 +56,11 @@
   &quot;keyToString&quot;: {
     &quot;Application.Application.executor&quot;: &quot;Run&quot;,
     &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.JSON_Read_Test.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
@@ -47,15 +70,16 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Code 2\Sem 4\udinMauNikah\src\main\resources" />
       <recent name="C:\Users\saput\IdeaProjects\UdinMauNikah\src\main\resources\org\awaludin\udinmaunikah" />
       <recent name="C:\Users\saput\IdeaProjects\UdinMauNikah\src\main\java\org\awaludin\udinmaunikah" />
     </key>
@@ -82,10 +106,37 @@
       <workItem from="1716371414880" duration="972000" />
       <workItem from="1716372400219" duration="138000" />
       <workItem from="1716372563149" duration="293000" />
+      <workItem from="1716445034732" duration="153000" />
+      <workItem from="1716445197694" duration="1572000" />
+      <workItem from="1716446816138" duration="1740000" />
     </task>
+    <task id="LOCAL-00001" summary="fix : Fixed package naming inconsistency">
+      <option name="closed" value="true" />
+      <created>1716447088619</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716447088619</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix : Fixed package naming inconsistency" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix : Fixed package naming inconsistency" />
   </component>
 </project>

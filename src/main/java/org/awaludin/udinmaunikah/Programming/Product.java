@@ -1,4 +1,4 @@
-package org.awaludin.udinmaunikah.Programming;
+package org.AwalUdin.udinmaunikah.Programming;
 
 enum ProductType {
     UNDEFINED, //ini bisa juga kalo suatu object "typeless"

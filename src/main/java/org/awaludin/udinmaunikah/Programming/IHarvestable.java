@@ -1,4 +1,4 @@
-package org.awaludin.udinmaunikah.Programming;
+package org.AwalUdin.udinmaunikah.Programming;
 
 public interface IHarvestable {
     public GameObject Harvest();

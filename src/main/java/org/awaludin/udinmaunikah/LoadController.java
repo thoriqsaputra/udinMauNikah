@@ -1,4 +1,4 @@
-package org.awaludin.udinmaunikah;
+package org.AwalUdin.udinmaunikah;
 
 public class LoadController {
 }
