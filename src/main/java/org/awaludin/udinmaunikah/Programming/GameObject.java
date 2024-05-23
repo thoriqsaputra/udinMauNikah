@@ -2,6 +2,7 @@ package org.awaludin.udinmaunikah.Programming;
 
 public class GameObject {
     protected int gulden_value;
+    protected String id;
     private String name;
     private String description;
 
@@ -10,8 +11,14 @@ public class GameObject {
         this.description = description;
     }
 
+    public GameObject(String name, String description, String id){}
+
     public GameObject(){
         this("BLANK","<BLANK DESCRIPTION>");
+    }
+
+    public void setID(String id){
+        this.id = id;
     }
 
     //bisa di override

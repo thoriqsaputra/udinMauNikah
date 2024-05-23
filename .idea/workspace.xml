@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49bc364f-6ad4-4483-af41-11a91ea4bf76" name="Changes" comment="game object json">
+    <list default="true" id="49bc364f-6ad4-4483-af41-11a91ea4bf76" name="Changes" comment="Game object factory and temporary product workaround">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameObjectFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/game_objects.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Product.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,31 +57,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.JSON_Read_Test.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Application.executor": "Run",
+    "Application.GameObjectFactory.executor": "Run",
+    "Application.HelloApplication.executor": "Run",
+    "Application.JSON_Read_Test.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "full.screen.before.presentation.mode": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Code 2\Sem 4\udinMauNikah\src\main\resources" />
@@ -113,7 +115,8 @@
       <workItem from="1716445034732" duration="153000" />
       <workItem from="1716445197694" duration="1572000" />
       <workItem from="1716446816138" duration="1740000" />
-      <workItem from="1716469375909" duration="3188000" />
+      <workItem from="1716469375909" duration="6224000" />
+      <workItem from="1716480883438" duration="2641000" />
     </task>
     <task id="LOCAL-00001" summary="fix : Fixed package naming inconsistency">
       <option name="closed" value="true" />
@@ -123,7 +126,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716447088619</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fix json structure to actually use ID">
+      <option name="closed" value="true" />
+      <created>1716474107178</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716474107178</updated>
+    </task>
+    <task id="LOCAL-00003" summary="FIX Json structur">
+      <option name="closed" value="true" />
+      <created>1716483520245</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716483520245</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,6 +162,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix : Fixed package naming inconsistency" />
     <MESSAGE value="game object json" />
-    <option name="LAST_COMMIT_MESSAGE" value="game object json" />
+    <MESSAGE value="Fix json structure to actually use ID" />
+    <MESSAGE value="FIX Json structur" />
+    <MESSAGE value="Game object factory and temporary product workaround" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game object factory and temporary product workaround" />
   </component>
 </project>
