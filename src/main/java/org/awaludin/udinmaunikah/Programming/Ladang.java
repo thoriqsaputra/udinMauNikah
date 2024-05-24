@@ -1,10 +1,12 @@
 package org.awaludin.udinmaunikah.Programming;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.Map;
 
 import org.awaludin.udinmaunikah.Programming.Effect.Layout;
 import org.awaludin.udinmaunikah.Programming.Effect.Protect;
@@ -146,6 +148,16 @@ public class Ladang {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public Map<Integer, GameObject> getIngfo() {
+        Map<Integer, GameObject> ingfo = new HashMap<>();
+        for (int i = 0; i < 30; i++) {
+            if (grid.get(i).getGameObject() != null) {
+                ingfo.put(i, grid.get(i).getGameObject());
+            }
+        }
+        return ingfo;
     }
 
     public synchronized void bearAttack() {
