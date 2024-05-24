@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="137.0" prefWidth="212.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.awaludin.udinmaunikah.ShopDeckController">
+   <children>
+      <ImageView fitHeight="140.0" fitWidth="213.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/shopDeck.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="image" fitHeight="67.0" fitWidth="59.0" layoutX="14.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/hiudarat.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="70.0" layoutY="96.0" text="Jumlah :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="73.0" layoutY="76.0" text="Harga  :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Text fx:id="harga" layoutX="125.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="73.56527709960938" />
+      <Text fx:id="jumlah" layoutX="125.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="73.56527709960938" />
+      <Text fx:id="name" fill="WHITE" layoutX="33.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="outlined" text="Hiu Darat" textAlignment="CENTER" wrappingWidth="147.13055419921886">
+         <font>
+            <Font name="Snap ITC" size="18.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

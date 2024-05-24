@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Toko {
-    private Map<GameObject, Integer> listItemToko;
+    private static Map<GameObject, Integer> listItemToko;
 
     public Toko(){
         listItemToko = new HashMap<>();
@@ -26,6 +26,15 @@ public class Toko {
             } else {
                 listItemToko.remove(item);
             }
+        }
+    }
+
+    public void addItem(GameObject item) {
+        if (this.listItemToko.containsKey(item)) {
+            int quantity = this.listItemToko.get(item);
+            this.listItemToko.put(item, quantity + 1);
+        } else {
+            this.listItemToko.put(item, 1);
         }
     }
 

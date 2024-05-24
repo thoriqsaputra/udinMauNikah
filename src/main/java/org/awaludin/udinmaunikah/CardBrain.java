@@ -34,18 +34,19 @@ public class CardBrain {
     }
 
     public void makeDraggable(cardObj node){
-
-
         ArrayList<Petak> targets = this.petaks;
-
-        double[] initialPosition = {node.getLayoutX(), node.getLayoutY()};
+        final boolean[] yesKah = {false};
+        double[] initialPosition = new double[2];
 
         node.setOnMousePressed(mouseEvent -> {
-
-            System.out.println(mouseEvent.getButton());
-
             if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-                System.out.println("Dragging " + node.getLayoutX() + " " + node.getLayoutY());
+
+                if (!yesKah[0]){
+                    initialPosition[0] = node.getLayoutX();
+                    initialPosition[1] = node.getLayoutY();
+                    yesKah[0] = true;
+                }
+
                 mouseAnchorX = mouseEvent.getX();
                 mouseAnchorY = mouseEvent.getY();
             }
@@ -84,6 +85,7 @@ public class CardBrain {
                     }
                 }
                 if (!placed) {
+
                     node.setLayoutX(initialPosition[0]-7);
                     node.setLayoutY(initialPosition[1]);
                 }
@@ -97,7 +99,7 @@ public class CardBrain {
         private GameObject gameObject;
         private CardBrain cardBrain;
 
-        public cardObj(Card isiKartu, Petak previousPetak, CardBrain cardBrain){
+        public cardObj(Card isiKartu, Petak previousPetak){
             this.isiKartu = isiKartu;
             this.previousPetak = previousPetak;
             this.gameObject = this.isiKartu.convertToGameObject();
@@ -161,7 +163,6 @@ public class CardBrain {
 
             this.getChildren().addAll(kard, text, icon);
 
-            cardBrain.makeDraggable(this);
         }
 
         public void setPreviousPetak(Petak petak){

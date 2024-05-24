@@ -3,9 +3,11 @@ package org.awaludin.udinmaunikah;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -14,8 +16,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.net.URL;
 
 import javafx.scene.input.MouseEvent;
@@ -25,7 +26,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.awaludin.udinmaunikah.Programming.*;
-import java.util.List;
+
 import java.util.ArrayList;
 
 public class GameController implements Initializable {
@@ -147,14 +148,19 @@ public class GameController implements Initializable {
     private ArrayList<Petak> petaks = new ArrayList<>();
 
     private Ladang ladang = new Ladang();
+    private Toko toko = new Toko();
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializePlaceHolders();
+
         CardBrain cardBrain = new CardBrain(petaks);
+
         GameManager.initGameManager();
+
         GameObjectFactory.Load();
+
         for (int i = 0; i < 2; i++) {
             GameManager.SetUpUtils.useDeck(i,"default");
         }
@@ -162,15 +168,50 @@ public class GameController implements Initializable {
         GameObject test = GameObjectFactory.CreateGameObjectByID("HEWAN_002");
         Card kartu = new Card(test);
 
-        CardBrain.cardObj ss = new CardBrain.cardObj(kartu, null, cardBrain);
-
+        CardBrain.cardObj ss = new CardBrain.cardObj(kartu, null);
+        cardBrain.makeDraggable(ss);
 
         ss.setLayoutY(300);
         ss.setLayoutX(390);
 
         mainBoo.getChildren().add(ss);
 
+        Map<GameObject, Integer> bae = new HashMap<>();
+        Map<GameObject, Integer> baes = new HashMap<>();
+
+        GameObject testa = GameObjectFactory.CreateGameObjectByID("PRODUCT_001");
+        GameObject testt = GameObjectFactory.CreateGameObjectByID("PRODUCT_001");
+        GameObject test2 = GameObjectFactory.CreateGameObjectByID("PRODUCT_002");
+        GameObject test3 = GameObjectFactory.CreateGameObjectByID("PRODUCT_003");
+        GameObject test4 = GameObjectFactory.CreateGameObjectByID("PRODUCT_004");
+        GameObject test5 = GameObjectFactory.CreateGameObjectByID("PRODUCT_005");
+        GameObject test6 = GameObjectFactory.CreateGameObjectByID("PRODUCT_006");
+        GameObject test7 = GameObjectFactory.CreateGameObjectByID("PRODUCT_007");
+        GameObject test8 = GameObjectFactory.CreateGameObjectByID("PRODUCT_008");
+        GameObject test9 = GameObjectFactory.CreateGameObjectByID("PRODUCT_009");
+
+        toko.addItem(testa);
+        toko.addItem(testt);
+        toko.addItem(test2);
+        toko.addItem(test3);
+        toko.addItem(test4);
+        toko.addItem(test5);
+        toko.addItem(test6);
+        toko.addItem(test7);
+        toko.addItem(test8);
+        toko.addItem(test9);
+
+        Map<GameObject,Integer> map = toko.getListItems();
+
+        for(Map.Entry<GameObject, Integer> entry : map.entrySet()){
+            GameObject object = entry.getKey();
+            Integer value = entry.getValue();
+            System.out.println(object.GetName());
+            System.out.println(value);
+        }
     }
+
+
 
     public void shuffleMe(){
         GameManager.PlayerInterface.beginDraftPick();
@@ -242,12 +283,16 @@ public class GameController implements Initializable {
 
     public void openShop(MouseEvent mouseEvent) throws IOException {
         try{
-            FXMLLoader startGame = new FXMLLoader(getClass().getResource("Shop.fxml"));
-            Parent root = startGame.load();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Shop.fxml"));
+            Parent root = fxmlLoader.load();
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
             Application.pushScene(stage.getScene());
+
+            ShopController shopController = fxmlLoader.getController();
+
+            shopController.setProductGrid(toko.getListItems());
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
