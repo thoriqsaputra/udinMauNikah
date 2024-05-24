@@ -50,4 +50,7 @@ public class AnimalController {
         this.imag.setImage(image);
         this.name.setText(name);
     };
+
+    public void panenMas(MouseEvent event) {
+    }
 }

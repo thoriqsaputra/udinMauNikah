@@ -148,22 +148,27 @@ public class GameController implements Initializable {
 
     private Ladang ladang = new Ladang();
 
-    private GameManager gameManager = new GameManager();
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializePlaceHolders();
-
+        CardBrain cardBrain = new CardBrain(petaks);
         GameManager.initGameManager();
         GameObjectFactory.Load();
         for (int i = 0; i < 2; i++) {
             GameManager.SetUpUtils.useDeck(i,"default");
         }
-        System.out.println("YAYYY");
 
-        shuffleMe();
+        GameObject test = GameObjectFactory.CreateGameObjectByID("HEWAN_002");
+        Card kartu = new Card(test);
 
+        CardBrain.cardObj ss = new CardBrain.cardObj(kartu, null, cardBrain);
+
+
+        ss.setLayoutY(300);
+        ss.setLayoutX(390);
+
+        mainBoo.getChildren().add(ss);
 
     }
 
@@ -171,8 +176,6 @@ public class GameController implements Initializable {
         GameManager.PlayerInterface.beginDraftPick();
         List<Card> cards;
         cards = GameManager.PlayerInterface.getDraftList();
-
-        System.out.println("BATMAN");
 
         try{
             FXMLLoader shuffle = new FXMLLoader(getClass().getResource("Shuffle.fxml"));
@@ -187,6 +190,9 @@ public class GameController implements Initializable {
             stage.initStyle(StageStyle.TRANSPARENT);
             scene.setFill(Color.TRANSPARENT);
             stage.initModality(Modality.APPLICATION_MODAL);
+
+            stage.setAlwaysOnTop(true);
+
             stage.setScene(scene);
 
             stage.show();

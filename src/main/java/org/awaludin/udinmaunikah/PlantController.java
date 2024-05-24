@@ -45,4 +45,6 @@ public class PlantController {
         this.name.setText(name);
     }
 
+    public void panenBugi(MouseEvent event) {
+    }
 }

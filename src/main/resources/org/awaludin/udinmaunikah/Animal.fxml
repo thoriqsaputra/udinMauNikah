@@ -31,7 +31,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </ImageView>
-                <ImageView fx:id="panen" fitHeight="208.0" fitWidth="183.0" layoutX="540.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="208.0" fitWidth="183.0" layoutX="540.0" layoutY="440.0" onMouseClicked="#panenMas" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Image/btnPanen.png" />
                     </image>

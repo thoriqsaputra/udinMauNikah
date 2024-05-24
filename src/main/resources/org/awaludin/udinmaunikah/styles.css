@@ -25,3 +25,7 @@
 .text-field{
     -fx-background-color: transparent;
 }
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}

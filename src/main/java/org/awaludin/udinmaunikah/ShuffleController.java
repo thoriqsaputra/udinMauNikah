@@ -1,13 +1,16 @@
 package org.awaludin.udinmaunikah;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.awaludin.udinmaunikah.Programming.Card;
+import org.awaludin.udinmaunikah.Programming.GameManager;
 
 import java.io.IOException;
 import java.util.List;
@@ -77,11 +80,14 @@ public class ShuffleController {
 
     @FXML
     void closeWindow(MouseEvent event) {
-
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     void shuffle(MouseEvent event) {
+        GameManager.PlayerInterface.beginDraftPick();
+
 
     }
 

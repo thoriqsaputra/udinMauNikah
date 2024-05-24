@@ -12,7 +12,6 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="mainBoo" prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.awaludin.udinmaunikah.GameController">
     <children>
@@ -29,7 +28,7 @@
                         <Image url="@Image/enemys-territories.png" />
                     </image>
                 </ImageView>
-            <ImageView fitHeight="763.0" fitWidth="368.0" layoutX="-36.0" layoutY="-141.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="709.0" fitWidth="285.0" layoutX="-26.0" layoutY="-141.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Image/banner.png" />
                </image>
@@ -793,21 +792,6 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Pane layoutX="271.0" layoutY="472.0" prefHeight="112.0" prefWidth="79.0">
-               <children>
-                  <ImageView fx:id="kard" fitHeight="112.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Image/kard.png" />
-                     </image>
-                  </ImageView>
-                  <Text layoutX="1.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Biji Labu" textAlignment="CENTER" wrappingWidth="76.48434448242188" />
-                  <ImageView fitHeight="54.0" fitWidth="93.0" layoutX="12.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Image/hiudarat.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
             </children>
         </Pane>
     </children>

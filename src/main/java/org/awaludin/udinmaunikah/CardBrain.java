@@ -109,8 +109,10 @@ public class CardBrain {
 
                         if (this.gameObject instanceof Animal){
                             dlgAnimal(isiKartu);
-                        } else{
+                        } else if (this.gameObject instanceof Plant) {
                             dlgPlant(isiKartu);
+                        } else {
+                            dlgProduct(isiKartu);
                         }
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -207,6 +209,28 @@ public class CardBrain {
                 stage.initStyle(StageStyle.TRANSPARENT);
                 scene.setFill(Color.TRANSPARENT);
                 stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        public void dlgProduct(Card isiKartu) throws IOException {
+            try{
+                FXMLLoader dlgProduct = new FXMLLoader(getClass().getResource("Product.fxml"));
+                Parent root = dlgProduct.load();
+
+                ProductController productController = dlgProduct.getController();
+
+                productController.setProduct(isiKartu);
+
+                Stage stage = new Stage();
+                Scene scene = new Scene(root);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.initStyle(StageStyle.TRANSPARENT);
+                scene.setFill(Color.TRANSPARENT);
+                stage.setScene(scene);
+                stage.setAlwaysOnTop(true);
                 stage.show();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
