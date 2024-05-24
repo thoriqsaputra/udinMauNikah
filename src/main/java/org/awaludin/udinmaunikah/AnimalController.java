@@ -37,6 +37,8 @@ public class AnimalController {
         stage.close();
     }
 
+    private Card kar;
+
     public void setAnimal(Card kartu) throws IOException {
 
         GameObject gameObject = kartu.convertToGameObject();
@@ -49,6 +51,8 @@ public class AnimalController {
         this.berat.setText(weight);
         this.imag.setImage(image);
         this.name.setText(name);
+
+        kar = kartu;
     };
 
     public void panenMas(MouseEvent event) {

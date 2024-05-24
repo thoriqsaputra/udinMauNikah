@@ -26,6 +26,8 @@ public class PlantController {
     @FXML
     private Label umur;
 
+    private Card kar;
+
     @FXML
     void closeWindow(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -43,6 +45,8 @@ public class PlantController {
         this.umur.setText(umur);
         this.img.setImage(image);
         this.name.setText(name);
+
+        kar = kartu;
     }
 
     public void panenBugi(MouseEvent event) {

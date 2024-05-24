@@ -36,6 +36,8 @@ public class ProductController {
         stage.close();
     }
 
+    private Card kar;
+
     @FXML
     public void setProduct(Card kartu) throws IOException {
 
@@ -51,6 +53,8 @@ public class ProductController {
         this.imag.setImage(imag);
         this.name.setText(name);
         this.harga.setText(harga);
+
+        kar = kartu;
     };
 
     @FXML
