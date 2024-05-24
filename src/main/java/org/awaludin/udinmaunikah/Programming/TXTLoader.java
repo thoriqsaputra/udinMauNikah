@@ -9,8 +9,8 @@ import java.nio.file.*;
 public class TXTLoader implements Loader {
     private Field temp;
 
-    private String exposeFieldValue(Field[] flist, String field){
-        String retval = null;
+    private Object exposeFieldValue(Field[] flist, String field){
+        Object retval = null;
         for (final Field f : flist) {
             try{
                 if (f.getName().equals(field)){
@@ -21,7 +21,7 @@ public class TXTLoader implements Loader {
                         reset_on_done = true;
                         f.setAccessible(true);
                     };
-                    retval = f.get(this).toString();
+                    retval = f.get(this);
 
                     if (reset_on_done){
                         f.setAccessible(false);
@@ -92,12 +92,43 @@ public class TXTLoader implements Loader {
         Field[] flist = gm.getClass().getDeclaredFields();
         if (Files.isDirectory(fpath)) {
             try{
-            List<String> content = new ArrayList<String>();
-            //gamestate.txt
-            content.add(exposeFieldValue(flist, "turnCounter"));
-            Files.write(Path.of(path + "\\gamestate.txt"),content, StandardCharsets.UTF_8);
+                List<String> content = new ArrayList<String>();
+                //gamestate.txt
+                content.add(exposeFieldValue(flist, "totalTurnCounter").toString());
+                //toko items
+                Toko shop = (Toko) exposeFieldValue(flist, "shop");
+                content.add("SHOP ITEM AMMOUNT");
+
+
+                Files.write(Path.of(path + "\\gamestate.txt"),content, StandardCharsets.UTF_8);
 
             //player.txt
+                List<CardDeck> cdlist = (List<CardDeck>) exposeFieldValue(flist,"deckList");
+                for (int i = 0; i < GameManager.defaultPlayerCount; i++){
+                    content.clear();
+                    String filename = String.format("player%d.txt",i+1);
+                    content.add((((List<Integer>)exposeFieldValue(flist,"guldenList")).get(i)).toString());
+                    //player deck
+                    CardDeck cd = cdlist.get(i);
+                    content.add(String.valueOf(cd.getCardCount()));
+                    for (CardSlot cs : cd.getDeck()){
+                        content.add(cs.GetCardThing().convertToGameObject().getId());
+                    }
+                    //deck active
+                    int handcount = 0;
+                    List<String> temp_idholder = new ArrayList<>();
+                    for (int j = 0; j < GameManager.maxHandCount; j++){
+                        Card c = cd.getHand().get(j);
+                        if (c != null){
+                            handcount++;
+                            temp_idholder.add(c.convertToGameObject().getId());
+                        }
+                    };
+                    content.addAll(temp_idholder);
+                    Files.write(Path.of(path + "\\" + filename),content, StandardCharsets.UTF_8);
+
+                }
+
             } catch (Exception e){
                     e.printStackTrace();
                 }

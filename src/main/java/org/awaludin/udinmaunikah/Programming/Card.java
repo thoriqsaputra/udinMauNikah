@@ -74,6 +74,10 @@ class CardDeck {
         rng.setSeed(seed);
     }
 
+    public List<CardSlot> getDeck(){
+        return deck;
+    }
+
     public boolean load_deck(String deck_name){
         String fname = Paths.get(deck_template_location).toAbsolutePath().toString();
         System.out.println(fname);
@@ -200,7 +204,7 @@ class CardDeck {
     //Add new permanent cards to the deck
     public void add(Card thing){
         int i = 0;
-        while (i < deck.size() && deck.get(i).GetCardThing() != thing) {
+        while (i < deck.size() && deck.get(i).GetCardThing().convertToGameObject().getId() != thing.convertToGameObject().getId()) {
             i++;
         }
         //needs new CardSlot
@@ -231,6 +235,10 @@ class CardDeck {
         }
 
         return false;
+    }
+
+    public int getCardCount(){
+        return this.cardCount;
     }
 }
 
