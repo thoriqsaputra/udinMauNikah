@@ -274,7 +274,7 @@
     }
   },
   "ITEM_006" : {
-    "name" : "Instant Harvest",
+    "name" : "Trap",
     "description" : "<DESC>",
     "type" : "item",
     "value" : 20,

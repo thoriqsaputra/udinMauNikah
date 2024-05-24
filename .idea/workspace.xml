@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49bc364f-6ad4-4483-af41-11a91ea4bf76" name="Changes" comment="Game object factory and temporary product workaround">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameObjectFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Driver/Card_IMG_test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Card.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameObjectFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/game_objects.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/game_objects.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +62,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Application.executor": "Run",
+    "Application.Card_IMG_test.executor": "Run",
     "Application.GameObjectFactory.executor": "Run",
     "Application.HelloApplication.executor": "Run",
     "Application.JSON_Read_Test.executor": "Run",
@@ -116,7 +119,8 @@
       <workItem from="1716445197694" duration="1572000" />
       <workItem from="1716446816138" duration="1740000" />
       <workItem from="1716469375909" duration="6224000" />
-      <workItem from="1716480883438" duration="2641000" />
+      <workItem from="1716480883438" duration="3711000" />
+      <workItem from="1716509080174" duration="2974000" />
     </task>
     <task id="LOCAL-00001" summary="fix : Fixed package naming inconsistency">
       <option name="closed" value="true" />
@@ -142,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716483520245</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Game object factory and temporary product workaround">
+      <option name="closed" value="true" />
+      <created>1716483584515</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716483584515</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -35,6 +35,8 @@ public class GameObjectFactory {
                 e.printStackTrace();
             }
         }
+
+        System.out.println("GAME OBJECTS NOT LOADED");
         return false;
     }
 
@@ -45,18 +47,27 @@ public class GameObjectFactory {
             if (temp != null){
                 switch (temp.get("type").toString()){
                     case "animal":
-                        return GenerateAnimal(temp);
+                        Animal animal = GenerateAnimal(temp);
+                        animal.setID(gameobjectID);
+                        return animal;
                     case "plant":
-                        return  GeneratePlant(temp);
+                        Plant plant = GeneratePlant(temp);
+                        plant.setID(gameobjectID);
+                        return plant;
                     case "product":
-                        return  GenerateProduct(temp);
+                        Product product = GenerateProduct(temp);
+                        product.setID(gameobjectID);
+                        return product;
                     default:
                         break;
 
                 }
             }
+            System.out.println("OBJECT ID NOT FOUND");
+            return null;
         }
 
+        System.out.println("GAME OBJECTS NOT LOADED");
         return null;
     }
 
@@ -68,8 +79,10 @@ public class GameObjectFactory {
                     return CreateGameObjectByID(benda.toString());
                 }
             }
+            System.out.println("NO GAMEOBJECT WITH KEY EXISTS");
         }
 
+        System.out.println("GAME OBJECTS NOT LOADED");
         return null;
     }
 

@@ -21,6 +21,10 @@ public class GameObject {
         this.id = id;
     }
 
+    public String getId() {
+        return id;
+    }
+
     //bisa di override
     public int get_value(){
         return gulden_value;
