@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.awaludin.udinmaunikah.ShopController">
+   <children>
+      <Pane layoutX="-8.0" prefHeight="720.0" prefWidth="1280.0">
+            <children>
+                <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@./Image/bgShop.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="119.0" fitWidth="240.0" layoutX="32.0" layoutY="54.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@./Image/btnBack.png" />
+               </image></ImageView>
+                <ImageView fitHeight="174.0" fitWidth="265.0" layoutX="518.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@./Image/textShop.png" />
+                    </image>
+                </ImageView>
+            <ImageView fitHeight="422.0" fitWidth="921.0" layoutX="171.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@./Image/containerShop.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="532.0" fitWidth="519.0" layoutX="856.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/dombalady.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="314.0" fitWidth="1286.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@./Image/grass.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="236.0" layoutY="273.0">
+               <children>
+                  <ImageView fitHeight="145.0" fitWidth="215.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/shopDeck.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="145.0" fitWidth="212.0" layoutX="244.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/shopDeck.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="145.0" fitWidth="212.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/shopDeck.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="145.0" fitWidth="212.0" layoutX="244.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/shopDeck.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="154.0" fitWidth="212.0" layoutX="497.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/shopDeck.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="145.0" fitWidth="212.0" layoutX="497.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/shopDeck.png" />
+                     </image>
+                  </ImageView>
+                  <Pane layoutX="33.0" layoutY="22.0">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="68.0" layoutX="-3.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Image/hiudarat.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="13.0" layoutY="2.0" styleClass="outlined" text="HIU DARAT">
+                           <font>
+                              <Font name="Snap ITC" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="65.0" layoutY="40.0" prefHeight="17.0" prefWidth="55.0" text="HARGA:">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="62.0" layoutY="67.0" text="JUMLAH:">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="291.0" layoutY="27.0">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="68.0" layoutX="-3.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Image/hiudarat.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="13.0" layoutY="2.0" styleClass="shopItemName" text="HIU DARAT">
+                           <font>
+                              <Font name="Snap ITC" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="65.0" layoutY="40.0" prefHeight="17.0" prefWidth="55.0" text="HARGA:">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="62.0" layoutY="67.0" text="JUMLAH:">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="281.0" layoutY="212.0">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="68.0" layoutX="-3.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Image/hiudarat.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="13.0" layoutY="2.0" styleClass="shopItemName" text="HIU DARAT">
+                           <font>
+                              <Font name="Snap ITC" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="65.0" layoutY="40.0" prefHeight="17.0" prefWidth="55.0" text="HARGA:">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="62.0" layoutY="67.0" text="JUMLAH:">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="33.0" layoutY="212.0">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="68.0" layoutX="-3.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Image/hiudarat.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="65.0" layoutY="40.0" prefHeight="17.0" prefWidth="55.0" text="HARGA:">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="62.0" layoutY="67.0" text="JUMLAH:">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="539.0" layoutY="27.0">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="68.0" layoutX="-3.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Image/hiudarat.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="13.0" layoutY="2.0" styleClass="shopItemName" text="HIU DARAT">
+                           <font>
+                              <Font name="Snap ITC" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="65.0" layoutY="40.0" prefHeight="17.0" prefWidth="55.0" text="HARGA:">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="62.0" layoutY="67.0" text="JUMLAH:">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="541.0" layoutY="211.0">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="68.0" layoutX="-3.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Image/hiudarat.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="13.0" layoutY="2.0" styleClass="shopItemName" text="HIU DARAT">
+                           <font>
+                              <Font name="Snap ITC" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="65.0" layoutY="40.0" prefHeight="17.0" prefWidth="55.0" text="HARGA:">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="62.0" layoutY="67.0" text="JUMLAH:">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Label layoutX="16.0" layoutY="192.0" styleClass="shopItemName" text="HIU DARAT">
+                     <font>
+                        <Font name="Snap ITC" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

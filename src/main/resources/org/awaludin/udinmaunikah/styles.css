@@ -1,0 +1,27 @@
+.outlined-text {
+    -fx-font-family: 'Berlin Sans FB Bold';
+    -fx-font-size: 100px;
+    -fx-effect:
+            dropshadow(one-pass-box, #48361B, 30, 1, 1, 1),
+            dropshadow(one-pass-box, #48361B, 30, 1, 1, 1);
+}
+
+.outlined {
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(one-pass-box, #48361B, 10, 1, 1, 1),
+    dropshadow(one-pass-box, #48361B, 10, 1, 1, 1);
+}
+
+#newGameLabel, #loadGameLabel, #pluginsLabel {
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(one-pass-box, #48361B, 10, 1, 1, 1),
+    dropshadow(one-pass-box, #48361B, 10, 1, 1, 1);
+}
+
+.root {
+    -fx-background-color: transparent;
+}
+
+.text-field{
+    -fx-background-color: transparent;
+}

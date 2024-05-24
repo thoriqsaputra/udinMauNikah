@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.awaludin.udinmaunikah.SaveController">
+    <children>
+        <Pane layoutX="-8.0" prefHeight="720.0" prefWidth="1280.0">
+            <children>
+                <ImageView fitHeight="432.0" fitWidth="874.0" layoutX="211.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Image/containerShop.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="92.0" fitWidth="315.0" layoutX="499.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Image/saveTitle.png" />
+                    </image>
+                </ImageView>
+                <Pane layoutX="337.0" layoutY="250.0">
+                    <children>
+                        <ImageView fitHeight="177.0" fitWidth="495.0" layoutX="170.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Image/textContainer.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="152.0" fitWidth="578.0" layoutX="171.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Image/textContainer.png" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="2.0" layoutY="53.0" styleClass="outlined" text=" FORMAT  :" textFill="WHITE">
+                            <font>
+                                <Font name="Snap ITC" size="27.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="104.0" prefHeight="33.0" prefWidth="156.0" styleClass="outlined" text="FOLDER  :" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font name="Snap ITC" size="25.0" />
+                            </font>
+                        </Label>
+                  <TextField layoutX="222.0" layoutY="54.0" prefHeight="33.0" prefWidth="397.0" />
+                  <TextField layoutX="222.0" layoutY="107.0" prefHeight="33.0" prefWidth="397.0" />
+                    </children>
+                </Pane>
+                <ImageView fitHeight="55.0" fitWidth="52.0" layoutX="990.0" layoutY="182.0" onMouseClicked="#closeWindow" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Image/btnX.png" />
+                    </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+                </ImageView>
+                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="548.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Image/btnSave.png" />
+                    </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+                </ImageView>
+                <Label layoutX="553.0" layoutY="481.0" styleClass="outlined" text="State saveded successfully!" textFill="#70db31">
+                    <font>
+                        <Font name="Arial Black" size="12.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.awaludin.udinmaunikah.HomeController">
+   <children>
+      <Pane layoutX="-8.0" prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/bgHome.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="170.0" layoutY="321.0" prefHeight="286.0" prefWidth="336.0">
+               <children>
+                  <Group layoutY="73.0" onMouseClicked="#startGame" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit">
+                     <children>
+                        <ImageView fitHeight="70.0" fitWidth="336.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Image/wooden-board.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="newGameLabel" layoutX="72.0" layoutY="14.0" prefHeight="24.0" prefWidth="173.0" text="NEW GAME" textFill="WHITE">
+                           <font>
+                              <Font name="Snap ITC" size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="1.0" layoutY="141.0" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit">
+                     <children>
+                        <ImageView fitHeight="70.0" fitWidth="336.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Image/wooden-board.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="loadGameLabel" layoutX="72.0" layoutY="14.0" onMouseClicked="#dlgLoad" prefHeight="33.0" prefWidth="190.0" text="LOAD GAME" textFill="WHITE">
+                           <font>
+                              <Font name="Snap ITC" size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="1.0" layoutY="210.0" onMouseClicked="#dlgPlug" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit">
+                     <children>
+                        <ImageView fitHeight="70.0" fitWidth="336.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Image/wooden-board.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pluginsLabel" layoutX="97.0" layoutY="14.0" text="PLUGINS" textFill="WHITE">
+                           <font>
+                              <Font name="Snap ITC" size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+               </children>
+            </Pane>
+            <ImageView fitHeight="455.0" fitWidth="454.0" layoutX="755.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/greg.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="217.0" fitWidth="718.0" layoutX="79.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/hailday.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
