@@ -40,6 +40,7 @@ abstract class Effect {
     // Bonus: Layout: bila dipakai ke diri sendiri, ladang berubah menjadi 5x6, kalau dipakai ke lawan, menjadi 3x4
 
     public abstract void applyEffect(GameObject subject);
+    public abstract void applyEffectBonus();
 
     public static class Accelerate extends Effect {
         @Override
@@ -53,6 +54,9 @@ abstract class Effect {
                 hewan.Feed(8);
             }
         }
+
+        @Override
+        public void applyEffectBonus() {}
     }
 
     public static class Delay extends Effect {
@@ -75,6 +79,9 @@ abstract class Effect {
                 }
             }
         }
+
+        @Override
+        public void applyEffectBonus() {}
     }
 
     public static class InstantHarvest extends Effect {
@@ -89,6 +96,9 @@ abstract class Effect {
                 hewan.Harvest();
             }
         }
+
+        @Override
+        public void applyEffectBonus() {}
     }
 
     public static class Destroy extends Effect {
@@ -97,6 +107,9 @@ abstract class Effect {
             // Menghancurkan kartu tanaman/hewan lawan
             subject = null;
         }
+
+        @Override
+        public void applyEffectBonus() {}
     }
 
     public static class Protect extends Effect {
@@ -111,6 +124,9 @@ abstract class Effect {
                 //hewan.SetProtected(true);
             }
         }
+
+        @Override
+        public void applyEffectBonus() {}
     }
 
     public static class Trap extends Effect {
@@ -119,16 +135,18 @@ abstract class Effect {
             // Mengubah beruang menjadi kartu hewan yang dapat diternak apabila menyerang hewan/tanaman yang diberikan item ini.
             // nanti masukkin logicnya disini
         }
-    }
-}
 
-abstract class EffectBonus {
-    public abstract void applyEffectBonus(Ladang ladang);
-
-    public static class Layout extends EffectBonus {
         @Override
-        public void applyEffectBonus(Ladang ladang) {
-            // bila dipakai ke diri sendiri, ladang berubah menjadi 5x6, kalau dipakai ke lawan, menjadi 3x4
+        public void applyEffectBonus() {}
+    }
+
+    public static class Layout extends Effect {
+        @Override
+        public void applyEffectBonus() {
+            
         }
+
+        @Override
+        public void applyEffect(GameObject subject) {}
     }
 }

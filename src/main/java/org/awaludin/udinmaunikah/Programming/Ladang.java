@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import org.awaludin.udinmaunikah.Programming.Effect.Trap;
+
 import javafx.scene.shape.Rectangle;
 
 public class Ladang {
@@ -124,10 +127,10 @@ public class Ladang {
         }
 
         bearAttackActive = true;
-        int subgridStartIndex = random.nextInt(20); 
+        int subgridStartIndex = random.nextInt(25); // Pilih indeks awal subgrid (0-24)
         System.out.println("Bear attack starts at index " + subgridStartIndex);
 
-        int duration = 30 + random.nextInt(31); 
+        int duration = 30 + random.nextInt(31); // Durasi serangan 30-60 detik
         System.out.println("Bear attack duration: " + duration + " seconds");
 
         ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -139,13 +142,29 @@ public class Ladang {
                 }
 
                 // Setelah durasi berakhir, hilangkan tumbuhan/hewan yang masih berada dalam subgrid
+                boolean trapFound = false;
                 for (int i = subgridStartIndex; i < subgridStartIndex + 6; i++) {
                     if (i < grid.size()) {
-                        grid.set(i, new Petak(new Rectangle(), false)); // Hapus objek
+                        Petak petak = grid.get(i);
+                        if (petak.getItem().getEffect() instanceof Trap) {
+                            trapFound = true;
+                            break;
+                        }
                     }
                 }
+
+                if (trapFound) {
+                    System.out.println("Trap found! Bear attack stopped.");
+                } else {
+                    for (int i = subgridStartIndex; i < subgridStartIndex + 6; i++) {
+                        if (i < grid.size()) {
+                            grid.set(i, new Petak(new Rectangle(), false)); // Hapus objek
+                        }
+                    }
+                    System.out.println("Bear attack ended, plants/animals removed from subgrid");
+                }
+
                 bearAttackActive = false;
-                System.out.println("Bear attack ended, plants/animals removed from subgrid");
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
