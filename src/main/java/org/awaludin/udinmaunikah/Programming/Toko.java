@@ -50,4 +50,12 @@ public class Toko {
     public Map<GameObject, Integer> getListItems() {
         return listItemToko;
     }
+
+    public int countItems() {
+        int count = 0;
+        for (int quantity : listItemToko.values()) {
+            count += quantity;
+        }
+        return count;
+    }
 }
