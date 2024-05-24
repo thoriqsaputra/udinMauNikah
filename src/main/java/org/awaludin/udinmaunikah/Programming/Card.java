@@ -51,6 +51,13 @@ class CardDeck {
         rng = new Random();
     }
 
+    public CardDeck(int handSize){
+        this();
+        for (int i = 0; i < handSize; i++) {
+            hand.add(null);
+        }
+    }
+
     public CardDeck(long seed){
         this();
         rng.setSeed(seed);
@@ -64,6 +71,18 @@ class CardDeck {
 
         assert graveyard.isEmpty();
     };
+
+    //cuman ngapus card dari hand
+    public Boolean use(Card c){
+        for (int i = 0; i < hand.size(); i++){
+            if (hand.get(i).equals(c)){
+                hand.set(i, null);
+                return true;
+            }
+        }
+        System.out.println("Card not found in hand!");
+        return false;
+    }
 
     //draws 1 random available card
     public Card draw(){

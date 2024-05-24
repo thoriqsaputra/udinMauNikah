@@ -1,13 +1,16 @@
 package org.awaludin.udinmaunikah.Programming;
+import org.controlsfx.control.BreadCrumbBar;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameManager {
     public static final int defaultPlayerCount = 2;
+    public static final int maxHandCount = 6;
 
     private static List<Ladang> ladangList;
     private static List<CardDeck> deckList;
-    private static GameManager gameManagerInstance;
+    private static int totalTurnCounter;
     private static int turnCounter;
 
     // Reset all ladang in ladang list, empties all decklist
@@ -16,17 +19,15 @@ public class GameManager {
         deckList = new ArrayList<>();
         for (int i = 0; i < defaultPlayerCount; i++){
             ladangList.add(new Ladang());
-            deckList.add(new CardDeck());
+            deckList.add(new CardDeck(maxHandCount));
         }
         turnCounter = 0;
-    }
-
-    public static GameManager getInstance() {
-        return gameManagerInstance;
+        totalTurnCounter = 0;
     }
 
     public static void nextTurn() {
-        turnCounter = (turnCounter + 1) % gameManagerInstance.defaultPlayerCount;
+        turnCounter++;
+        turnCounter = (turnCounter + 1) % defaultPlayerCount;
     }
 
     public static class PlayerInterface{
@@ -41,33 +42,79 @@ public class GameManager {
             pickList = new ArrayList<>();
         }
 
+        public void reroll(){
+            deckList.get(turnCounter).return_draft_pick(draftList);
+            beginDraftPick();
+        }
+
         public List<Card> getDraftList(){
             return draftList;
         }
 
-        public void takeCard(Card card){
+        public boolean takeCard(Card card){
+            if (pickList.size() + getHand().size() < maxHandCount && draftList.contains(card)){
             pickList.add(card);
             draftList.remove(card);
+            return true;
+            }
+            return false;
         }
 
-        public void returnCard(Card card){
+        public boolean returnCard(Card card){
+            if (pickList.contains(card)){
             pickList.remove(card);
             draftList.add(card);
+            return true;
+            }
+            return false;
         }
 
         //sebelum end draft pick
         public void endDraftPick(){
             deckList.get(turnCounter).return_draft_pick(draftList);
+            for (Card card : pickList){
+                getHand().add(card);
+            }
         }
 
         //ACTION STUFFS
-        public void getHand(){
-            deckList.get(turnCounter).getHand();
+        public List<Card> getHand(){
+            return deckList.get(turnCounter).getHand();
+        }
+
+        public Boolean useCardAt(Card card, int index, boolean attacking){
+            //pastiin kita emang punya kartunya
+            if (!getHand().contains(card)){
+                System.out.println("Card not in hand!");
+                return false;
+            }
+            //ladangList.get(turnCounter + attacking*1).
+
+            //say move was legal
+            boolean removal = deckList.get(turnCounter).use(card);
+
+            assert removal;
+            return true;
+        }
+
+        public Boolean tryAddToHand(Card card){
+            int i;
+            for (i = 0; i < maxHandCount; i++){
+                if (deckList.get(turnCounter).getHand().get(i) != null){
+                    i++;
+                }
+                else{
+                    deckList.get(turnCounter).getHand().set(i, card);
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
     public static class EventManager{
         public boolean roll_event(){
+//            return ladangList.get(turnCounter).bearAttack();
             return false;
         }
     }
