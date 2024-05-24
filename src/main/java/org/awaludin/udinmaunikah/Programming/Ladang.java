@@ -1,80 +1,86 @@
 package org.awaludin.udinmaunikah.Programming;
 
+import java.util.ArrayList;
+import java.util.List;
+import javafx.scene.shape.Rectangle;
+
 public class Ladang {
-    private Petak[][] grid;
+    private List<Petak> grid;
 
     public Ladang() {
-        grid = new Petak[4][5];
+        grid = new ArrayList<Petak>(30);
+        for (int i = 20; i < 30; i++) {
+            grid.get(i).disable();
+        }
     }
 
     public void bonus() {
-        Petak[][] temp = new Petak[5][6];
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 5; j++) {
-                temp[i][j] = grid[i][j];
+        for (int i = 0; i < 30; i++) {
+            grid.get(i).enable();
+        }
+    }
+
+    public void bonusHabis() {
+        for (int i = 20; i < 30; i++) {
+            grid.get(i).disable();
+        }
+
+        for (int i = 20; i < 30; i++) {
+            Rectangle temp = grid.get(i).getRectangle();
+            Petak temp2 = new Petak(temp, false);
+            grid.set(i, temp2);
+        }
+    }
+
+    public List<Petak> bonusMusuh(Ladang ladangMusuh) {
+        for (int i = 12; i < 30; i++) {
+            if (i % 5 == 4) {
+                ladangMusuh.getPetak(i).disable();
             }
         }
-        grid = temp;
-    }
 
-    public void bonusHabis(Ladang ladang) {
-        // membuat ladang kembali menjadi 4x5, dan menghapus petak yang ada di kolom 6 dan row 5
-        Petak[][] temp = new Petak[4][5];
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 5; j++) {
-                temp[i][j] = grid[i][j];
-            }
+        for (int i = 20; i < 30; i++) {
+            Rectangle temp = ladangMusuh.getGrid().get(i).getRectangle();
+            Petak temp2 = new Petak(temp, false);
+            ladangMusuh.getGrid().set(i, temp2);
         }
-        grid = temp;
+
+        return ladangMusuh.getGrid();
     }
 
-    public Petak[][] bonusMusuh(Ladang ladangMusuh) {
-        // membuat ladang musuh menjadi 3x4, dan menghapus petak lawan yang ada di kolom 5 dan row 4
-        Petak[][] temp = new Petak[3][4];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 4; j++) {
-                temp[i][j] = ladangMusuh.getGrid()[i][j];
-            }
+    public List<Petak> bonusMusuhHabis(Ladang ladangMusuh) {
+        for (int i = 12; i < 21; i++) {
+            ladangMusuh.getPetak(i).enable();
         }
-        return temp;
+        return ladangMusuh.getGrid();
     }
 
-    public void add(Petak Petak, int x, int y) {
-        grid[x][y] = Petak;
-    }
-
-    public Petak[][] getGrid() {
+    public List<Petak> getGrid() {
         return grid;
     }
 
-    public Petak getPetak(int x, int y) {
-        return grid[x][y];
+    public Petak getPetak(int x) {
+        return grid.get(x);
     }
 
-    public Card convertToCard(int x, int y) {
-        Card card = new Card(grid[x][y].getGameObject());
+    public Card convertToCard(int x) {
+        Card card = new Card(grid.get(x).getGameObject());
         return card;
     }
 
-    public void harvest(GameObject gameObject, int x, int y) {
-        if (grid[x][y] instanceof IHarvestable) {
-            if (((IHarvestable) grid[x][y]).isReadyToHarvest()) {
-                //masukkin buat harvest disini
-                System.out.println("sudah di harvest");
-                grid[x][y] = null;
-            }
+    public void harvest(GameObject gameObject, int x) {
+        if (grid.get(x).isReadyToHarvest()) {
+            grid.get(x).Harvest();
         }
     }
 
     public boolean isHerbivoreAda(){
         // mengecek apakah ada herbivore di ladang, jika ada, langsung return true
         try {
-            for (int i = 0; i < grid.length; i++) {
-                for (int j = 0; j < grid[i].length; j++) {
-                    Animal hewan = (Animal) grid[i][j].getGameObject();
-                    if (hewan.GetType() == AnimalType.HERBIVORE) {
-                        return true;
-                    }
+            for (int i = 0; i < grid.size(); i++) {
+                Animal hewan = (Animal) grid.get(i).getGameObject();
+                if (hewan.GetType() == AnimalType.HERBIVORE) {
+                    return true;
                 }
             }
             return false;
@@ -85,15 +91,12 @@ public class Ladang {
 
     public boolean isCarnivoreAda(){
         try {
-            for (int i = 0; i < grid.length; i++) {
-                for (int j = 0; j < grid[i].length; j++) {
-                    Animal hewan = (Animal) grid[i][j].getGameObject();
-                    if (hewan.GetType() == AnimalType.CARNIVORE) {
-                        return true;
-                    }
+            for (int i = 0; i < grid.size(); i++) {
+                Animal hewan = (Animal) grid.get(i).getGameObject();
+                if (hewan.GetType() == AnimalType.CARNIVORE) {
+                    return true;
                 }
             }
-
             return false;
         } catch (Exception e) {
             return false;
