@@ -1,24 +1,28 @@
 package org.awaludin.udinmaunikah.Programming;
 
 import javafx.scene.shape.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.awaludin.udinmaunikah.Programming.Effect.Layout;
 
 public class Petak implements IHarvestable{
    private GameObject gameObject;
-   private Item item;
+   private List<Item> item;
    private Rectangle rectangle;
    private boolean enabled;
 
    public Petak(Rectangle rectangle) {
        this.gameObject = null;
        this.enabled = true;
-       this.item = null;
+       this.item = new ArrayList<>();
        this.rectangle = rectangle;
    }
 
    public Petak(Rectangle rectangle, boolean enabled) {
        this.gameObject = null;
        this.enabled = enabled;
-       this.item = null;
+       this.item = new ArrayList<>();
        this.rectangle = rectangle;
        this.rectangle.setOpacity(0.3);
        this.rectangle.setMouseTransparent(true);
@@ -32,17 +36,34 @@ public class Petak implements IHarvestable{
        this.gameObject = gameObject;
    }
 
-   public Item getItem() {
+   public List<Item> getItem() {
        return item;
    }
 
-   public void setItem(Item item) {
-       this.item = item;
-   }
+    public void setItem(Item item) {
+        this.item.add(item);
+        if (!(item.getEffect() instanceof Layout)) {
+            item.getEffect().applyEffect(this);
+        }
+    }
 
-   public void pakaiItem() {
-       item.use(this.gameObject);
-   }
+    public void setItemBonus(Item item, Ladang ladang, boolean attacking) {
+        this.item.add(item);
+        if (item.getEffect() instanceof Layout) {
+            item.getEffect().applyEffectBonus(attacking, ladang);
+        }
+    }
+
+    public void itemBonusHabis(Ladang ladang) {
+        for (Petak petak : ladang.getGrid()) {
+            for (Item item : petak.getItem()) {
+                if (item.getEffect() instanceof Layout) {
+                    petak.getItem().remove(item);
+                    continue;
+                }
+            }
+        }
+    }
 
    @Override
    public GameObject Harvest() {

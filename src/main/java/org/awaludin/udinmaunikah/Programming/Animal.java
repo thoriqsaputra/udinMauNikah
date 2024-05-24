@@ -42,9 +42,24 @@ public class Animal extends GameObject implements IFeedable, IHarvestable{
     }
 
     public boolean isEatAble(Product food){
-
-        //Process
-
+        if (food.getProductType() == ProductType.PLANT) {
+            if (type == AnimalType.CARNIVORE) {
+                return false;
+            } else {
+                Feed(food.getWeight());
+                return true;
+            }
+        } else if (food.getProductType() == ProductType.MEAT) {
+            if (type == AnimalType.HERBIVORE) {
+                return false;
+            } else {
+                Feed(food.getWeight());
+                return true;
+            }
+        } else if (food.getProductType() == ProductType.BOTH){
+            Feed(food.getWeight());
+            return true;
+        }
         return false;
     }
 
