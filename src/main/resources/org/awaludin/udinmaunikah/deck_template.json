@@ -1,0 +1,18 @@
+{
+  "default" : {
+    "HEWAN_001" : 2,
+    "HEWAN_002" : 2,
+    "HEWAN_003" : 2,
+    "HEWAN_004" : 2,
+    "HEWAN_005" : 2,
+    "PLANT_001" : 6,
+    "PLANT_002" : 6,
+    "PLANT_003" : 6,
+    "ITEM_001" : 2,
+    "ITEM_002" : 2,
+    "ITEM_003" : 2,
+    "ITEM_004" : 2,
+    "ITEM_005" : 2,
+    "ITEM_006" : 2
+  }
+}

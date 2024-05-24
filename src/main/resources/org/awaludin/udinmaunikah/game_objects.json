@@ -10,6 +10,7 @@
       "product_id" : 69,
       "nutrition" : 10,
       "diet" : ["karnivora","herbivora"],
+      "exhaust" : false,
       "effect" : []
     }
   },
@@ -76,7 +77,8 @@
     "properties" : {
       "diet" : ["herbivora","karnivora"],
       "weight_to_harvest" : 25,
-      "product_id" : "PRODUCT_009"
+      "product_id" : "PRODUCT_009",
+      "exhaust" : true
     }
   },
   "PLANT_001" : {

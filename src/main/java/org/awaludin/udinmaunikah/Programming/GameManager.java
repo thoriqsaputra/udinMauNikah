@@ -30,6 +30,13 @@ public class GameManager {
         turnCounter = (turnCounter + 1) % defaultPlayerCount;
     }
 
+    public static class SetUpUtils{
+
+        public static boolean useDeck(int player, String deckname){
+            return deckList.get(player).load_deck(deckname);
+        }
+    }
+
     public static class PlayerInterface{
 
         //PLAYER DRAFT PICK
@@ -37,21 +44,21 @@ public class GameManager {
         private static List<Card> pickList;
 
         //Use to get the usual 4 cards, DONT FORGET TO RETURN CARDS
-        public void beginDraftPick(){
+        public static void beginDraftPick(){
             draftList = deckList.get(turnCounter).draft_pick(4);
             pickList = new ArrayList<>();
         }
 
-        public void reroll(){
+        public static void reroll(){
             deckList.get(turnCounter).return_draft_pick(draftList);
             beginDraftPick();
         }
 
-        public List<Card> getDraftList(){
+        public static List<Card> getDraftList(){
             return draftList;
         }
 
-        public boolean takeCard(Card card){
+        public static boolean takeCard(Card card){
             if (pickList.size() + getHand().size() < maxHandCount && draftList.contains(card)){
             pickList.add(card);
             draftList.remove(card);
@@ -60,7 +67,7 @@ public class GameManager {
             return false;
         }
 
-        public boolean returnCard(Card card){
+        public static boolean returnCard(Card card){
             if (pickList.contains(card)){
             pickList.remove(card);
             draftList.add(card);
@@ -70,7 +77,7 @@ public class GameManager {
         }
 
         //sebelum end draft pick
-        public void endDraftPick(){
+        public static void endDraftPick(){
             deckList.get(turnCounter).return_draft_pick(draftList);
             for (Card card : pickList){
                 getHand().add(card);
@@ -78,11 +85,11 @@ public class GameManager {
         }
 
         //ACTION STUFFS
-        public List<Card> getHand(){
+        public static List<Card> getHand(){
             return deckList.get(turnCounter).getHand();
         }
 
-        public Boolean useCardAt(Card card, int index, boolean attacking){
+        public static Boolean useCardAt(Card card, int index, boolean attacking){
             //pastiin kita emang punya kartunya
             if (!getHand().contains(card)){
                 System.out.println("Card not in hand!");
@@ -97,7 +104,7 @@ public class GameManager {
             return true;
         }
 
-        public Boolean tryAddToHand(Card card){
+        public static Boolean tryAddToHand(Card card){
             int i;
             for (i = 0; i < maxHandCount; i++){
                 if (deckList.get(turnCounter).getHand().get(i) != null){

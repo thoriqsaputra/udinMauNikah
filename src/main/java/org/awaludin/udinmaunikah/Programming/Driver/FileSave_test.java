@@ -6,8 +6,7 @@ import org.awaludin.udinmaunikah.Programming.TXTLoader;
 
 public class FileSave_test {
     public static void main(String[] args) {
-        GameManager.initGameManager();
-        GameManager gm = GameManager.getInstance();
+        GameManager.initGameManager();;
 
         Loader save = new TXTLoader();
 

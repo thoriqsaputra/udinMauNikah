@@ -1,5 +1,11 @@
 package org.awaludin.udinmaunikah.Programming;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -42,6 +48,7 @@ class CardDeck {
     private int cardCount;
     private Random rng;
     public boolean allowShuffleWhileDraft;
+    public static String deck_template_location = "src\\main\\resources\\org\\AwalUdin\\udinmaunikah\\deck_template.json";
 
     public CardDeck(){
         deck = new ArrayList<CardSlot>();
@@ -61,6 +68,46 @@ class CardDeck {
     public CardDeck(long seed){
         this();
         rng.setSeed(seed);
+    }
+
+    public boolean load_deck(String deck_name){
+        String fname = Paths.get(deck_template_location).toAbsolutePath().toString();
+        System.out.println(fname);
+        StringBuilder sb = new StringBuilder();
+        JSONObject deck_list;
+        JSONParser parser = new JSONParser();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fname))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+
+            deck_list = (JSONObject) parser.parse(sb.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        if (deck_list != null) {
+            JSONObject deck = (JSONObject) deck_list.get(deck_name);
+            if (deck != null) {
+                for (Object key : deck.keySet()) {
+                    for (int i = 0 ; i < Math.toIntExact((long) deck.get(key)); i++){
+                        Card c = new Card(GameObjectFactory.CreateGameObjectByID((String)key));
+                        this.add(c);
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean load_deck(){
+        return this.load_deck("default");
     }
 
     public void shuffle(){

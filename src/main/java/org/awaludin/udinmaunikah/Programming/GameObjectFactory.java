@@ -3,6 +3,7 @@ package org.awaludin.udinmaunikah.Programming;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -58,6 +59,10 @@ public class GameObjectFactory {
                         Product product = GenerateProduct(temp);
                         product.setID(gameobjectID);
                         return product;
+                    case "item":
+                        Item item = GenerateItem(temp);
+                        item.setID(gameobjectID);
+                        return item;
                     default:
                         break;
 
@@ -108,7 +113,9 @@ public class GameObjectFactory {
         else if (herb){
             ptype = ProductType.PLANT;
         }
-        Product product = new Product((String)data.get("name"),ptype);
+        int value = Math.toIntExact(((long) data.get("value")));
+        int nutrient = Math.toIntExact((long) ((JSONObject) data.get("properties")).get("nutrition"));
+        Product product = new Product((String)data.get("name"),value,nutrient,ptype);
 
         return product;
     }
@@ -158,6 +165,42 @@ public class GameObjectFactory {
 
         return new Animal((String) data.get("name"),0,harvest_weight, product,atype);
     }
+
+    private static Item GenerateItem (JSONObject data){
+        Effect effect = null;
+        List<String> effect_names = (ArrayList<String>) ((JSONObject) data.get("properties")).get("effect");
+        for (String s : effect_names){
+            switch (s){
+                case "Accelerate":
+                    effect = new Effect.Accelerate();
+                    break;
+                case "Delay":
+                    effect = new Effect.Delay();
+                    break;
+                case "Instant_Harvest":
+                    effect = new Effect.InstantHarvest();
+                    break;
+                case "Destroy":
+                    effect = new Effect.Destroy();
+                    break;
+                case "Protect":
+                    effect = new Effect.Protect();
+                    break;
+                case "Trap":
+                    effect = new Effect.Trap();
+                    break;
+                default:
+                    break;
+            }
+        }
+        if (effect != null){
+        return new Item((String) data.get("name"), Math.toIntExact((Long) data.get("value")),effect);
+        }
+        else {
+            return null;
+        }
+    }
+
 
     public static void main(String[] args) {
         Load();
