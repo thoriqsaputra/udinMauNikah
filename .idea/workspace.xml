@@ -4,6 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <list default="true" id="d7a360e6-fcfd-4492-b91d-0dbf54683c2e" name="Changes" comment="jj">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/AwalUdin/Programming/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/AwalUdin/Programming/Product.java" afterDir="false" />
+=======
+    <list default="true" id="49bc364f-6ad4-4483-af41-11a91ea4bf76" name="Changes" comment="game object json">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/game_objects.json" beforeDir="false" />
+>>>>>>> 76574eaba1d4e1392047e0ac320634504ce42c5b
+=======
     <list default="true" id="49bc364f-6ad4-4483-af41-11a91ea4bf76" name="Changes" comment="Game object factory and temporary product workaround">
       <change afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Driver/Card_IMG_test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -11,6 +24,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameObjectFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/game_objects.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/game_objects.json" afterDir="false" />
+>>>>>>> ff9acee45cb3def9d1d9914023837bad1087e34f
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +42,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
+<<<<<<< HEAD
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+=======
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
@@ -46,6 +64,7 @@
         <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
+>>>>>>> 76574eaba1d4e1392047e0ac320634504ce42c5b
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -59,6 +78,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
+<<<<<<< HEAD
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Auralea A S/Documents/SEMESTER 4/TUBES TUCIL/udinMauNikah",
+=======
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Application.executor": "Run",
@@ -74,16 +105,49 @@
     "full.screen.before.presentation.mode": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+>>>>>>> ff9acee45cb3def9d1d9914023837bad1087e34f
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+<<<<<<< HEAD
+    "onboarding.tips.debug.path": "C:/Users/saput/IdeaProjects/UdinMauNikah/src/main/java/org/AwalUdin/Main.java",
+    "settings.editor.selected.configurable": "preferences.general",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+=======
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.JSON_Read_Test.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+=======
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
+>>>>>>> ff9acee45cb3def9d1d9914023837bad1087e34f
   }
 }]]></component>
   <component name="RecentsManager">
@@ -93,6 +157,7 @@
       <recent name="C:\Users\saput\IdeaProjects\UdinMauNikah\src\main\java\org\awaludin\udinmaunikah" />
     </key>
   </component>
+>>>>>>> 76574eaba1d4e1392047e0ac320634504ce42c5b
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -108,6 +173,15 @@
       <created>1716368406239</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+<<<<<<< HEAD
+      <updated>1715085553040</updated>
+      <workItem from="1715085554132" duration="48000" />
+      <workItem from="1715085614536" duration="172000" />
+      <workItem from="1715085951158" duration="519000" />
+      <workItem from="1715086498058" duration="483000" />
+      <workItem from="1715087517297" duration="2177000" />
+      <workItem from="1716292042730" duration="6125000" />
+=======
       <updated>1716368406239</updated>
       <workItem from="1716368407388" duration="596000" />
       <workItem from="1716369147423" duration="147000" />
@@ -118,9 +192,14 @@
       <workItem from="1716445034732" duration="153000" />
       <workItem from="1716445197694" duration="1572000" />
       <workItem from="1716446816138" duration="1740000" />
+<<<<<<< HEAD
+      <workItem from="1716469375909" duration="3188000" />
+>>>>>>> 76574eaba1d4e1392047e0ac320634504ce42c5b
+=======
       <workItem from="1716469375909" duration="6224000" />
       <workItem from="1716480883438" duration="3711000" />
       <workItem from="1716509080174" duration="2974000" />
+>>>>>>> ff9acee45cb3def9d1d9914023837bad1087e34f
     </task>
     <task id="LOCAL-00001" summary="fix : Fixed package naming inconsistency">
       <option name="closed" value="true" />
