@@ -8,6 +8,7 @@ import java.util.Queue;
 
 public class Card {
     private GameObject thing;
+    private static String resource_path = "src\\main\\resources\\org\\awaludin\\udinmaunikah";
     //private Image displayImage
     // you could move description here, depends ig
 
@@ -23,6 +24,14 @@ public class Card {
         //doany operation here
         return thing;
     }
+
+    public String getImagePath(){
+        String classname = this.thing.getClass().getSimpleName();
+        String img_path = resource_path + "\\" + classname + "\\" + this.thing.getId() + ".png";
+        return img_path;
+    }
+
+
 }
 
 

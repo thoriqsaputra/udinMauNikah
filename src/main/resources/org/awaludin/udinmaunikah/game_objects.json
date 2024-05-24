@@ -1,282 +1,285 @@
 {
-  "gameObjects" : [
-    {
-      "id" : "NULLOBJECT",
-      "name" : "null",
-      "description" : "<NULL OBJECT>",
-      "type" : "animal",
-      "value" : 69,
-      "properties" : {
-        "weight_to_harvest" : 100,
-        "time_to_harvest" : 100,
-        "product_id" : 69,
-        "nutrition" : 10,
-        "diet" : ["karnivora","herbivora"],
-        "effect" : []
-      }
-    },
-    {
-      "id" : "HEWAN_001",
-      "name" : "Hiu Darat",
-      "description" : "<DESC>",
-      "type" : "animal",
-      "value" : 10,
-      "properties" : {
-        "diet" : ["karnivora"],
-        "weight_to_harvest" : 20,
-        "product_id" : "PRODUCT_006"
-      }
-    },
-    {
-      "id" : "HEWAN_002",
-      "name" : "Sapi",
-      "description" : "<DESC>",
-      "type" : "animal",
-      "value" : 5,
-      "properties" : {
-        "diet" : ["herbivora"],
-        "weight_to_harvest" : 10,
-        "product_id" : "PRODUCT_004"
-      }
-    },
-    {
-      "id" : "HEWAN_003",
-      "name" : "Domba",
-      "description" : "<DESC>",
-      "type" : "animal",
-      "value" : 6,
-      "properties" : {
-        "diet" : ["herbivora"],
-        "weight_to_harvest" : 12,
-        "product_id" : "PRODUCT_008"
-      }
-    },
-    {
-      "id" : "HEWAN_004",
-      "name" : "Kuda",
-      "description" : "<DESC>",
-      "type" : "animal",
-      "value" : 7,
-      "properties" : {
-        "diet" : ["herbivora"],
-        "weight_to_harvest" : 14,
-        "product_id" : "PRODUCT_007"
-      }
-    },
-    {
-      "id" : "HEWAN_005",
-      "name" : "Ayam",
-      "description" : "<DESC>",
-      "type" : "animal",
-      "value" : 3,
-      "properties" : {
-        "diet" : ["herbivora","karnivora"],
-        "weight_to_harvest" : 5,
-        "product_id" : "PRODUCT_005"
-      }
-    },
-    {
-      "id" : "HEWAN_006",
-      "name" : "Beruang",
-      "description" : "<DESC>",
-      "type" : "animal",
-      "value" : 20,
-      "properties" : {
-        "diet" : ["herbivora","karnivora"],
-        "weight_to_harvest" : 25,
-        "product_id" : "PRODUCT_009"
-      }
-    },
-    {
-      "id" : "PLANT_001",
-      "name" : "Biji Jagung",
-      "description" : "<DESC>",
-      "type" : "plant",
-      "value" : 6,
-      "properties" : {
-        "time_to_harvest" : 3,
-        "product_id" : "PRODUCT_002"
-      }
-    },
-    {
-      "id" : "PLANT_002",
-      "name" : "Biji Labu",
-      "description" : "<DESC>",
-      "type" : "plant",
-      "value" : 10,
-      "properties" : {
-        "time_to_harvest" : 5,
-        "product_id" : "PRODUCT_001"
-      }
-    },
-    {
-      "id" : "PLANT_003",
-      "name" : "Biji Stroberi",
-      "description" : "<DESC>",
-      "type" : "plant",
-      "value" : 8,
-      "properties" : {
-        "time_to_harvest" : 4,
-        "product_id" : "PRODUCT_003"
-      }
-    },
-    {
-      "id" : "PRODUCT_001",
-      "name" : "Labu",
-      "description" : "<DESC>",
-      "type" : "product",
-      "value" : 500,
-      "properties" : {
-        "diet" : ["herbivora"],
-        "nutrition" : 10
-      }
-    },
-    {
-      "id" : "PRODUCT_002",
-      "name" : "Jagung",
-      "description" : "<DESC>",
-      "type" : "product",
-      "value" : 150,
-      "properties" : {
-        "diet" : ["herbivora"],
-        "nutrition" : 3
-      }
-    },
-    {
-      "id" : "PRODUCT_003",
-      "name" : "Stroberi",
-      "description" : "<DESC>",
-      "type" : "product",
-      "value" : 350,
-      "properties" : {
-        "diet" : ["herbivora"],
-        "nutrition" : 5
-      }
-    },
-    {
-      "id" : "PRODUCT_004",
-      "name" : "Susu",
-      "description" : "<DESC>",
-      "type" : "product",
-      "value" : 100,
-      "properties" : {
-        "diet" : ["herbivora","karnivora"],
-        "nutrition" : 10
-      }
-    },
-    {
-      "id" : "PRODUCT_005",
-      "name" : "Telur",
-      "description" : "<DESC>",
-      "type" : "product",
-      "value" : 50,
-      "properties" : {
-        "diet" : ["herbivora"],
-        "nutrition" : 2
-      }
-    },
-    {
-      "id" : "PRODUCT_006",
-      "name" : "Sirip Hiu",
-      "description" : "<DESC>",
-      "type" : "product",
-      "value" : 500,
-      "properties" : {
-        "diet" : ["karnivora"],
-        "nutrition" : 12
-      }
-    },
-    {
-      "id" : "PRODUCT_007",
-      "name" : "Daging Kuda",
-      "description" : "<DESC>",
-      "type" : "product",
-      "value" : 150,
-      "properties" : {
-        "diet" : ["karnivora"],
-        "nutrition" : 8
-      }
-    },
-    {
-      "id" : "PRODUCT_008",
-      "name" : "Daging Domba",
-      "description" : "<DESC>",
-      "type" : "product",
-      "value" : 120,
-      "properties" : {
-        "diet" : ["karnivora"],
-        "nutrition" : 6
-      }
-    },{
-      "id" : "PRODUCT_009",
-      "name" : "Daging Beruang",
-      "description" : "<DESC>",
-      "type" : "product",
-      "value" : 500,
-      "properties" : {
-        "diet" : ["karnivora"],
-        "nutrition" : 12
-      }
-    },
-    {
-      "id" : "ITEM_001",
-      "name" : "Accelerate",
-      "description" : "<DESC>",
-      "type" : "item",
-      "value" : 20,
-      "properties" : {
-        "effect" : ["Accelerate"]
-      }
-    },
-    {
-      "id" : "ITEM_002",
-      "name" : "Delay",
-      "description" : "<DESC>",
-      "type" : "item",
-      "value" : 20,
-      "properties" : {
-        "effect" : ["Delay"]
-      }
-    },
-    {
-      "id" : "ITEM_003",
-      "name" : "Instant Harvest",
-      "description" : "<DESC>",
-      "type" : "item",
-      "value" : 20,
-      "properties" : {
-        "effect" : ["Instant_Harvest"]
-      }
-    },
-    {
-      "id" : "ITEM_004",
-      "name" : "Destroy",
-      "description" : "<DESC>",
-      "type" : "item",
-      "value" : 20,
-      "properties" : {
-        "effect" : ["Destroy"]
-      }
-    },
-    {
-      "id" : "ITEM_005",
-      "name" : "Protect",
-      "description" : "<DESC>",
-      "type" : "item",
-      "value" : 20,
-      "properties" : {
-        "effect" : ["Protect"]
-      }
-    },
-    {
-      "id" : "ITEM_006",
-      "name" : "Instant Harvest",
-      "description" : "<DESC>",
-      "type" : "item",
-      "value" : 20,
-      "properties" : {
-        "effect" : ["Trap"]
-      }
+  "NULLOBJECT" : {
+    "name" : "null",
+    "description" : "<NULL OBJECT>",
+    "type" : "animal",
+    "value" : 69,
+    "properties" : {
+      "weight_to_harvest" : 100,
+      "time_to_harvest" : 100,
+      "product_id" : 69,
+      "nutrition" : 10,
+      "diet" : ["karnivora","herbivora"],
+      "effect" : []
     }
-  ]
+  },
+  "HEWAN_001" : {
+    "name" : "Hiu Darat",
+    "description" : "<DESC>",
+    "type" : "animal",
+    "value" : 10,
+    "properties" : {
+      "diet" : ["karnivora"],
+      "weight_to_harvest" : 20,
+      "product_id" : "PRODUCT_006"
+    }
+  },
+  "HEWAN_002" : {
+    "name" : "Sapi",
+    "description" : "<DESC>",
+    "type" : "animal",
+    "value" : 5,
+    "properties" : {
+      "diet" : ["herbivora"],
+      "weight_to_harvest" : 10,
+      "product_id" : "PRODUCT_004"
+    }
+  },
+  "HEWAN_003" : {
+    "name" : "Domba",
+    "description" : "<DESC>",
+    "type" : "animal",
+    "value" : 6,
+    "properties" : {
+      "diet" : ["herbivora"],
+      "weight_to_harvest" : 12,
+      "product_id" : "PRODUCT_008"
+    }
+  },
+  "HEWAN_004" : {
+    "name" : "Kuda",
+    "description" : "<DESC>",
+    "type" : "animal",
+    "value" : 7,
+    "properties" : {
+      "diet" : ["herbivora"],
+      "weight_to_harvest" : 14,
+      "product_id" : "PRODUCT_007"
+    }
+  },
+  "HEWAN_005" : {
+    "name" : "Ayam",
+    "description" : "<DESC>",
+    "type" : "animal",
+    "value" : 3,
+    "properties" : {
+      "diet" : ["herbivora","karnivora"],
+      "weight_to_harvest" : 5,
+      "product_id" : "PRODUCT_005"
+    }
+  },
+  "HEWAN_006" : {
+    "name" : "Beruang",
+    "description" : "<DESC>",
+    "type" : "animal",
+    "value" : 20,
+    "properties" : {
+      "diet" : ["herbivora","karnivora"],
+      "weight_to_harvest" : 25,
+      "product_id" : "PRODUCT_009"
+    }
+  },
+  "PLANT_001" : {
+    "name" : "Biji Jagung",
+    "description" : "<DESC>",
+    "type" : "plant",
+    "value" : 6,
+    "properties" : {
+      "time_to_harvest" : 3,
+      "product_id" : "PRODUCT_002"
+    }
+  },
+  "PLANT_002" : {
+    "name": "Biji Labu",
+    "description": "<DESC>",
+    "type": "plant",
+    "value": 10,
+    "properties": {
+      "time_to_harvest": 5,
+      "product_id": "PRODUCT_001"
+    }
+  },
+  "PLANT_003" : {
+    "name": "Biji Stroberi",
+    "description": "<DESC>",
+    "type": "plant",
+    "value": 8,
+    "properties": {
+      "time_to_harvest": 4,
+      "product_id": "PRODUCT_003"
+    }
+  },
+  "PRODUCT_001" : {
+    "name": "Labu",
+    "description": "<DESC>",
+    "type": "product",
+    "value": 500,
+    "properties": {
+      "diet": [
+        "herbivora"
+      ],
+      "nutrition": 10
+    }
+  },
+  "PRODUCT_002" : {
+    "name": "Jagung",
+    "description": "<DESC>",
+    "type": "product",
+    "value": 150,
+    "properties": {
+      "diet": [
+        "herbivora"
+      ],
+      "nutrition": 3
+    }
+  },
+  "PRODUCT_003" : {
+    "name": "Stroberi",
+    "description": "<DESC>",
+    "type": "product",
+    "value": 350,
+    "properties": {
+      "diet": [
+        "herbivora"
+      ],
+      "nutrition": 5
+    }
+  },
+  "PRODUCT_004" : {
+    "name": "Susu",
+    "description": "<DESC>",
+    "type": "product",
+    "value": 100,
+    "properties": {
+      "diet": [
+        "herbivora",
+        "karnivora"
+      ],
+      "nutrition": 10
+    }
+  },
+  "PRODUCT_005" : {
+    "name": "Telur",
+    "description": "<DESC>",
+    "type": "product",
+    "value": 50,
+    "properties": {
+      "diet": [
+        "herbivora"
+      ],
+      "nutrition": 2
+    }
+  },
+  "PRODUCT_006" : {
+    "name": "Sirip Hiu",
+    "description": "<DESC>",
+    "type": "product",
+    "value": 500,
+    "properties": {
+      "diet": [
+        "karnivora"
+      ],
+      "nutrition": 12
+    }
+  },
+  "PRODUCT_007" : {
+    "name": "Daging Kuda",
+    "description": "<DESC>",
+    "type": "product",
+    "value": 150,
+    "properties": {
+      "diet": [
+        "karnivora"
+      ],
+      "nutrition": 8
+    }
+  },
+  "PRODUCT_008" : {
+    "name": "Daging Domba",
+    "description": "<DESC>",
+    "type": "product",
+    "value": 120,
+    "properties": {
+      "diet": [
+        "karnivora"
+      ],
+      "nutrition": 6
+    }
+  },
+  "PRODUCT_009" : {
+    "name": "Daging Beruang",
+    "description": "<DESC>",
+    "type": "product",
+    "value": 500,
+    "properties": {
+      "diet": [
+        "karnivora"
+      ],
+      "nutrition": 12
+    }
+  },
+  "ITEM_001" : {
+    "name": "Accelerate",
+    "description": "<DESC>",
+    "type": "item",
+    "value": 20,
+    "properties": {
+      "effect": [
+        "Accelerate"
+      ]
+    }
+  },
+  "ITEM_002" : {
+    "name": "Delay",
+    "description": "<DESC>",
+    "type": "item",
+    "value": 20,
+    "properties": {
+      "effect": [
+        "Delay"
+      ]
+    }
+  },
+  "ITEM_003" : {
+    "name": "Instant Harvest",
+    "description": "<DESC>",
+    "type": "item",
+    "value": 20,
+    "properties": {
+      "effect": [
+        "Instant_Harvest"
+      ]
+    }
+  },
+  "ITEM_004" : {
+    "name": "Destroy",
+    "description": "<DESC>",
+    "type": "item",
+    "value": 20,
+    "properties": {
+      "effect": [
+        "Destroy"
+      ]
+    }
+  },
+  "ITEM_005" : {
+    "name": "Protect",
+    "description": "<DESC>",
+    "type": "item",
+    "value": 20,
+    "properties": {
+      "effect": [
+        "Protect"
+      ]
+    }
+  },
+  "ITEM_006" : {
+    "name" : "Trap",
+    "description" : "<DESC>",
+    "type" : "item",
+    "value" : 20,
+    "properties" : {
+      "effect" : ["Trap"]
+    }
+  }
 }

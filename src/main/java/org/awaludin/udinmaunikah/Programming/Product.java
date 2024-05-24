@@ -4,7 +4,8 @@ package org.awaludin.udinmaunikah.Programming;
 enum ProductType {
     UNDEFINED, //ini bisa juga kalo suatu object "typeless"
     PLANT,
-    MEAT
+    MEAT,
+    BOTH
 }
 
 //note : ada keuntungan nya kalo misalkan product type dijadiin interface, kalo misalnya mau nambah extra behaviour
