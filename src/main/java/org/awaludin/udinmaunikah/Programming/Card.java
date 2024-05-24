@@ -8,7 +8,7 @@ import java.util.Queue;
 
 public class Card {
     private GameObject thing;
-    private static String resource_path = "src\\main\\resources\\org\\AwalUdin\\udinmaunikah";
+    private static String resource_path = "src\\main\\resources\\org\\awaludin\\udinmaunikah";
     //private Image displayImage
     // you could move description here, depends ig
 
