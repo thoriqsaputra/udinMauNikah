@@ -20,10 +20,14 @@ public class Card {
 
     public Card(GameObject thing){
         this.thing = thing;
+
+
     }
 
     public Card(Card copycard){
         this.thing = copycard.thing;
+
+
     }
 
     public GameObject convertToGameObject(){
@@ -33,7 +37,7 @@ public class Card {
 
     public String getImagePath(){
         String classname = this.thing.getClass().getSimpleName();
-        String img_path = resource_path + "\\" + classname + "\\" + this.thing.getId() + ".png";
+        String img_path = "Texture" + "/" + classname + "/" + this.thing.getId() + ".png";
         return img_path;
     }
 
@@ -169,13 +173,13 @@ class CardDeck {
     //immediately decreases count in cardslot so dont forget to return card
     public List<Card> draft_pick(int card_ammt){
         List<Card> retval = new ArrayList<Card>();
-        
+
         //gamerule
         for (int i = 0; i < card_ammt && cardCount > 0; i++){
             retval.add(this.draw());
         };
 
-        
+
         if (this.cardCount == 0){
             shuffle();
         }

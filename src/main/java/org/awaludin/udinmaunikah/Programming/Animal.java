@@ -1,5 +1,7 @@
 package org.awaludin.udinmaunikah.Programming;
 
+import java.util.ArrayList;
+
 public class Animal extends GameObject implements IFeedable, IHarvestable{
     private int weight;
     private final int weightToHarvest;

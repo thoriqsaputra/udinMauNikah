@@ -6,11 +6,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.net.URL;
 
@@ -20,7 +24,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.awaludin.udinmaunikah.Programming.Petak;
+import org.awaludin.udinmaunikah.Programming.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class GameController implements Initializable {
 
@@ -135,19 +141,58 @@ public class GameController implements Initializable {
     @FXML
     private Rectangle LN9;
 
+    @FXML
+    private AnchorPane mainBoo;
+
     private ArrayList<Petak> petaks = new ArrayList<>();
 
-    DraggableMaker draggableMaker = new DraggableMaker();
+    private Ladang ladang = new Ladang();
+
+    private GameManager gameManager = new GameManager();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         initializePlaceHolders();
-        System.out.println("Done");
-        System.out.println(petaks);
 
-        draggableMaker.makeDraggable(kard, petaks);
+        GameManager.initGameManager();
+        GameObjectFactory.Load();
+        for (int i = 0; i < 2; i++) {
+            GameManager.SetUpUtils.useDeck(i,"default");
+        }
+        System.out.println("YAYYY");
 
+        shuffleMe();
+
+
+    }
+
+    public void shuffleMe(){
+        GameManager.PlayerInterface.beginDraftPick();
+        List<Card> cards;
+        cards = GameManager.PlayerInterface.getDraftList();
+
+        System.out.println("BATMAN");
+
+        try{
+            FXMLLoader shuffle = new FXMLLoader(getClass().getResource("Shuffle.fxml"));
+            Parent root = shuffle.load();
+
+            ShuffleController shuffleController = shuffle.getController();
+
+            shuffleController.setShuffleCards(cards);
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            scene.setFill(Color.TRANSPARENT);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+
+            stage.show();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void initializePlaceHolders(){

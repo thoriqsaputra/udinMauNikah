@@ -18,9 +18,10 @@ public class Ladang {
 
     public Ladang() {
         grid = new ArrayList<>(30);
-        for (int i = 20; i < 30; i++) {
-            grid.get(i).disable();
-        }
+    }
+
+    public void add(Petak petak) {
+        grid.add(petak);
     }
 
     public void bonus() {
