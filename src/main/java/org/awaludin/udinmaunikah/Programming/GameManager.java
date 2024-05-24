@@ -8,19 +8,24 @@ public class GameManager {
     public static final int defaultPlayerCount = 2;
     public static final int maxHandCount = 6;
 
+    private static List<Integer> guldenList;
     private static List<Ladang> ladangList;
     private static List<CardDeck> deckList;
     private static int totalTurnCounter;
     private static int turnCounter;
+    private static Toko shop;
 
     // Reset all ladang in ladang list, empties all decklist
     public static void initGameManager() {
         ladangList = new ArrayList<>();
         deckList = new ArrayList<>();
+        guldenList = new ArrayList<>();
         for (int i = 0; i < defaultPlayerCount; i++){
             ladangList.add(new Ladang());
             deckList.add(new CardDeck(maxHandCount));
+            guldenList.add(0);
         }
+        shop = new Toko();
         turnCounter = 0;
         totalTurnCounter = 0;
     }
@@ -124,5 +129,9 @@ public class GameManager {
 //            return ladangList.get(turnCounter).bearAttack();
             return false;
         }
+    }
+
+    public static class SaveNLoad{
+
     }
 }
