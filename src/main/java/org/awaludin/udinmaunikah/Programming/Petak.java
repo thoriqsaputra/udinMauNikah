@@ -22,7 +22,6 @@ public class Petak implements IHarvestable{
        this.rectangle = rectangle;
        this.rectangle.setOpacity(0.3);
        this.rectangle.setMouseTransparent(true);
-
    }
 
    public GameObject getGameObject() {
