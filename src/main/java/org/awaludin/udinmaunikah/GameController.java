@@ -32,9 +32,6 @@ import java.util.ArrayList;
 public class GameController implements Initializable {
 
     @FXML
-    private ImageView kard;
-
-    @FXML
     private Rectangle DA1;
 
     @FXML
@@ -143,27 +140,43 @@ public class GameController implements Initializable {
     private Rectangle LN9;
 
     @FXML
+    private ImageView deck;
+
+    @FXML
+    private Text deckCount;
+
+    @FXML
+    private Label gulden;
+
+    @FXML
     private AnchorPane mainBoo;
 
-    private ArrayList<Petak> petaks = new ArrayList<>();
+    @FXML
+    private Text name;
+
+    @FXML
+    private ImageView prof;
+
+    @FXML
+    private Label turn;
+
+    private List<Petak> petaks = new ArrayList<>();
+    private ArrayList<Petak> deckActiv = new ArrayList<>();
 
     private Ladang ladang = new Ladang();
-    private Toko toko = new Toko();
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // initialize ladang
         initializePlaceHolders();
 
-        CardBrain cardBrain = new CardBrain(petaks);
+        ArrayList<Petak> placeHolder = new ArrayList<>();
 
-        GameManager.initGameManager();
+        placeHolder.addAll(petaks);
+        placeHolder.addAll(deckActiv);
 
-        GameObjectFactory.Load();
-
-        for (int i = 0; i < 2; i++) {
-            GameManager.SetUpUtils.useDeck(i,"default");
-        }
+        // brainOfCardsDragging
+        CardBrain cardBrain = new CardBrain(placeHolder);
 
         GameObject test = GameObjectFactory.CreateGameObjectByID("HEWAN_002");
         Card kartu = new Card(test);
@@ -176,42 +189,54 @@ public class GameController implements Initializable {
 
         mainBoo.getChildren().add(ss);
 
-        Map<GameObject, Integer> bae = new HashMap<>();
-        Map<GameObject, Integer> baes = new HashMap<>();
-
-        GameObject testa = GameObjectFactory.CreateGameObjectByID("PRODUCT_001");
-        GameObject testt = GameObjectFactory.CreateGameObjectByID("PRODUCT_001");
-        GameObject test2 = GameObjectFactory.CreateGameObjectByID("PRODUCT_002");
-        GameObject test3 = GameObjectFactory.CreateGameObjectByID("PRODUCT_003");
-        GameObject test4 = GameObjectFactory.CreateGameObjectByID("PRODUCT_004");
-        GameObject test5 = GameObjectFactory.CreateGameObjectByID("PRODUCT_005");
-        GameObject test6 = GameObjectFactory.CreateGameObjectByID("PRODUCT_006");
-        GameObject test7 = GameObjectFactory.CreateGameObjectByID("PRODUCT_007");
-        GameObject test8 = GameObjectFactory.CreateGameObjectByID("PRODUCT_008");
-        GameObject test9 = GameObjectFactory.CreateGameObjectByID("PRODUCT_009");
-
-        toko.addItem(testa);
-        toko.addItem(testt);
-        toko.addItem(test2);
-        toko.addItem(test3);
-        toko.addItem(test4);
-        toko.addItem(test5);
-        toko.addItem(test6);
-        toko.addItem(test7);
-        toko.addItem(test8);
-        toko.addItem(test9);
-
-        Map<GameObject,Integer> map = toko.getListItems();
-
-        for(Map.Entry<GameObject, Integer> entry : map.entrySet()){
-            GameObject object = entry.getKey();
-            Integer value = entry.getValue();
-            System.out.println(object.GetName());
-            System.out.println(value);
-        }
+//        Map<GameObject, Integer> bae = new HashMap<>();
+//        Map<GameObject, Integer> baes = new HashMap<>();
+//
+//        GameObject testa = GameObjectFactory.CreateGameObjectByID("PRODUCT_001");
+//        GameObject testt = GameObjectFactory.CreateGameObjectByID("PRODUCT_001");
+//        GameObject test2 = GameObjectFactory.CreateGameObjectByID("PRODUCT_002");
+//        GameObject test3 = GameObjectFactory.CreateGameObjectByID("PRODUCT_003");
+//        GameObject test4 = GameObjectFactory.CreateGameObjectByID("PRODUCT_004");
+//        GameObject test5 = GameObjectFactory.CreateGameObjectByID("PRODUCT_005");
+//        GameObject test6 = GameObjectFactory.CreateGameObjectByID("PRODUCT_006");
+//        GameObject test7 = GameObjectFactory.CreateGameObjectByID("PRODUCT_007");
+//        GameObject test8 = GameObjectFactory.CreateGameObjectByID("PRODUCT_008");
+//        GameObject test9 = GameObjectFactory.CreateGameObjectByID("PRODUCT_009");
+//
+//        Toko.addItem(testa);
+//        Toko.addItem(testt);
+//        Toko.addItem(test2);
+//        Toko.addItem(test3);
+//        Toko.addItem(test4);
+//        Toko.addItem(test5);
+//        Toko.addItem(test6);
+//        Toko.addItem(test7);
+//        Toko.addItem(test8);
+//        Toko.addItem(test9);
     }
 
+    public void setPlayer(){
 
+        shuffleMe();
+
+        int player = GameManager.getTurnCounter();
+        if ( player == 0){
+            name.setText("Uchiha Baden");
+            Image img = new Image(getClass().getResourceAsStream("Image/jin.png"));
+            prof.setImage(img);
+            String gulde = String.valueOf(GameManager.getGulden(player));
+            gulden.setText(gulde);
+
+        } else {
+            name.setText("Peter Panik");
+            Image img = new Image(getClass().getResourceAsStream("Image/bondowoso.png"));
+            prof.setImage(img);
+            String gulde = String.valueOf(GameManager.getGulden(player));
+            gulden.setText(gulde);
+        }
+
+        turn.setText(String.valueOf(GameManager.getTotalTurnCounter()));
+    }
 
     public void shuffleMe(){
         GameManager.PlayerInterface.beginDraftPick();
@@ -224,14 +249,15 @@ public class GameController implements Initializable {
 
             ShuffleController shuffleController = shuffle.getController();
 
+            System.out.println(cards.toArray().length);
+
             shuffleController.setShuffleCards(cards);
 
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.initStyle(StageStyle.TRANSPARENT);
             scene.setFill(Color.TRANSPARENT);
-            stage.initModality(Modality.APPLICATION_MODAL);
-
+            stage.initModality(Modality.WINDOW_MODAL);
             stage.setAlwaysOnTop(true);
 
             stage.setScene(scene);
@@ -273,12 +299,12 @@ public class GameController implements Initializable {
         petaks.add(new Petak(LE8, false));
         petaks.add(new Petak(LE9, false));
         petaks.add(new Petak(LE10, false));
-        petaks.add(new Petak(DA1));
-        petaks.add(new Petak(DA2));
-        petaks.add(new Petak(DA3));
-        petaks.add(new Petak(DA4));
-        petaks.add(new Petak(DA5));
-        petaks.add(new Petak(DA6));
+        deckActiv.add(new Petak(DA1));
+        deckActiv.add(new Petak(DA2));
+        deckActiv.add(new Petak(DA3));
+        deckActiv.add(new Petak(DA4));
+        deckActiv.add(new Petak(DA5));
+        deckActiv.add(new Petak(DA6));
     }
 
     public void openShop(MouseEvent mouseEvent) throws IOException {
@@ -292,7 +318,7 @@ public class GameController implements Initializable {
 
             ShopController shopController = fxmlLoader.getController();
 
-            shopController.setProductGrid(toko.getListItems());
+            shopController.setProductGrid();
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -317,5 +343,14 @@ public class GameController implements Initializable {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void nextTurn(MouseEvent event) {
+        System.out.println("yess");
+        GameManager.nextTurn();
+
+        System.out.println(GameManager.getTurnCounter());
+
+        setPlayer();
     }
 }

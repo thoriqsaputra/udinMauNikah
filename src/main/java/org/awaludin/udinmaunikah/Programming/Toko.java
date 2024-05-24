@@ -6,11 +6,11 @@ import java.util.Map;
 public class Toko {
     private static Map<GameObject, Integer> listItemToko;
 
-    public Toko(){
+    public static void createToko(){
         listItemToko = new HashMap<>();
     }
 
-    public boolean isItemAvailable(GameObject item) {
+    public static boolean isItemAvailable(GameObject item) {
         if (listItemToko.containsKey(item)) {
             int quantity = listItemToko.get(item);
             return quantity > 0;
@@ -18,7 +18,7 @@ public class Toko {
         return false;
     }
 
-    public void removeItems(GameObject item) {
+    public static void removeItems(GameObject item) {
         if (listItemToko.containsKey(item)) {
             int quantity = listItemToko.get(item);
             if (quantity > 1) {
@@ -29,38 +29,38 @@ public class Toko {
         }
     }
 
-    public void addItem(GameObject item) {
-        if (this.listItemToko.containsKey(item)) {
-            int quantity = this.listItemToko.get(item);
-            this.listItemToko.put(item, quantity + 1);
+    public static void addItem(GameObject item) {
+        if (listItemToko.containsKey(item)) {
+            int quantity = listItemToko.get(item);
+            listItemToko.put(item, quantity + 1);
         } else {
-            this.listItemToko.put(item, 1);
+            listItemToko.put(item, 1);
         }
     }
 
-    public void setListItems(Map<GameObject, Integer> setlistItemToko) {
+    public static void setListItems(Map<GameObject, Integer> setlistItemToko) {
         listItemToko = setlistItemToko;
     }
 
-    public void tambahListItems(Map<GameObject, Integer> listItemToko) {
+    public static void tambahListItems(Map<GameObject, Integer> listItemToko) {
         for (Map.Entry<GameObject, Integer> entry : listItemToko.entrySet()) {
             GameObject item = entry.getKey();
             int quantity = entry.getValue();
             
-            if (this.listItemToko.containsKey(item)) {
-                int currentQuantity = this.listItemToko.get(item);
-                this.listItemToko.put(item, currentQuantity + quantity);
+            if (listItemToko.containsKey(item)) {
+                int currentQuantity = listItemToko.get(item);
+                listItemToko.put(item, currentQuantity + quantity);
             } else {
-                this.listItemToko.put(item, quantity);
+                listItemToko.put(item, quantity);
             }
         }
     }
     
-    public Map<GameObject, Integer> getListItems() {
+    public static Map<GameObject, Integer> getListItems() {
         return listItemToko;
     }
 
-    public int countItems() {
+    public static int countItems() {
         int count = 0;
         for (int quantity : listItemToko.values()) {
             count += quantity;

@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import javafx.animation.ScaleTransition;
+import org.awaludin.udinmaunikah.Programming.GameManager;
+import org.awaludin.udinmaunikah.Programming.GameObjectFactory;
 
 import java.io.IOException;
 
@@ -83,8 +85,21 @@ public class HomeController {
 
     public void startGame(MouseEvent mouseEvent) throws IOException {
         try{
+            // Initialize Game
+            GameManager.initGameManager();
+
+            GameObjectFactory.Load();
+            // Set Cards
+            for (int i = 0; i < 2; i++) {
+                GameManager.SetUpUtils.useDeck(i,"default");
+            }
+
             FXMLLoader startGame = new FXMLLoader(getClass().getResource("Game.fxml"));
             Parent root = startGame.load();
+
+            GameController gameController = startGame.getController();
+
+            gameController.setPlayer();
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 

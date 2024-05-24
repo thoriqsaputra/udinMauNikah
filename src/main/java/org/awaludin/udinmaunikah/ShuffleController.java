@@ -2,6 +2,7 @@ package org.awaludin.udinmaunikah;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -56,37 +57,82 @@ public class ShuffleController {
     @FXML
     private Group retry;
 
-    public void setShuffleCards(List<Card> cards) throws IOException {
-        String name1 = cards.get(0).convertToGameObject().GetName();
-        String name2 = cards.get(1).convertToGameObject().GetName();
-        String name3 = cards.get(2).convertToGameObject().GetName();
-        String name4 = cards.get(3).convertToGameObject().GetName();
-        Text1.setText(name1);
-        Text2.setText(name2);
-        Text3.setText(name3);
-        Text4.setText(name4);
+    public boolean setShuffleCards(List<Card> cards) throws IOException {
+        System.out.println(cards.toArray().length);
 
-        Image img1 = new Image(getClass().getResourceAsStream(cards.get(0).getImagePath()));
-        Image img2 = new Image(getClass().getResourceAsStream(cards.get(1).getImagePath()));
-        Image img3 = new Image(getClass().getResourceAsStream(cards.get(2).getImagePath()));
-        Image img4 = new Image(getClass().getResourceAsStream(cards.get(3).getImagePath()));
-        imag1.setImage(img1);
-        imag2.setImage(img2);
-        imag3.setImage(img3);
-        imag4.setImage(img4);
+        for (int i = 0; i < cards.size(); i++) {
+            String name = cards.get(i).convertToGameObject().GetName();
+            Text text = switch(i) {
+                case 0 -> Text1;
+                case 1 -> Text2;
+                case 2 -> Text3;
+                case 3 -> Text4;
+                default -> null; // Handle any other cases if necessary
+            };
+            if (text != null) {
+                text.setText(name);
+                Image img = new Image(getClass().getResourceAsStream(cards.get(i).getImagePath()));
+                ImageView imageView = switch(i) {
+                    case 0 -> imag1;
+                    case 1 -> imag2;
+                    case 2 -> imag3;
+                    case 3 -> imag4;
+                    default -> null; // Handle any other cases if necessary
+                };
+                if (imageView != null) {
+                    imageView.setImage(img);
+                    Group card = switch(i) {
+                        case 0 -> card1;
+                        case 1 -> card2;
+                        case 2 -> card3;
+                        case 3 -> card4;
+                        default -> null; // Handle any other cases if necessary
+                    };
+                    if (card != null) {
+                        int finalI = i;
+                        card.setOnMouseClicked((event -> {
+                            selectCard(cards.get(finalI), card);
+                        }));
+                        card.setOpacity(1);
+                    }
+                }
+            }
+        }
+
+        return cards.size() >= 4;
+
+
     }
 
+    void selectCard(Card card, Group group) {
+        System.out.println("WOO");
+        if(group.getEffect() == null){
+            GameManager.PlayerInterface.takeCard(card);
+            DropShadow ds = new DropShadow();
+            ds.setColor(Color.YELLOWGREEN);
+            ds.setSpread(0.5);
+            group.setEffect(ds);
+        } else{
+            GameManager.PlayerInterface.returnCard(card);
+            group.setEffect(null);
+        }
+    }
 
 
     @FXML
     void closeWindow(MouseEvent event) {
+        GameManager.PlayerInterface.endDraftPick();
+
+        List<Card> cards = GameManager.PlayerInterface.getHand();
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    void shuffle(MouseEvent event) {
-        GameManager.PlayerInterface.beginDraftPick();
+    void shuffle(MouseEvent event) throws IOException {
+        GameManager.PlayerInterface.reroll();
+        setShuffleCards(GameManager.PlayerInterface.getDraftList());
 
 
     }

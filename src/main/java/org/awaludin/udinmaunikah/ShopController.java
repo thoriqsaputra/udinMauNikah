@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -12,9 +13,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.awaludin.udinmaunikah.Programming.GameObject;
 import org.awaludin.udinmaunikah.Programming.GameObjectFactory;
 import org.awaludin.udinmaunikah.Programming.Toko;
@@ -31,7 +35,12 @@ public class ShopController {
     @FXML
     private GridPane productGrid;
 
-    public void setProductGrid(Map<GameObject, Integer> products) {
+    public void setProductGrid() {
+
+        productGrid.getChildren().clear();
+
+        Map<GameObject, Integer> products = Toko.getListItems();
+
         productGrid.getChildren().clear();
         try{
             int columns = 0;
@@ -46,6 +55,32 @@ public class ShopController {
                 fxmlLoader.setLocation(getClass().getResource("shopDeck.fxml"));
 
                 Pane deck = fxmlLoader.load();
+
+                deck.setOnMouseClicked((event -> {
+                    try {
+                        FXMLLoader fxmlLoader2 = new FXMLLoader();
+                        fxmlLoader2.setLocation(getClass().getResource("ShopDlg.fxml"));
+
+                        Parent parent = fxmlLoader2.load();
+
+                        ShopDlgController controller = fxmlLoader2.getController();
+
+                        controller.setDlgBuy(item);
+                        controller.setShpcontroller(this);
+
+                        Scene scene = new Scene(parent);
+                        scene.setFill(Color.TRANSPARENT);
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.initStyle(StageStyle.TRANSPARENT);
+                        stage.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+
+                }));
 
                 ShopDeckController controller = fxmlLoader.getController();
 

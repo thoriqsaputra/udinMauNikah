@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,8 +19,11 @@
               <image>
                   <Image url="@Image/btnX.png" />
               </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
           </ImageView>
-      <Group fx:id="card1" layoutX="251.0403594970703" layoutY="264.1719055175781">
+      <Group fx:id="card1" layoutX="251.0403594970703" layoutY="264.1719055175781" opacity="0.0">
          <children>
             <ImageView fitHeight="187.0" fitWidth="168.0" layoutY="34.028076171875" pickOnBounds="true" preserveRatio="true" rotate="-15.0">
                <image>
@@ -37,6 +41,9 @@
                </font>
             </Text>
          </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Group>
       <Group layoutX="457.0" layoutY="92.0">
          <children>
@@ -46,8 +53,11 @@
                </image>
             </ImageView>
          </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Group>
-      <Group fx:id="card2" layoutX="466.0" layoutY="255.0">
+      <Group fx:id="card2" layoutX="466.0" layoutY="255.0" opacity="0.0">
          <children>
             <ImageView fitHeight="187.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -65,8 +75,11 @@
                </font>
             </Text>
          </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Group>
-      <Group fx:id="card3" layoutX="647.0" layoutY="255.0">
+      <Group fx:id="card3" layoutX="647.0" layoutY="255.0" opacity="0.0">
          <children>
             <ImageView fitHeight="187.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -84,8 +97,11 @@
                </font>
             </Text>
          </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Group>
-      <Group fx:id="card4" layoutX="802.0403442382812" layoutY="291.1719055175781">
+      <Group fx:id="card4" layoutX="802.0403442382812" layoutY="291.1719055175781" opacity="0.0">
          <children>
             <ImageView fitHeight="187.0" fitWidth="156.0" layoutX="48.399169921875" pickOnBounds="true" preserveRatio="true" rotate="15.0">
                <image>
@@ -103,8 +119,11 @@
                </font>
             </Text>
          </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Group>
-      <Group fx:id="retry" layoutX="917.0" layoutY="475.0">
+      <Group fx:id="retry" layoutX="917.0" layoutY="475.0" onMouseClicked="#shuffle">
          <children>
             <ImageView fitHeight="187.0" fitWidth="156.0" layoutX="132.22894287109375" onMouseClicked="#shuffle" pickOnBounds="true" preserveRatio="true" rotate="45.0">
                <image>
@@ -117,6 +136,9 @@
                </image>
             </ImageView>
          </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Group>
     </children>
 </AnchorPane>

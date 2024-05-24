@@ -13,7 +13,6 @@ public class GameManager {
     private static List<CardDeck> deckList;
     private static int totalTurnCounter;
     private static int turnCounter;
-    private static Toko shop;
 
     // Reset all ladang in ladang list, empties all decklist
     public static void initGameManager() {
@@ -25,18 +24,31 @@ public class GameManager {
             deckList.add(new CardDeck(maxHandCount));
             guldenList.add(0);
         }
-        shop = new Toko();
+        Toko.createToko();
         turnCounter = 0;
         totalTurnCounter = 0;
     }
 
     public static void nextTurn() {
+        int oldTurnCounter = turnCounter;
         turnCounter++;
-        turnCounter = (turnCounter + 1) % defaultPlayerCount;
+        totalTurnCounter++;
+        turnCounter = (oldTurnCounter + 1) % defaultPlayerCount;
+    }
+
+    public static int getTurnCounter() {
+        return turnCounter;
+    }
+
+    public static int getTotalTurnCounter() {
+        return totalTurnCounter;
+    }
+
+    public static int getGulden(int index){
+        return guldenList.get(index);
     }
 
     public static class SetUpUtils{
-
         public static boolean useDeck(int player, String deckname){
             return deckList.get(player).load_deck(deckname);
         }
@@ -65,9 +77,14 @@ public class GameManager {
 
         public static boolean takeCard(Card card){
             if (pickList.size() + getHand().size() < maxHandCount && draftList.contains(card)){
-            pickList.add(card);
-            draftList.remove(card);
-            return true;
+                pickList.add(card);
+                draftList.remove(card);
+
+                for (Card car : pickList){
+                    System.out.println(car.convertToGameObject().GetName());
+                }
+
+                return true;
             }
             return false;
         }
