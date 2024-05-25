@@ -46,7 +46,11 @@ Hailday adalah sebuah aplikasi simulasi pengelolaan ladang berbasis Antarmuka Pe
     </tr>
 </table>
 
- ## Requirements
+ ## Technologies Used
+ 1. JDK 22
+ 2. Java FX
+ 3. Maven Compiler
+ 4. IntelliJ IDE
 
     
  # Cara Menjalankan Program
