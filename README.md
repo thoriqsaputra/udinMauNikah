@@ -55,6 +55,6 @@ Hailday adalah sebuah aplikasi simulasi pengelolaan ladang berbasis Antarmuka Pe
     
  # Cara Menjalankan Program
  1. Melakukan Git Clone terhadap repository Github ini
- 2. cd out\artifacts\udinMauNikah_jar
- 3. java -jar udinMauNikah.jar
+ 2. ```cd out\artifacts\udinMauNikah_jar```
+ 3. ```java -jar udinMauNikah.jar```
     
