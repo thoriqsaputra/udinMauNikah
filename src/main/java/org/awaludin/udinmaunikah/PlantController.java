@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.awaludin.udinmaunikah.Programming.Card;
+import org.awaludin.udinmaunikah.Programming.GameManager;
 import org.awaludin.udinmaunikah.Programming.GameObject;
 import org.awaludin.udinmaunikah.Programming.Plant;
 
@@ -50,5 +51,15 @@ public class PlantController {
     }
 
     public void panenBugi(MouseEvent event) {
+        if (kar != null) {
+            Plant plant = (Plant) kar.convertToGameObject();
+            GameObject hasilPanen = plant.Harvest();
+            Card hasilPanenCard = new Card(hasilPanen);
+            if (hasilPanenCard != null && GameManager.PlayerInterface.getHand().size() < 6) {
+                GameManager.PlayerInterface.tryAddToHand(hasilPanenCard);
+            } else {
+                System.out.println("Deck aktif penuh");
+            }
+        }
     }
 }

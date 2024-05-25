@@ -11,8 +11,11 @@ import javafx.stage.Stage;
 import org.awaludin.udinmaunikah.Programming.Animal;
 import org.awaludin.udinmaunikah.Programming.Card;
 import org.awaludin.udinmaunikah.Programming.GameObject;
+import org.awaludin.udinmaunikah.Programming.Product;
+import org.awaludin.udinmaunikah.Programming.GameManager;
 
 import java.io.IOException;
+import java.util.List;
 
 public class AnimalController {
 
@@ -56,5 +59,15 @@ public class AnimalController {
     };
 
     public void panenMas(MouseEvent event) {
+        if (kar != null) {
+            Animal animal = (Animal) kar.convertToGameObject();
+            GameObject hasilPanen = animal.Harvest();
+            Card hasilPanenCard = new Card(hasilPanen);
+            if (hasilPanenCard != null && GameManager.PlayerInterface.getHand().size() < 6) {
+                GameManager.PlayerInterface.tryAddToHand(hasilPanenCard);
+            } else {
+                System.out.println("Deck aktif penuh");
+            }
+        }
     }
 }

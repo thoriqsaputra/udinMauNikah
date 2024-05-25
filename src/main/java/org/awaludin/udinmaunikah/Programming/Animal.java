@@ -73,7 +73,6 @@ public class Animal extends GameObject implements IFeedable, IHarvestable{
 
     public GameObject Harvest(){
         //CHECK HERE
-
         return harvestProduct;
     }
 
