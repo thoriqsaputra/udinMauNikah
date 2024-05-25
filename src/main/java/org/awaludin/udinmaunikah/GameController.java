@@ -175,44 +175,51 @@ public class GameController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-//        GameObject test = GameObjectFactory.CreateGameObjectByID("HEWAN_002");
-//        Card kartu = new Card(test);
-        GameObject testa = GameObjectFactory.CreateGameObjectByID("PRODUCT_001");
-//        Card kartu1 = new Card(testa);
+        Ladang ladang = GameManager.getLadangList().get(GameManager.getTurnCounter());
+        ArrayList<Petak> l = new ArrayList<>(ladang.getList());
 
-        Toko.addItem(testa);
-//
-//        List<Ladang> deck = GameManager.getLadangDeckList();
-//        Ladang deckA = deck.get(0);
-//
-//        cardBrain.setGrid(lad.getPetak(0),kartu1, paneManeh, cardBrain);
-//        cardBrain.setGrid(deckA.getPetak(0), kartu, paneManeh, cardBrain);
+        cardBrain = new CardBrain(l, paneManeh);
 
-//        removePrevCards();
+        GameObject test = GameObjectFactory.CreateGameObjectByID("PLANT_001");
+        GameObject test2 = GameObjectFactory.CreateGameObjectByID("PLANT_002");
+        GameObject test3 = GameObjectFactory.CreateGameObjectByID("PLANT_003");
+        GameObject test7 = GameObjectFactory.CreateGameObjectByID("HEWAN_001");
+        GameObject test8 = GameObjectFactory.CreateGameObjectByID("HEWAN_002");
+        GameObject test9 = GameObjectFactory.CreateGameObjectByID("HEWAN_003");
+        GameObject test10 = GameObjectFactory.CreateGameObjectByID("PRODUCT_001");
+        GameObject test11 = GameObjectFactory.CreateGameObjectByID("PRODUCT_002");
+        GameObject test12 = GameObjectFactory.CreateGameObjectByID("PRODUCT_003");
+        GameObject test13 = GameObjectFactory.CreateGameObjectByID("PRODUCT_004");
+        GameObject test14 = GameObjectFactory.CreateGameObjectByID("PRODUCT_005");
+        Card kartu1 = new Card(test);
+        Card kartu2 = new Card(test2);
+        Card kartu3 = new Card(test3);
+        Card kartu4 = new Card(test7);
+        Card kartu5 = new Card(test8);
+        Card kartu6 = new Card(test9);
+        Card kartu7 = new Card(test10);
+        Card kartu8 = new Card(test11);
+        Card kartu9 = new Card(test12);
+        Card kartu10 = new Card(test13);
+        Card kartu11 = new Card(test14);
 
-//        Map<GameObject, Integer> bae = new HashMap<>();
-//        Map<GameObject, Integer> baes = new HashMap<>();
-//
-//        GameObject testt = GameObjectFactory.CreateGameObjectByID("PRODUCT_001");
-//        GameObject test2 = GameObjectFactory.CreateGameObjectByID("PRODUCT_002");
-//        GameObject test3 = GameObjectFactory.CreateGameObjectByID("PRODUCT_003");
-//        GameObject test4 = GameObjectFactory.CreateGameObjectByID("PRODUCT_004");
-//        GameObject test5 = GameObjectFactory.CreateGameObjectByID("PRODUCT_005");
-//        GameObject test6 = GameObjectFactory.CreateGameObjectByID("PRODUCT_006");
-//        GameObject test7 = GameObjectFactory.CreateGameObjectByID("PRODUCT_007");
-//        GameObject test8 = GameObjectFactory.CreateGameObjectByID("PRODUCT_008");
-//        GameObject test9 = GameObjectFactory.CreateGameObjectByID("PRODUCT_009");
-//
-//        Toko.addItem(testa);
-//        Toko.addItem(testt);
-//        Toko.addItem(test2);
-//        Toko.addItem(test3);
-//        Toko.addItem(test4);
-//        Toko.addItem(test5);
-//        Toko.addItem(test6);
-//        Toko.addItem(test7);
-//        Toko.addItem(test8);
-//        Toko.addItem(test9);
+        CardBrain.cardObj k1 = new CardBrain.cardObj(kartu1, null, cardBrain);
+        CardBrain.cardObj k2 = new CardBrain.cardObj(kartu2, null, cardBrain);
+        CardBrain.cardObj k3 = new CardBrain.cardObj(kartu3, null, cardBrain);
+        CardBrain.cardObj k4 = new CardBrain.cardObj(kartu4, null, cardBrain);
+
+        k1.setLayoutX(399);
+        k1.setLayoutY(319);
+
+        paneManeh.getChildren().add(k1);
+
+        k2.setLayoutX(199);
+        k2.setLayoutY(219);
+
+        paneManeh.getChildren().add(k2);
+
+        cardBrain.makeDraggable(k1);
+        cardBrain.makeDraggable(k2);
     }
 
 

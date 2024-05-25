@@ -14,6 +14,7 @@ import org.awaludin.udinmaunikah.Programming.Card;
 import org.awaludin.udinmaunikah.Programming.GameManager;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShuffleController {
@@ -57,7 +58,11 @@ public class ShuffleController {
     @FXML
     private Group retry;
 
+    private List<Card> cars;
+
     public boolean setShuffleCards(List<Card> cards) throws IOException {
+        cars = new ArrayList<>(cards);
+
         for (int i = 0; i < cards.size(); i++) {
             String name = cards.get(i).convertToGameObject().GetName();
             Text text = switch(i) {
@@ -89,7 +94,7 @@ public class ShuffleController {
                     if (card != null) {
                         int finalI = i;
                         card.setOnMouseClicked((event -> {
-                            selectCard(cards.get(finalI), card);
+                            selectCard(cars.get(finalI), card);
                         }));
                         card.setOpacity(1);
                         card.setEffect(null);
@@ -118,12 +123,6 @@ public class ShuffleController {
             group.setEffect(null);
         }
 
-        List<Card> ss = GameManager.PlayerInterface.getPickList();
-
-
-        for (Card car : ss) {
-            System.out.println(car.convertToGameObject().GetName());
-        }
     }
 
 
