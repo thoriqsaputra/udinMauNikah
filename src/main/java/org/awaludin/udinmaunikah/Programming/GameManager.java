@@ -106,7 +106,7 @@ public class GameManager {
         }
 
         public static boolean takeCard(Card card){
-            if (pickList.size() + getHand().size() < maxHandCount && draftList.contains(card)){
+            if (pickList.size() + deckList.get(turnCounter).getHandSize() < maxHandCount && draftList.contains(card)){
                 pickList.add(card);
                 draftList.remove(card);
 

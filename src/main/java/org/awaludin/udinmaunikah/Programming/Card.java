@@ -201,6 +201,16 @@ class CardDeck {
         return retval;
     }
 
+    public int getHandSize(){
+        int retval = 0;
+        for (int i = 0; i < GameManager.maxHandCount; i++){
+            if (hand.get(i) != null){
+                retval ++;
+            }
+        }
+        return retval;
+    }
+
     public void return_draft_pick(List<Card> remainingCards){
         for (int i = 0; i < remainingCards.size(); i++){
             this.add(remainingCards.get(0));
