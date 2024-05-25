@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.nio.file.*;
+import java.util.Map;
 
 public class TXTLoader implements Loader {
     private Field temp;
@@ -103,7 +104,8 @@ public class TXTLoader implements Loader {
                 Files.write(Path.of(path + "\\gamestate.txt"),content, StandardCharsets.UTF_8);
 
             //player.txt
-                List<CardDeck> cdlist = (List<CardDeck>) exposeFieldValue(flist,"deckList");
+                List<CardDeck> cdlist = expose_decklist();//(List<CardDeck>) exposeFieldValue(flist,"deckList");
+                List<Ladang> ldlist = expose_ladanglist();
                 for (int i = 0; i < GameManager.defaultPlayerCount; i++){
                     content.clear();
                     String filename = String.format("player%d.txt",i+1);
@@ -112,7 +114,9 @@ public class TXTLoader implements Loader {
                     CardDeck cd = cdlist.get(i);
                     content.add(String.valueOf(cd.getCardCount()));
                     for (CardSlot cs : cd.getDeck()){
-                        content.add(cs.GetCardThing().convertToGameObject().getId());
+                        for (int j = 0; j < cs.count(); j++){
+                            content.add(cs.GetCardThing().convertToGameObject().getId());
+                        }
                     }
                     //deck active
                     int handcount = 0;
@@ -124,7 +128,15 @@ public class TXTLoader implements Loader {
                             temp_idholder.add(c.convertToGameObject().getId());
                         }
                     };
+                    content.add(String.valueOf(handcount));
                     content.addAll(temp_idholder);
+
+                    //ladang
+                    Ladang ld = ldlist.get(i);
+                    Map<Integer, GameObject> ld_info = ld.getIngfo();
+                    //total
+                    content.add(String.valueOf(ld_info.size()));
+
                     Files.write(Path.of(path + "\\" + filename),content, StandardCharsets.UTF_8);
 
                 }

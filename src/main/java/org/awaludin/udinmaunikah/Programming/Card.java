@@ -18,6 +18,18 @@ public class Card {
     //private Image displayImage
     // you could move description here, depends ig
 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Card) {
+            if (((Card) obj).thing.getId().equals(this.thing.getId())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public Card(GameObject thing){
         this.thing = thing;
 
@@ -58,7 +70,7 @@ class CardDeck {
         deck = new ArrayList<CardSlot>();
         hand = new ArrayList<Card>();
         graveyard = new ArrayList<Card>();
-        cardCount++;
+        cardCount = 0;
         rng = new Random();
     }
 
@@ -143,15 +155,11 @@ class CardDeck {
     public Card draw(){
         //count how many cards there are
         int i = rng.nextInt(0,cardCount); //target Literal Card
+        System.out.printf("Fetch %d\n",i);
         int j = 0; //Literal Card iterator
         int k = 0; //CardSlot iterator
         int l = 0; //local Card iterator (buat iterate kartu dalam suatu CardSlot)
         while(j != i || deck.get(k).count() == 0){
-            // //while the currect cardslot has no cards
-            // while (deck.get(k).count() == 0){
-            //     k++;
-            // } ACCOMPLISHED IN THE LATER PART OF CARDSLOT ITTERATION
-
             //locally iterate card on current CardSlot
             if (j != i){
                 l++;
@@ -170,6 +178,7 @@ class CardDeck {
         }
         assert (j == i);
 
+        this.cardCount--;
         return deck.get(k).Draw();
     }
 
@@ -248,16 +257,16 @@ class CardSlot{ //kenapa? store more than 1 card with less memory
 
     public CardSlot(Card thing){
         this.thing = thing;
-        count = 1;
+        this.count = 1;
     }
 
     public CardSlot(GameObject thing_object){
         this.thing = new Card(thing_object);
-        count = 1;
+        this.count = 1;
     };
 
     public Card Draw(){
-        count--;
+        this.count--;
         return new Card(thing);
     }
 
