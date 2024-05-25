@@ -1,5 +1,6 @@
 package org.awaludin.udinmaunikah;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,6 +29,7 @@ import javafx.stage.StageStyle;
 import org.awaludin.udinmaunikah.Programming.*;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class GameController implements Initializable {
 
@@ -163,36 +165,47 @@ public class GameController implements Initializable {
     private List<Petak> petaks = new ArrayList<>();
     private ArrayList<Petak> deckActiv = new ArrayList<>();
 
-    private Ladang ladang = new Ladang();
+    @FXML
+    private Pane paneManeh;
+
+    private ArrayList<Petak> placeHolder = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // initialize ladang
         initializePlaceHolders();
 
-        ArrayList<Petak> placeHolder = new ArrayList<>();
+        int turn = GameManager.getTurnCounter();
 
-        placeHolder.addAll(petaks);
-        placeHolder.addAll(deckActiv);
+        Ladang lad = GameManager.getLadangList().get(0);
+//        Ladang lad1 = GameManager.getLadangDeckList().get(0);
+
+        List<Petak> bat = lad.getList();
+//        List<Petak> bat1 = lad1.getList();
+
+        placeHolder.addAll(bat);
+//        placeHolder.addAll(bat1);
 
         // brainOfCardsDragging
-        CardBrain cardBrain = new CardBrain(placeHolder);
-
+        CardBrain cardBrain = new CardBrain(placeHolder, paneManeh);
+//
         GameObject test = GameObjectFactory.CreateGameObjectByID("HEWAN_002");
         Card kartu = new Card(test);
+        GameObject testa = GameObjectFactory.CreateGameObjectByID("PRODUCT_001");
+        Card kartu1 = new Card(testa);
 
-        CardBrain.cardObj ss = new CardBrain.cardObj(kartu, null);
-        cardBrain.makeDraggable(ss);
+        List<Ladang> deck = GameManager.getLadangDeckList();
 
-        ss.setLayoutY(300);
-        ss.setLayoutX(390);
+        Ladang deckA = deck.get(0);
 
-        mainBoo.getChildren().add(ss);
+        cardBrain.setGrid(lad.getPetak(0),kartu1, paneManeh, cardBrain);
+        cardBrain.setGrid(deckA.getPetak(0), kartu, paneManeh, cardBrain);
+
+//        removePrevCards();
 
 //        Map<GameObject, Integer> bae = new HashMap<>();
 //        Map<GameObject, Integer> baes = new HashMap<>();
 //
-//        GameObject testa = GameObjectFactory.CreateGameObjectByID("PRODUCT_001");
 //        GameObject testt = GameObjectFactory.CreateGameObjectByID("PRODUCT_001");
 //        GameObject test2 = GameObjectFactory.CreateGameObjectByID("PRODUCT_002");
 //        GameObject test3 = GameObjectFactory.CreateGameObjectByID("PRODUCT_003");
@@ -215,9 +228,33 @@ public class GameController implements Initializable {
 //        Toko.addItem(test9);
     }
 
+
+    public Pane getPaneManeh(){
+        return paneManeh;
+    }
+
+    public void removePrevCards(){
+        // Find all Rectangle objects within the AnchorPane
+        List<Rectangle> rectangles = paneManeh.getChildren().stream()
+                .filter(node -> node instanceof Rectangle) // Filter to get only Rectangle objects
+                .map(node -> (Rectangle) node) // Cast Node to Rectangle
+                .filter(rectangle -> rectangle.getId() != null) // Remove rectangles with null ids
+                .sorted(Comparator.comparing(Rectangle::getId)) // Sort rectangles by id
+                .collect(Collectors.toList()); // Collect the sorted rectangles
+
+        for (Petak pepe : placeHolder){
+            CardBrain.cardObj tempC = pepe.getCardObj();
+            paneManeh.getChildren().remove(tempC);
+        }
+    }
+
+    public void setDeck(){
+
+    }
+
     public void setPlayer(){
 
-        shuffleMe();
+//        shuffleMe();
 
         int player = GameManager.getTurnCounter();
         if ( player == 0){
@@ -269,42 +306,52 @@ public class GameController implements Initializable {
     }
 
     public void initializePlaceHolders(){
-        petaks.add(new Petak(LN1));
-        petaks.add(new Petak(LN2));
-        petaks.add(new Petak(LN3));
-        petaks.add(new Petak(LN4));
-        petaks.add(new Petak(LN5));
-        petaks.add(new Petak(LN6));
-        petaks.add(new Petak(LN7));
-        petaks.add(new Petak(LN8));
-        petaks.add(new Petak(LN9));
-        petaks.add(new Petak(LN10));
-        petaks.add(new Petak(LN11));
-        petaks.add(new Petak(LN12));
-        petaks.add(new Petak(LN13));
-        petaks.add(new Petak(LN14));
-        petaks.add(new Petak(LN15));
-        petaks.add(new Petak(LN16));
-        petaks.add(new Petak(LN17));
-        petaks.add(new Petak(LN18));
-        petaks.add(new Petak(LN19));
-        petaks.add(new Petak(LN20));
-        petaks.add(new Petak(LE1, false));
-        petaks.add(new Petak(LE2, false));
-        petaks.add(new Petak(LE3, false));
-        petaks.add(new Petak(LE4, false));
-        petaks.add(new Petak(LE5, false));
-        petaks.add(new Petak(LE6, false));
-        petaks.add(new Petak(LE7, false));
-        petaks.add(new Petak(LE8, false));
-        petaks.add(new Petak(LE9, false));
-        petaks.add(new Petak(LE10, false));
-        deckActiv.add(new Petak(DA1));
-        deckActiv.add(new Petak(DA2));
-        deckActiv.add(new Petak(DA3));
-        deckActiv.add(new Petak(DA4));
-        deckActiv.add(new Petak(DA5));
-        deckActiv.add(new Petak(DA6));
+
+        for (int i = 0; i < 2; i++){
+
+            Ladang ldp = GameManager.getLadangList().get(i);
+            Ladang lda = GameManager.getLadangDeckList().get(i);
+
+            ldp.add(new Petak(LN1));
+            ldp.add(new Petak(LN2));
+            ldp.add(new Petak(LN3));
+            ldp.add(new Petak(LN4));
+            ldp.add(new Petak(LN5));
+            ldp.add(new Petak(LN6));
+            ldp.add(new Petak(LN7));
+            ldp.add(new Petak(LN8));
+            ldp.add(new Petak(LN9));
+            ldp.add(new Petak(LN10));
+            ldp.add(new Petak(LN11));
+            ldp.add(new Petak(LN12));
+            ldp.add(new Petak(LN13));
+            ldp.add(new Petak(LN14));
+            ldp.add(new Petak(LN15));
+            ldp.add(new Petak(LN16));
+            ldp.add(new Petak(LN17));
+            ldp.add(new Petak(LN18));
+            ldp.add(new Petak(LN19));
+            ldp.add(new Petak(LN20));
+            ldp.add(new Petak(LE1, false));
+            ldp.add(new Petak(LE2, false));
+            ldp.add(new Petak(LE3, false));
+            ldp.add(new Petak(LE4, false));
+            ldp.add(new Petak(LE5, false));
+            ldp.add(new Petak(LE6, false));
+            ldp.add(new Petak(LE7, false));
+            ldp.add(new Petak(LE8, false));
+            ldp.add(new Petak(LE9, false));
+            ldp.add(new Petak(LE10, false));
+
+            lda.add(new Petak(DA1));
+            lda.add(new Petak(DA2));
+            lda.add(new Petak(DA3));
+            lda.add(new Petak(DA4));
+            lda.add(new Petak(DA5));
+            lda.add(new Petak(DA6));
+        }
+
+
     }
 
     public void openShop(MouseEvent mouseEvent) throws IOException {

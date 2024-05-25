@@ -1,13 +1,15 @@
 package org.awaludin.udinmaunikah;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Cursor;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -21,16 +23,20 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import org.awaludin.udinmaunikah.Programming.*;
 
 public class CardBrain {
 
     private ArrayList<Petak> petaks = new ArrayList<>();
+    private Pane pane;
     private double mouseAnchorX;
     private double mouseAnchorY;
 
-    public CardBrain(ArrayList<Petak> petaks) {
+    public CardBrain(ArrayList<Petak> petaks, Pane pane) {
+
         this.petaks = petaks;
+        this.pane = pane;
     }
 
     public void makeDraggable(cardObj node){
@@ -39,6 +45,8 @@ public class CardBrain {
         double[] initialPosition = new double[2];
 
         node.setOnMousePressed(mouseEvent -> {
+
+            node.toFront();
             if (mouseEvent.getButton() == MouseButton.PRIMARY) {
 
                 if (!yesKah[0]){
@@ -69,28 +77,108 @@ public class CardBrain {
                     if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())
                             && p.isEnabled() && p.isEmpty()) {
                         placed = true;
-                        node.setLayoutX(r.getLayoutX()-7);
+                        node.setLayoutX(r.getLayoutX());
                         node.setLayoutY(r.getLayoutY());
                         initialPosition[0] = r.getLayoutX();
                         initialPosition[1] = r.getLayoutY();
-                        p.setGameObject(new GameObject());
+                        p.setCardObj(node);
 
                         if (node.getPreviousPetak() != null) {
                             Petak petak = node.getPreviousPetak();
-                            petak.setGameObject(null);
+                            petak.setNull();
                         }
                         node.setPreviousPetak(p);
 
                         break;
                     }
+                    if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())
+                    && !p.isEmpty() && p.isEnabled()
+                    && node.previousPetak != p){
+                        System.out.println("masuk");
+                        GameObject go = node.getGameObject();
+                        if (go instanceof Product){
+                            Product pr = (Product) go;
+                            GameObject go2 = p.getGameObject();
+
+                            if (go2 instanceof Animal){
+                                Animal animal = (Animal) go2;
+
+                                if (animal.isEatAble(pr)){
+                                    animal.Feed(pr.getWeight());
+                                    botNot("Success: Weight now " + animal.GetWeight());
+                                    pane.getChildren().remove(node);
+                                }else {
+                                    botNot("Cannot Feed That");
+                                }
+
+                            } else{
+                                botNot("Not Animal");
+                            }
+
+                        } else if (go instanceof Item) {
+                            System.out.println("bat");
+                        }
+
+                    }
                 }
                 if (!placed) {
 
-                    node.setLayoutX(initialPosition[0]-7);
+                    node.setLayoutX(initialPosition[0]);
                     node.setLayoutY(initialPosition[1]);
                 }
             }
         });
+    }
+
+    public void setGrid(Petak petak, Card kartu, Pane pane, CardBrain cb){
+        Rectangle rec = petak.getRectangle();
+
+        double layX = rec.getLayoutX();
+        double layY = rec.getLayoutY();
+
+        cardObj kar = new cardObj(kartu, petak, cb);
+
+        petak.setCardObj(kar);
+
+        kar.setLayoutY(layY);
+        kar.setLayoutX(layX);
+
+        pane.getChildren().add(kar);
+
+        cb.makeDraggable(kar);
+    }
+
+    public void botNot(String message){
+
+        Group myGroup = (Group) pane.lookup("#boardError");
+        Text text = (Text) myGroup.lookup("#error");
+
+
+        text.setText(message);
+        if (myGroup != null) {
+            // Change opacity to 1
+            Timeline fadeIn = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(myGroup.opacityProperty(), 0)),
+                    new KeyFrame(Duration.seconds(1), new KeyValue(myGroup.opacityProperty(), 1))
+            );
+
+            // Wait for 3 seconds
+            PauseTransition wait = new PauseTransition(Duration.seconds(2));
+
+            // Change opacity back to 0
+            Timeline fadeOut = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(myGroup.opacityProperty(), 1)),
+                    new KeyFrame(Duration.seconds(1), new KeyValue(myGroup.opacityProperty(), 0))
+            );
+
+            // Sequentially play the animations
+            fadeIn.setOnFinished(event -> wait.play());
+            wait.setOnFinished(event -> fadeOut.play());
+
+            fadeIn.play();
+        } else {
+            System.out.println("Group with fx:id 'myGroup' not found.");
+        }
     }
 
     public static class cardObj extends Pane {
@@ -99,28 +187,11 @@ public class CardBrain {
         private GameObject gameObject;
         private CardBrain cardBrain;
 
-        public cardObj(Card isiKartu, Petak previousPetak){
+        public cardObj(Card isiKartu, Petak previousPetak, CardBrain cardBrain){
             this.isiKartu = isiKartu;
             this.previousPetak = previousPetak;
             this.gameObject = this.isiKartu.convertToGameObject();
             this.cardBrain = cardBrain;
-
-            this.setOnMouseClicked(event -> {
-                if(event.getButton() == MouseButton.SECONDARY){
-                    try {
-
-                        if (this.gameObject instanceof Animal){
-                            dlgAnimal(isiKartu);
-                        } else if (this.gameObject instanceof Plant) {
-                            dlgPlant(isiKartu);
-                        } else {
-                            dlgProduct(isiKartu);
-                        }
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            });
 
             String img = this.isiKartu.getImagePath();
             String name = this.gameObject.GetName();
@@ -163,6 +234,38 @@ public class CardBrain {
 
             this.getChildren().addAll(kard, text, icon);
 
+            this.setOnMouseClicked(event -> {
+                if(event.getButton() == MouseButton.SECONDARY){
+                    try {
+
+                        if (this.gameObject instanceof Animal){
+                            dlgAnimal(isiKartu);
+                        } else if (this.gameObject instanceof Plant) {
+                            dlgPlant(isiKartu);
+                        } else {
+                            dlgProduct(this);
+                        }
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        }
+
+        public void setGameObject(GameObject gameObject){
+            this.gameObject = gameObject;
+        }
+
+        public GameObject getGameObject() {
+            return gameObject;
+        }
+
+        public void setCard(Card isiKartu){
+            this.isiKartu = isiKartu;
+        }
+
+        public Card getCard(){
+            return this.isiKartu;
         }
 
         public void setPreviousPetak(Petak petak){
@@ -216,14 +319,14 @@ public class CardBrain {
             }
         }
 
-        public void dlgProduct(Card isiKartu) throws IOException {
+        public void dlgProduct(CardBrain.cardObj kar) throws IOException {
             try{
                 FXMLLoader dlgProduct = new FXMLLoader(getClass().getResource("Product.fxml"));
                 Parent root = dlgProduct.load();
 
                 ProductController productController = dlgProduct.getController();
 
-                productController.setProduct(isiKartu);
+                productController.setProduct(kar, cardBrain.pane);
 
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
@@ -241,45 +344,5 @@ public class CardBrain {
 
     }
 
-//    public static Pane createCard(String iconImageUrl, String cardText) {
-//        // Create the main Group
-//        Pane kartu = new Pane();
-//
-//        // Create the main card image view
-//        ImageView kard = new ImageView();
-//        kard.setFitHeight(114.0);
-//        kard.setFitWidth(112.0);
-//        kard.setPreserveRatio(true);
-//        kard.setImage(new Image(String.valueOf(GameController.class.getResource("Image/kard.png"))));
-//
-//        // Create the text
-//        Text text = new Text(cardText);
-//        text.setLayoutX(20.0);
-//        text.setFill(Color.WHITE);
-//        text.setFont(Font.font("Snap ITC"));
-//        text.setLayoutY(93.0);
-//        text.setStrokeWidth(2.0);
-//        text.setText(cardText);
-//
-//        System.out.println("Text created");
-//
-//        // Create the icon image view
-//        ImageView icon = new ImageView();
-//        icon.setFitHeight(54.0);
-//        icon.setFitWidth(62.0);
-//        icon.setLayoutX(15.0);
-//        icon.setLayoutY(22.0);
-//        icon.setPickOnBounds(true);
-//        icon.setPreserveRatio(true);
-//        icon.setImage(new Image(String.valueOf(GameController.class.getResource(iconImageUrl))));
-//
-//        System.out.println("Image icon");
-//
-//        // Add all children to the group
-//        kartu.getChildren().addAll(kard, text, icon);
-//        kartu.setPrefSize(112, 114);
-//
-//        return kartu;
-//    }
 
 }

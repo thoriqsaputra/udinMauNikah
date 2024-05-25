@@ -32,8 +32,6 @@ public class Plant extends GameObject implements IHarvestable, IGrowable{
     };
 
     public GameObject Harvest(){
-        //check
-
         return harvestProduct;
     };
 

@@ -85,7 +85,7 @@ public class HomeController {
 
     public void startGame(MouseEvent mouseEvent) throws IOException {
         try{
-            // Initialize Game
+//             Initialize Game
             GameManager.initGameManager();
 
             GameObjectFactory.Load();

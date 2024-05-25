@@ -4,6 +4,7 @@ import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.awaludin.udinmaunikah.CardBrain;
 import org.awaludin.udinmaunikah.Programming.Effect.Layout;
 
 public class Petak implements IHarvestable{
@@ -11,12 +12,14 @@ public class Petak implements IHarvestable{
    private List<Item> item;
    private Rectangle rectangle;
    private boolean enabled;
+   private CardBrain.cardObj cardObj;
 
    public Petak(Rectangle rectangle) {
        this.gameObject = null;
        this.enabled = true;
        this.item = new ArrayList<>();
        this.rectangle = rectangle;
+       this.cardObj = null;
    }
 
    public Petak(Rectangle rectangle, boolean enabled) {
@@ -32,7 +35,21 @@ public class Petak implements IHarvestable{
        return gameObject;
    }
 
-   public void setGameObject(GameObject gameObject) {
+   public void setCardObj(CardBrain.cardObj cardObj) {
+       this.cardObj = cardObj;
+       this.gameObject = cardObj.getGameObject();
+   }
+
+    public CardBrain.cardObj getCardObj() {
+        return cardObj;
+    }
+
+    public void setNull(){
+       this.gameObject = null;
+       this.cardObj = null;
+    }
+
+    public void setGameObject(GameObject gameObject) {
        this.gameObject = gameObject;
    }
 

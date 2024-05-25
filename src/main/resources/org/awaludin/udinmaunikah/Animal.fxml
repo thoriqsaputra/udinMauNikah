@@ -69,6 +69,11 @@
                   <Font name="Snap ITC" size="42.0" />
                </font>
             </Text>
+            <Text fx:id="erorr" fill="RED" layoutX="366.0" layoutY="204.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tidak bisa diberi makan" textAlignment="CENTER" wrappingWidth="550.4227905273438">
+               <font>
+                  <Font name="Snap ITC" size="18.0" />
+               </font>
+            </Text>
             </children>
         </Pane>
     </children>

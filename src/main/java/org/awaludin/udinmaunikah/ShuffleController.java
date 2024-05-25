@@ -94,6 +94,7 @@ public class ShuffleController {
                             selectCard(cards.get(finalI), card);
                         }));
                         card.setOpacity(1);
+                        card.setEffect(null);
                     }
                 }
             }
@@ -105,7 +106,13 @@ public class ShuffleController {
     }
 
     void selectCard(Card card, Group group) {
-        System.out.println("WOO");
+
+        List<Card> ss = GameManager.PlayerInterface.getPickList();
+        System.out.println(ss.toArray().length);
+        for (Card car : ss) {
+            System.out.println(car.convertToGameObject().GetName());
+        }
+
         if(group.getEffect() == null){
             GameManager.PlayerInterface.takeCard(card);
             DropShadow ds = new DropShadow();

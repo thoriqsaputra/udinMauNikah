@@ -32,6 +32,10 @@ public class Ladang {
         }
     }
 
+    public List<Petak> getList() {
+        return grid;
+    }
+
     public void bonusHabis() {
         for (int i = 20; i < 30; i++) {
             grid.get(i).disable();

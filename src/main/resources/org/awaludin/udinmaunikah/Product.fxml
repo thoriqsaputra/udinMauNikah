@@ -31,14 +31,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </ImageView>
-                <ImageView fitHeight="208.0" fitWidth="183.0" layoutX="426.0" layoutY="439.0" onMouseClicked="#eat" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@Image/btn-eat.png" />
-                    </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-                </ImageView>
                 <ImageView fx:id="imag" fitHeight="117.0" fitWidth="140.0" layoutX="758.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Image/Daging%20Beruang.png" />
@@ -54,7 +46,7 @@
                         <Font name="Snap ITC" size="20.0" />
                     </font>
                 </Label>
-            <ImageView fitHeight="208.0" fitWidth="183.0" layoutX="655.0" layoutY="440.0" onMouseClicked="#sell" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="208.0" fitWidth="183.0" layoutX="545.0" layoutY="440.0" onMouseClicked="#sell" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Image/btn-Sell.png" />
                </image>

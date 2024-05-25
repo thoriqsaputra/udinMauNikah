@@ -11,22 +11,37 @@ public class GameManager {
     private static List<Integer> guldenList;
     private static List<Ladang> ladangList;
     private static List<CardDeck> deckList;
+    private static List<Ladang> ladangDeckList;
     private static int totalTurnCounter;
     private static int turnCounter;
 
     // Reset all ladang in ladang list, empties all decklist
     public static void initGameManager() {
         ladangList = new ArrayList<>();
+        ladangDeckList = new ArrayList<>();
         deckList = new ArrayList<>();
         guldenList = new ArrayList<>();
         for (int i = 0; i < defaultPlayerCount; i++){
             ladangList.add(new Ladang());
             deckList.add(new CardDeck(maxHandCount));
             guldenList.add(0);
+            ladangDeckList.add(new Ladang());
         }
         Toko.createToko();
         turnCounter = 0;
         totalTurnCounter = 0;
+    }
+
+    public static List<Ladang> getLadangList(){
+        return ladangList;
+    }
+
+    public static List<CardDeck> getDeckList(){
+        return deckList;
+    }
+
+    public static List<Ladang> getLadangDeckList(){
+        return ladangDeckList;
     }
 
     public static void nextTurn() {
@@ -34,6 +49,17 @@ public class GameManager {
         turnCounter++;
         totalTurnCounter++;
         turnCounter = (oldTurnCounter + 1) % defaultPlayerCount;
+    }
+
+    public static void sellItems(GameObject product){
+        Toko.addItem(product);
+        Product pr = (Product) product;
+
+        int guldenNow = getGulden(getTurnCounter()) + pr.getPrice();
+
+        System.out.println(getTurnCounter() + " " + guldenNow);
+
+        guldenList.set(getTurnCounter(), guldenNow);
     }
 
     public static int getTurnCounter() {
@@ -69,6 +95,10 @@ public class GameManager {
         public static void reroll(){
             deckList.get(turnCounter).return_draft_pick(draftList);
             beginDraftPick();
+        }
+
+        public static List<Card> getPickList(){
+            return pickList;
         }
 
         public static List<Card> getDraftList(){

@@ -65,8 +65,6 @@ public class Animal extends GameObject implements IFeedable, IHarvestable{
         return false;
     }
 
-    
-
     public void Feed(int nutrient){
         weight += nutrient;
     }
