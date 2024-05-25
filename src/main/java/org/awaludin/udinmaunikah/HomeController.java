@@ -101,6 +101,8 @@ public class HomeController {
 
             gameController.setPlayer();
 
+            gameController.initializePlaceHolders();
+
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
             Scene scene = new Scene(root);

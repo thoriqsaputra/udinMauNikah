@@ -170,36 +170,23 @@ public class GameController implements Initializable {
 
     private ArrayList<Petak> placeHolder = new ArrayList<>();
 
+    CardBrain cardBrain;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // initialize ladang
-        initializePlaceHolders();
 
-        int turn = GameManager.getTurnCounter();
-
-        Ladang lad = GameManager.getLadangList().get(0);
-//        Ladang lad1 = GameManager.getLadangDeckList().get(0);
-
-        List<Petak> bat = lad.getList();
-//        List<Petak> bat1 = lad1.getList();
-
-        placeHolder.addAll(bat);
-//        placeHolder.addAll(bat1);
-
-        // brainOfCardsDragging
-        CardBrain cardBrain = new CardBrain(placeHolder, paneManeh);
-//
-        GameObject test = GameObjectFactory.CreateGameObjectByID("HEWAN_002");
-        Card kartu = new Card(test);
+//        GameObject test = GameObjectFactory.CreateGameObjectByID("HEWAN_002");
+//        Card kartu = new Card(test);
         GameObject testa = GameObjectFactory.CreateGameObjectByID("PRODUCT_001");
-        Card kartu1 = new Card(testa);
+//        Card kartu1 = new Card(testa);
 
-        List<Ladang> deck = GameManager.getLadangDeckList();
-
-        Ladang deckA = deck.get(0);
-
-        cardBrain.setGrid(lad.getPetak(0),kartu1, paneManeh, cardBrain);
-        cardBrain.setGrid(deckA.getPetak(0), kartu, paneManeh, cardBrain);
+        Toko.addItem(testa);
+//
+//        List<Ladang> deck = GameManager.getLadangDeckList();
+//        Ladang deckA = deck.get(0);
+//
+//        cardBrain.setGrid(lad.getPetak(0),kartu1, paneManeh, cardBrain);
+//        cardBrain.setGrid(deckA.getPetak(0), kartu, paneManeh, cardBrain);
 
 //        removePrevCards();
 
@@ -234,13 +221,25 @@ public class GameController implements Initializable {
     }
 
     public void removePrevCards(){
+        placeHolder.clear();
+
+        int turn = GameManager.getTurnCounter();
+
+        Ladang ladang = GameManager.getLadangList().get(turn);
+        List<Petak> lad = ladang.getList();
+        placeHolder.addAll(lad);
+
+        Ladang deckAktif = GameManager.getLadangDeckList().get(turn);
+        List<Petak> deck = deckAktif.getList();
+        placeHolder.addAll(deck);
+
         // Find all Rectangle objects within the AnchorPane
-        List<Rectangle> rectangles = paneManeh.getChildren().stream()
-                .filter(node -> node instanceof Rectangle) // Filter to get only Rectangle objects
-                .map(node -> (Rectangle) node) // Cast Node to Rectangle
-                .filter(rectangle -> rectangle.getId() != null) // Remove rectangles with null ids
-                .sorted(Comparator.comparing(Rectangle::getId)) // Sort rectangles by id
-                .collect(Collectors.toList()); // Collect the sorted rectangles
+//        List<Rectangle> rectangles = paneManeh.getChildren().stream()
+//                .filter(node -> node instanceof Rectangle) // Filter to get only Rectangle objects
+//                .map(node -> (Rectangle) node) // Cast Node to Rectangle
+//                .filter(rectangle -> rectangle.getId() != null) // Remove rectangles with null ids
+//                .sorted(Comparator.comparing(Rectangle::getId)) // Sort rectangles by id
+//                .collect(Collectors.toList()); // Collect the sorted rectangles
 
         for (Petak pepe : placeHolder){
             CardBrain.cardObj tempC = pepe.getCardObj();
@@ -250,11 +249,35 @@ public class GameController implements Initializable {
 
     public void setDeck(){
 
+        int turn = GameManager.getTurnCounter();
+        Ladang deckAktif = GameManager.getLadangDeckList().get(turn);
+        Ladang ladang = GameManager.getLadangList().get(turn);
+        List<Petak> lad = ladang.getList();
+        List<Petak> deck = deckAktif.getList();
+
+        for(Petak p : lad){
+            CardBrain.cardObj tempC = p.getCardObj();
+            Card car = tempC.getCard();
+            cardBrain.setGrid(p, car, paneManeh, cardBrain);
+        }
+
+        for (Petak dec : deck){
+            CardBrain.cardObj tempC = dec.getCardObj();
+            Card car = tempC.getCard();
+            cardBrain.setGrid(dec, car, paneManeh, cardBrain);
+        }
+
+
     }
 
     public void setPlayer(){
+        removePrevCards();
 
-//        shuffleMe();
+        shuffleMe();
+
+        cardBrain = new CardBrain(placeHolder, paneManeh);
+
+        setDeck();
 
         int player = GameManager.getTurnCounter();
         if ( player == 0){
@@ -295,7 +318,7 @@ public class GameController implements Initializable {
             stage.initStyle(StageStyle.TRANSPARENT);
             scene.setFill(Color.TRANSPARENT);
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.setAlwaysOnTop(true);
+//            stage.setAlwaysOnTop(true);
 
             stage.setScene(scene);
 
@@ -332,6 +355,7 @@ public class GameController implements Initializable {
             ldp.add(new Petak(LN18));
             ldp.add(new Petak(LN19));
             ldp.add(new Petak(LN20));
+
             ldp.add(new Petak(LE1, false));
             ldp.add(new Petak(LE2, false));
             ldp.add(new Petak(LE3, false));

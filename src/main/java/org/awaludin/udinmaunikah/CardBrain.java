@@ -45,10 +45,12 @@ public class CardBrain {
         double[] initialPosition = new double[2];
 
         node.setOnMousePressed(mouseEvent -> {
-
+            // Click set to front
             node.toFront();
+            // If left click go
             if (mouseEvent.getButton() == MouseButton.PRIMARY) {
 
+                // Set initialize position
                 if (!yesKah[0]){
                     initialPosition[0] = node.getLayoutX();
                     initialPosition[1] = node.getLayoutY();
@@ -62,6 +64,7 @@ public class CardBrain {
 
         node.setOnMouseDragged(mouseEvent -> {
             if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+
                 node.setCursor(Cursor.CLOSED_HAND);
                 node.setLayoutX(mouseEvent.getSceneX() - mouseAnchorX);
                 node.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
@@ -71,22 +74,33 @@ public class CardBrain {
         node.setOnMouseReleased(mouseEvent -> {
             if (mouseEvent.getButton() == MouseButton.PRIMARY) {
                 node.setCursor(Cursor.DEFAULT);
+                // set false first
                 boolean placed = false;
+                // itterate throough all the placeHolders/ladang
                 for (Petak p : targets) {
+                    // Get the rectangle
                     Rectangle r = p.getRectangle();
+                    // if the mouse is over the rectangle, is enabled (for bonus purposes), and not have card in it
                     if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())
                             && p.isEnabled() && p.isEmpty()) {
+                        // place is valid
                         placed = true;
+
+                        // Set the card to the position of slot
                         node.setLayoutX(r.getLayoutX());
                         node.setLayoutY(r.getLayoutY());
+
                         initialPosition[0] = r.getLayoutX();
                         initialPosition[1] = r.getLayoutY();
+
+                        // set card on petak
                         p.setCardObj(node);
 
                         if (node.getPreviousPetak() != null) {
                             Petak petak = node.getPreviousPetak();
                             petak.setNull();
                         }
+
                         node.setPreviousPetak(p);
 
                         break;
@@ -121,8 +135,8 @@ public class CardBrain {
 
                     }
                 }
+                // if not valid position place back to initialize spot
                 if (!placed) {
-
                     node.setLayoutX(initialPosition[0]);
                     node.setLayoutY(initialPosition[1]);
                 }

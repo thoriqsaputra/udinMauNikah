@@ -58,8 +58,6 @@ public class ShuffleController {
     private Group retry;
 
     public boolean setShuffleCards(List<Card> cards) throws IOException {
-        System.out.println(cards.toArray().length);
-
         for (int i = 0; i < cards.size(); i++) {
             String name = cards.get(i).convertToGameObject().GetName();
             Text text = switch(i) {
@@ -107,21 +105,24 @@ public class ShuffleController {
 
     void selectCard(Card card, Group group) {
 
-        List<Card> ss = GameManager.PlayerInterface.getPickList();
-        System.out.println(ss.toArray().length);
-        for (Card car : ss) {
-            System.out.println(car.convertToGameObject().GetName());
-        }
-
         if(group.getEffect() == null){
+
             GameManager.PlayerInterface.takeCard(card);
             DropShadow ds = new DropShadow();
-            ds.setColor(Color.YELLOWGREEN);
+            ds.setColor(Color.WHITE);
             ds.setSpread(0.5);
+            ds.setRadius(20);
             group.setEffect(ds);
         } else{
             GameManager.PlayerInterface.returnCard(card);
             group.setEffect(null);
+        }
+
+        List<Card> ss = GameManager.PlayerInterface.getPickList();
+
+
+        for (Card car : ss) {
+            System.out.println(car.convertToGameObject().GetName());
         }
     }
 
@@ -131,6 +132,7 @@ public class ShuffleController {
         GameManager.PlayerInterface.endDraftPick();
 
         List<Card> cards = GameManager.PlayerInterface.getHand();
+
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
