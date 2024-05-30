@@ -133,7 +133,8 @@ public class GameManager {
         public static void endDraftPick(){
             deckList.get(turnCounter).return_draft_pick(draftList);
             for (Card card : pickList){
-                getHand().add(card);
+//                getHand().add(card);
+                tryAddToHand(card);
             }
         }
 
@@ -161,7 +162,6 @@ public class GameManager {
             int i;
             for (i = 0; i < maxHandCount; i++){
                 if (deckList.get(turnCounter).getHand().get(i) != null){
-                    i++;
                 }
                 else{
                     deckList.get(turnCounter).getHand().set(i, card);
