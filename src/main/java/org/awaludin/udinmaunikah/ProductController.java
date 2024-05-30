@@ -37,23 +37,25 @@ public class ProductController {
     @FXML
     private ImageView imag;
 
-    @FXML
-    void closeWindow(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
-    }
+
 
     private Card kar;
 
     private CardBrain.cardObj cardObj;
 
-    private Pane paneMane;
-
     private GameController controller;
 
+    private Pane paneProduct;
 
     @FXML
-    public void setProduct(CardBrain.cardObj kart, Pane paneManeh) throws IOException {
+    void closeWindow(MouseEvent event) {
+        GameController.mainPane.getChildren().remove(paneProduct);
+    }
+
+    @FXML
+    public void setProduct(CardBrain.cardObj kart, Pane paneProduct) throws IOException {
+
+        paneProduct = paneProduct;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Game.fxml"));
 
@@ -65,8 +67,6 @@ public class ProductController {
 
         kar = kart.getCard();
         cardObj = kart;
-
-        paneMane = paneManeh;
 
         GameObject gameObject = kar.convertToGameObject();
         Product product = (Product) gameObject;
@@ -89,15 +89,15 @@ public class ProductController {
 
         GameManager.sellItems(cardObj.getGameObject());
 
-        paneMane.getChildren().remove(cardObj);
+        GameController.mainPane.getChildren().remove(cardObj);
 
-        controller.setPlayer();
+        controller.setPlayer(false);
 
         botNot("Sold to shop!");
     }
 
     public void botNot(String message){
-        Group myGroup = (Group) paneMane.lookup("#boardError");
+        Group myGroup = (Group) GameController.mainPane.lookup("#boardError");
         Text text = (Text) myGroup.lookup("#error");
 
 

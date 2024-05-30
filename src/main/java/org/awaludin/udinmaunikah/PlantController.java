@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.awaludin.udinmaunikah.Programming.Card;
@@ -29,13 +30,16 @@ public class PlantController {
 
     private Card kar;
 
+    private Pane plantPane;
+
     @FXML
     void closeWindow(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+        GameController.mainPane.getChildren().remove(plantPane);
     }
 
-    public void setPlant(Card kartu){
+    public void setPlant(Card kartu, Pane pane){
+        plantPane = pane;
+
         GameObject gameObject = kartu.convertToGameObject();
         Plant plant = (Plant) gameObject;
 

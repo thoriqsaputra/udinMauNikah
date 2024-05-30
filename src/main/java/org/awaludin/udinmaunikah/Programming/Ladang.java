@@ -33,7 +33,7 @@ public class Ladang {
     }
 
     public List<Petak> getList() {
-        return grid;
+        return this.grid;
     }
 
     public void bonusHabis() {

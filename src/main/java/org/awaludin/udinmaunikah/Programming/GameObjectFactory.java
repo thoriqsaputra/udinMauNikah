@@ -19,7 +19,6 @@ public class GameObjectFactory {
     public static boolean Load(){
         if(!loaded){
             String fname = Paths.get(file_name).toAbsolutePath().toString();
-            System.out.println(fname);
             StringBuilder sb = new StringBuilder();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(fname))) {
@@ -43,7 +42,6 @@ public class GameObjectFactory {
 
     public static GameObject CreateGameObjectByID(String gameobjectID){
         if (loaded){
-            System.out.println(gameobjectID);
             JSONObject temp = (JSONObject) codex.get(gameobjectID);
             if (temp != null){
                 switch (temp.get("type").toString()){
@@ -201,13 +199,6 @@ public class GameObjectFactory {
         }
     }
 
-
-    public static void main(String[] args) {
-        Load();
-        Animal hiooo = (Animal) CreateGameObjectByKey("name","Hiu Darat");
-
-        System.out.println(hiooo.GetName());
-    }
 
 
 }

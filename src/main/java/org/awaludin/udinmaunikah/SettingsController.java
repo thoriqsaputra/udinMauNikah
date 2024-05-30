@@ -5,16 +5,24 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import org.awaludin.udinmaunikah.Programming.GameManager;
 
 public class SettingsController {
+
+    private Pane settingsPane;
+
+    public void setSettingsPane(Pane settingsPane) {
+        this.settingsPane = settingsPane;
+    }
+
     public void closeSetting(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+        GameController.mainPane.getChildren().remove(settingsPane);
     }
 
     public void openSave(MouseEvent mouseEvent) {

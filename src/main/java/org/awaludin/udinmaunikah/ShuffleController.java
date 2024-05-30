@@ -1,7 +1,9 @@
 package org.awaludin.udinmaunikah;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,12 +12,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.awaludin.udinmaunikah.Programming.Card;
-import org.awaludin.udinmaunikah.Programming.GameManager;
+import org.awaludin.udinmaunikah.Programming.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ShuffleController {
 
@@ -60,8 +63,14 @@ public class ShuffleController {
 
     private List<Card> cars;
 
+    private GameController gameController;
+
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
+    }
+
     public boolean setShuffleCards(List<Card> cards) throws IOException {
-        cars = new ArrayList<>(cards);
+        cars = new ArrayList<Card>(cards);
 
         for (int i = 0; i < cards.size(); i++) {
             String name = cards.get(i).convertToGameObject().GetName();
@@ -105,13 +114,11 @@ public class ShuffleController {
 
         return cards.size() >= 4;
 
-
     }
 
     void selectCard(Card card, Group group) {
 
         if(group.getEffect() == null){
-
             GameManager.PlayerInterface.takeCard(card);
             DropShadow ds = new DropShadow();
             ds.setColor(Color.WHITE);
@@ -125,24 +132,28 @@ public class ShuffleController {
 
     }
 
-
     @FXML
-    void closeWindow(MouseEvent event) {
+    void closeWindow(MouseEvent event) throws IOException {
+
+        List<Card> c = GameManager.PlayerInterface.getPickList()
+                .stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+
         GameManager.PlayerInterface.endDraftPick();
 
-        List<Card> cards = GameManager.PlayerInterface.getHand();
 
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+        if (gameController!=null){
+            gameController.removeShufflePane();
+            gameController.isiDeck(c);
+        }
     }
 
     @FXML
     void shuffle(MouseEvent event) throws IOException {
         GameManager.PlayerInterface.reroll();
         setShuffleCards(GameManager.PlayerInterface.getDraftList());
-
-
     }
 
 }

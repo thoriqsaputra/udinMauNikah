@@ -85,7 +85,7 @@ public class HomeController {
 
     public void startGame(MouseEvent mouseEvent) throws IOException {
         try{
-//             Initialize Game
+            //Initialize Game
             GameManager.initGameManager();
 
             GameObjectFactory.Load();
@@ -96,12 +96,6 @@ public class HomeController {
 
             FXMLLoader startGame = new FXMLLoader(getClass().getResource("Game.fxml"));
             Parent root = startGame.load();
-
-            GameController gameController = startGame.getController();
-
-            gameController.setPlayer();
-
-            gameController.initializePlaceHolders();
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 

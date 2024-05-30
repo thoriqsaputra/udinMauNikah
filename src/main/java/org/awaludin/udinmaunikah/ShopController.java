@@ -68,8 +68,6 @@ public class ShopController {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-
-
                 }));
 
                 ShopDeckController controller = fxmlLoader.getController();

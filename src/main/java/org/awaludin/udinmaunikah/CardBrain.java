@@ -28,15 +28,14 @@ import org.awaludin.udinmaunikah.Programming.*;
 
 public class CardBrain {
 
-    private ArrayList<Petak> petaks = new ArrayList<>();
-    private Pane pane;
+    private ArrayList<Petak> petaks;
+    private static GameController gameController;
     private double mouseAnchorX;
     private double mouseAnchorY;
 
-    public CardBrain(ArrayList<Petak> petaks, Pane pane) {
-
+    public CardBrain(ArrayList<Petak> petaks, GameController gameController) {
         this.petaks = petaks;
-        this.pane = pane;
+        gameController = gameController;
     }
 
     public void makeDraggable(cardObj node){
@@ -99,17 +98,24 @@ public class CardBrain {
                         if (node.getPreviousPetak() != null) {
                             Petak petak = node.getPreviousPetak();
                             petak.setNull();
+
+                            if(petak.getRectangle().getId().startsWith("DA")){
+                                GameManager.PlayerInterface.useCardT(node.getCard());
+                            }
                         }
 
                         node.setPreviousPetak(p);
 
                         break;
                     }
+
                     if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())
                     && !p.isEmpty() && p.isEnabled()
                     && node.previousPetak != p){
+
                         System.out.println("masuk");
                         GameObject go = node.getGameObject();
+
                         if (go instanceof Product){
                             Product pr = (Product) go;
                             GameObject go2 = p.getGameObject();
@@ -120,7 +126,11 @@ public class CardBrain {
                                 if (animal.isEatAble(pr)){
                                     animal.Feed(pr.getWeight());
                                     botNot("Success: Weight now " + animal.GetWeight());
-                                    pane.getChildren().remove(node);
+                                    if (node.getPreviousPetak() != null) {
+                                        Petak petak = node.getPreviousPetak();
+                                        petak.setNull();
+                                    }
+                                    GameController.mainPane.getChildren().remove(node);
                                 }else {
                                     botNot("Cannot Feed That");
                                 }
@@ -144,29 +154,27 @@ public class CardBrain {
         });
     }
 
-    public void setGrid(Petak petak, Card kartu, Pane pane, CardBrain cb){
+    public void setGrid(Petak petak, Card kartu){
         Rectangle rec = petak.getRectangle();
 
         double layX = rec.getLayoutX();
         double layY = rec.getLayoutY();
 
-        cardObj kar = new cardObj(kartu, petak, cb);
+        cardObj kar = new cardObj(kartu, petak);
 
         petak.setCardObj(kar);
 
         kar.setLayoutY(layY);
         kar.setLayoutX(layX);
 
-        pane.getChildren().add(kar);
+        GameController.mainPane.getChildren().add(kar);
 
-        cb.makeDraggable(kar);
+        makeDraggable(kar);
     }
 
-    public void botNot(String message){
-
-        Group myGroup = (Group) pane.lookup("#boardError");
+    public static void botNot(String message){
+        Group myGroup = (Group) GameController.mainPane.lookup("#boardError");
         Text text = (Text) myGroup.lookup("#error");
-
 
         text.setText(message);
         if (myGroup != null) {
@@ -199,13 +207,11 @@ public class CardBrain {
         private Card isiKartu;
         private Petak previousPetak;
         private GameObject gameObject;
-        private CardBrain cardBrain;
 
-        public cardObj(Card isiKartu, Petak previousPetak, CardBrain cardBrain){
+        public cardObj(Card isiKartu, Petak previousPetak){
             this.isiKartu = isiKartu;
             this.previousPetak = previousPetak;
             this.gameObject = this.isiKartu.convertToGameObject();
-            this.cardBrain = cardBrain;
 
             String img = this.isiKartu.getImagePath();
             String name = this.gameObject.GetName();
@@ -216,10 +222,6 @@ public class CardBrain {
             kard.setFitWidth(112.0);
             kard.setPreserveRatio(true);
             kard.setImage(new Image(String.valueOf(GameController.class.getResource("Image/kard.png"))));
-
-            System.out.println("Sss");
-
-            System.out.println(img);
 
             // Create the text
             Text text = new Text(name);
@@ -232,8 +234,6 @@ public class CardBrain {
             text.setStrokeWidth(2.0);
             text.setText(name);
 
-            System.out.println("Text created");
-
             // Create the icon image view
             ImageView icon = new ImageView();
             icon.setFitHeight(54.0);
@@ -244,21 +244,22 @@ public class CardBrain {
             icon.setPreserveRatio(true);
             icon.setImage(new Image(String.valueOf(GameController.class.getResource(img))));
 
-            System.out.println("Image icon");
-
             this.getChildren().addAll(kard, text, icon);
 
             this.setOnMouseClicked(event -> {
                 if(event.getButton() == MouseButton.SECONDARY){
                     try {
-
                         if (this.gameObject instanceof Animal){
                             dlgAnimal(isiKartu);
                         } else if (this.gameObject instanceof Plant) {
                             dlgPlant(isiKartu);
-                        } else {
+                        } else if (this.gameObject instanceof Product){
                             dlgProduct(this);
+                        } else {
+                            dlgItem(isiKartu);
                         }
+
+
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -293,20 +294,14 @@ public class CardBrain {
         public void dlgAnimal(Card isiKartu) throws IOException {
             try{
                 FXMLLoader dlgLoad = new FXMLLoader(getClass().getResource("Animal.fxml"));
-                Parent root = dlgLoad.load();
+                Pane root = dlgLoad.load();
 
                 AnimalController animalController = dlgLoad.getController();
 
-                animalController.setAnimal(isiKartu);
+                animalController.setAnimal(isiKartu, root, CardBrain.gameController);
 
-                Stage stage = new Stage();
-                Scene scene = new Scene(root);
-                stage.initStyle(StageStyle.TRANSPARENT);
-                scene.setFill(Color.TRANSPARENT);
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.setScene(scene);
+                GameController.mainPane.getChildren().add(root);
 
-                stage.show();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -315,19 +310,14 @@ public class CardBrain {
         public void dlgPlant(Card isiKartu) throws IOException {
             try{
                 FXMLLoader dlgLoad = new FXMLLoader(getClass().getResource("Plant.fxml"));
-                Parent root = dlgLoad.load();
+                Pane root = dlgLoad.load();
 
                 PlantController plantController = dlgLoad.getController();
 
-                plantController.setPlant(isiKartu);
+                plantController.setPlant(isiKartu, root);
 
-                Stage stage = new Stage();
-                Scene scene = new Scene(root);
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.initStyle(StageStyle.TRANSPARENT);
-                scene.setFill(Color.TRANSPARENT);
-                stage.setScene(scene);
-                stage.show();
+                GameController.mainPane.getChildren().add(root);
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -336,20 +326,30 @@ public class CardBrain {
         public void dlgProduct(CardBrain.cardObj kar) throws IOException {
             try{
                 FXMLLoader dlgProduct = new FXMLLoader(getClass().getResource("Product.fxml"));
-                Parent root = dlgProduct.load();
+                Pane root = dlgProduct.load();
 
                 ProductController productController = dlgProduct.getController();
 
-                productController.setProduct(kar, cardBrain.pane);
+                productController.setProduct(kar, root);
 
-                Stage stage = new Stage();
-                Scene scene = new Scene(root);
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.initStyle(StageStyle.TRANSPARENT);
-                scene.setFill(Color.TRANSPARENT);
-                stage.setScene(scene);
-                stage.setAlwaysOnTop(true);
-                stage.show();
+                GameController.mainPane.getChildren().add(root);
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        public void dlgItem(Card kar) throws IOException {
+            try{
+                FXMLLoader dlgItem = new FXMLLoader(getClass().getResource("Item.fxml"));
+                Pane root = dlgItem.load();
+
+                ItemController itemController = dlgItem.getController();
+
+                itemController.setItem(kar, root);
+
+                GameController.mainPane.getChildren().add(root);
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }

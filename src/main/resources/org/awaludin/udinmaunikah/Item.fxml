@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.awaludin.udinmaunikah.ItemController">
+    <children>
+        <Pane layoutX="-8.0" prefHeight="720.0" prefWidth="1280.0">
+            <children>
+                <ImageView fitHeight="754.0" fitWidth="1305.0" layoutX="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Image/overlay.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="406.0" fitWidth="609.0" layoutX="335.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Image/shopDeck.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="56.0" fitWidth="33.0" layoutX="389.0" layoutY="218.0" onMouseClicked="#closeWindow" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Image/btnX.png" />
+                    </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+                </ImageView>
+                <ImageView fx:id="img" fitHeight="183.0" fitWidth="195.0" layoutX="552.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Image/corn.png" />
+                    </image>
+                </ImageView>
+            <Text fx:id="name" fill="WHITE" layoutX="440.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="outlined" text="chug" textAlignment="CENTER" wrappingWidth="402.0345764160156">
+               <font>
+                  <Font name="Snap ITC" size="42.0" />
+               </font>
+            </Text>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

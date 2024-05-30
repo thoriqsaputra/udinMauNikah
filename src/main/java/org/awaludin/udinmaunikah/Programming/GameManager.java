@@ -170,6 +170,19 @@ public class GameManager {
             return null;
         }
 
+        public static Card useCardT(Card card) {
+            List<Card> hand = getHand();
+
+            for (int i = 0; i < hand.size(); i++) {
+                if (card.equals(hand.get(i))) {
+                    Card retval = hand.get(i);
+                    hand.set(i, null);
+                    return retval;
+                }
+            }
+            return null;
+        }
+
         //alternatif, untuk memindahkan kartu dari slot x ke y saja (handles swapping);
         public static boolean moveCard(int from, int to){
             //ANGGAPAN INPUT SUDAH BENAR

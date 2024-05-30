@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.awaludin.udinmaunikah.Programming.Animal;
@@ -15,6 +16,7 @@ import org.awaludin.udinmaunikah.Programming.Product;
 import org.awaludin.udinmaunikah.Programming.GameManager;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AnimalController {
@@ -34,15 +36,21 @@ public class AnimalController {
     @FXML
     private ImageView panen;
 
+    private Pane paneAnimal;
+
     @FXML
     void closeWindow(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+        GameController.mainPane.getChildren().remove(paneAnimal);
     }
 
     private Card kar;
 
-    public void setAnimal(Card kartu) throws IOException {
+    private GameController gameController;
+
+    public void setAnimal(Card kartu, Pane pane, GameController gameController) throws IOException {
+
+        gameController = gameController;
+        paneAnimal = pane;
 
         GameObject gameObject = kartu.convertToGameObject();
         Animal animal = (Animal) gameObject;
@@ -61,12 +69,25 @@ public class AnimalController {
     public void panenMas(MouseEvent event) {
         if (kar != null) {
             Animal animal = (Animal) kar.convertToGameObject();
-            GameObject hasilPanen = animal.Harvest();
-            Card hasilPanenCard = new Card(hasilPanen);
-            if (hasilPanenCard != null && GameManager.PlayerInterface.getHand().size() < 6) {
-                GameManager.PlayerInterface.tryAddToHand(hasilPanenCard);
-            } else {
-                System.out.println("Deck aktif penuh");
+
+            if (animal.isReadyToHarvest())
+            {
+                Product hasilPanen = (Product) animal.Harvest();
+
+                Card hasilPanenCard = new Card(hasilPanen);
+
+                if (hasilPanenCard != null && GameManager.PlayerInterface.getHand().size() < 6) {
+                    GameManager.PlayerInterface.tryAddToHand(hasilPanenCard);
+                    List<Card> car = new ArrayList<>();
+                    car.add(hasilPanenCard);
+                    gameController.isiDeck(car);
+                    GameController.mainPane.getChildren().remove(paneAnimal);
+                } else {
+                    System.out.println("Deck aktif penuh");
+                }
+            } else{
+                GameController.mainPane.getChildren().remove(paneAnimal);
+                CardBrain.botNot("Not Ready!");
             }
         }
     }

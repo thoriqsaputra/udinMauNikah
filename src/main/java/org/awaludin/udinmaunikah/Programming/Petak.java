@@ -10,6 +10,7 @@ import org.awaludin.udinmaunikah.Programming.Effect.Layout;
 public class Petak implements IHarvestable{
    private GameObject gameObject;
    private List<Item> item;
+
    private Rectangle rectangle;
    private boolean enabled;
    private CardBrain.cardObj cardObj;
@@ -100,7 +101,7 @@ public class Petak implements IHarvestable{
    }
 
    public boolean isEmpty(){
-       return gameObject == null;
+       return cardObj == null;
    }
 
    public boolean isEnabled() {

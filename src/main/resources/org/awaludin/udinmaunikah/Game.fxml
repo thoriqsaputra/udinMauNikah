@@ -18,7 +18,7 @@
     <children>
         <Pane fx:id="paneManeh" layoutX="-8.0" prefHeight="720.0" prefWidth="1280.0">
             <children>
-                <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="7.0" preserveRatio="true">
+                <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="8.0" preserveRatio="true">
                     <image>
                         <Image url="@Image/bgShop.png" />
                     </image>
@@ -103,7 +103,7 @@
                         </Label>
                      </children>
                      <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Group>
                </children>
@@ -253,7 +253,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN1" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="402.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="a" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="402.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -271,7 +271,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN2" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="491.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="b" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="491.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -289,7 +289,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN3" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="582.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="c" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="582.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -307,7 +307,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN4" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="671.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="d" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="671.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -325,7 +325,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN5" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="761.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="e" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="761.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -343,7 +343,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LE1" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="852.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="u" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="852.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -361,7 +361,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LE2" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="941.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="v" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="941.0" layoutY="85.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -379,7 +379,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN6" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="411.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="f" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="411.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -397,7 +397,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN7" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="500.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="g" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="500.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -415,7 +415,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN8" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="591.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="h" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="591.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -433,7 +433,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN9" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="680.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="i" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="680.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -451,7 +451,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN10" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="770.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="j" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="770.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -469,7 +469,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LE3" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="861.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="w" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="861.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -487,7 +487,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LE4" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="950.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="950.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0" fx:id="x">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -505,7 +505,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LE5" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="1040.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="y" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="1040.0" layoutY="211.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -523,7 +523,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN11" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="402.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="k" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="402.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -541,7 +541,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN12" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="491.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="l" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="491.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -559,7 +559,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN13" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="582.0" layoutY="334.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="m" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="582.0" layoutY="334.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -577,7 +577,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN14" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="671.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="n" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="671.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -595,7 +595,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN15" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="761.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="o" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="761.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -613,7 +613,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LE6" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="852.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="z" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="852.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -631,7 +631,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LE7" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="941.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="zz" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="941.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -649,7 +649,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LE8" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="1031.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="zzz" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="1031.0" layoutY="333.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -667,7 +667,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN16" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="412.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="p" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="412.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -685,7 +685,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN17" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="501.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="q" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="501.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -703,7 +703,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN18" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="592.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="r" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="592.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -721,7 +721,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN19" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="681.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="s" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="681.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -739,7 +739,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LN20" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="771.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="t" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="771.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -757,7 +757,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LE9" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="862.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="zzzz" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="862.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -775,7 +775,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Rectangle fx:id="LE10" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="951.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
+            <Rectangle fx:id="zzzzz" arcHeight="5.0" arcWidth="50.0" fill="#cee2f5a7" height="112.0" layoutX="951.0" layoutY="454.0" strokeType="INSIDE" strokeWidth="2.0" width="78.0">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
