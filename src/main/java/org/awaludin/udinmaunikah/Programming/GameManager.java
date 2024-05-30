@@ -106,6 +106,7 @@ public class GameManager {
             return draftList;
         }
 
+        //DRAFT LIST PURPOSE
         public static boolean takeCard(Card card){
             if (pickList.size() + deckList.get(turnCounter).getHandSize() < maxHandCount && draftList.contains(card)){
                 pickList.add(card);
