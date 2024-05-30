@@ -111,9 +111,9 @@ public class GameManager {
                 pickList.add(card);
                 draftList.remove(card);
 
-                for (Card car : pickList){
-                    System.out.println(car.convertToGameObject().GetName());
-                }
+//                for (Card car : pickList){
+//                    System.out.println(car.convertToGameObject().GetName());
+//                }
 
                 return true;
             }
@@ -143,21 +143,7 @@ public class GameManager {
             return deckList.get(turnCounter).getHand();
         }
 
-        public static Boolean useCardAt(Card card, int index, boolean attacking){
-            //pastiin kita emang punya kartunya
-            if (!getHand().contains(card)){
-                System.out.println("Card not in hand!");
-                return false;
-            }
-            //ladangList.get(turnCounter + attacking*1).
-
-            //say move was legal
-            boolean removal = deckList.get(turnCounter).use(card);
-
-            assert removal;
-            return true;
-        }
-
+        //GUNAKAN JIKA MENCOBA UNTUK MENAMBAHKAN KARTU KE TANGAN
         public static Boolean tryAddToHand(Card card){
             int i;
             for (i = 0; i < maxHandCount; i++){
@@ -167,6 +153,33 @@ public class GameManager {
                     deckList.get(turnCounter).getHand().set(i, card);
                     return true;
                 }
+            }
+            return false;
+        }
+
+        //REMOVE CARD FROM HAND
+        //hanya menghandle penghapusan kartu dari hand pada slot tersebut
+        //returns kartu pada slot tsb jika berhasil, return null jika gagal
+        public static Card useCard(int slot){
+            if (getHand().get(slot) != null){
+                Card retval = getHand().get(slot);
+                getHand().set(slot, null);
+                return retval;
+            }
+            return null;
+        }
+
+        //alternatif, untuk memindahkan kartu dari slot x ke y saja (handles swapping);
+        public static boolean moveCard(int from, int to){
+            //ANGGAPAN INPUT SUDAH BENAR
+            if (getHand().get(from) != null){
+                Card temp = null;
+                if (getHand().get(to) != null){
+                    temp = getHand().get(to);
+                }
+                getHand().set(to, getHand().get(from));
+                getHand().set(from, temp);
+                return true;
             }
             return false;
         }
