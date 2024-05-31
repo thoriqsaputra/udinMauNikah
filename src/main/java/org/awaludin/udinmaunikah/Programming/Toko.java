@@ -10,8 +10,17 @@ public class Toko {
         listItemToko = new HashMap<>();
     }
 
+    private static GameObject seek_key(GameObject reference){
+        for (var listing : listItemToko.keySet()){
+            if (listing.getId().equals(reference.getId())){
+                return listing;
+            }
+        }
+        return null;
+    }
+
     public static boolean isItemAvailable(GameObject item) {
-        if (listItemToko.containsKey(item)) {
+        if (seek_key(item) != null) {
             int quantity = listItemToko.get(item);
             return quantity > 0;
         }
@@ -19,20 +28,22 @@ public class Toko {
     }
 
     public static void removeItems(GameObject item) {
-        if (listItemToko.containsKey(item)) {
-            int quantity = listItemToko.get(item);
+        if (seek_key(item) != null) {
+            GameObject key = seek_key(item);
+            int quantity = listItemToko.get(key);
             if (quantity > 1) {
-                listItemToko.put(item, quantity - 1);
+                listItemToko.replace(key, quantity - 1);
             } else {
-                listItemToko.remove(item);
+                listItemToko.remove(key);
             }
         }
     }
 
     public static void addItem(GameObject item) {
-        if (listItemToko.containsKey(item)) {
-            int quantity = listItemToko.get(item);
-            listItemToko.put(item, quantity + 1);
+        if (seek_key(item) != null) {
+            GameObject key = seek_key(item);
+            int quantity = listItemToko.get(key);
+            listItemToko.replace(key, quantity + 1);
         } else {
             listItemToko.put(item, 1);
         }
