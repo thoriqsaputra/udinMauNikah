@@ -45,10 +45,23 @@ public class GameManager {
     }
 
     public static void nextTurn() {
+        onEndTurn();
         int oldTurnCounter = turnCounter;
         turnCounter++;
         totalTurnCounter++;
         turnCounter = (oldTurnCounter + 1) % defaultPlayerCount;
+    }
+
+    public static void onEndTurn() {
+        Ladang ld = ladangList.get(turnCounter);
+        for (Petak p : ld.getGrid()){
+            if (!p.isEmpty()){
+                if (p.getGameObject().getClass() == Plant.class){
+                    IGrowable temp = (Plant) p.getGameObject();
+                    temp.Tick(1);
+                }
+            }
+        };
     }
 
     public static void sellItems(GameObject product){
