@@ -162,8 +162,8 @@ public class Ladang {
         }
     
         Random random = new Random();
-        boolean attackHappens = random.nextBoolean();
-        if (!attackHappens) {
+        int attackHappens = random.nextInt(4);
+        if (attackHappens != 1) {
             return; // Tidak ada serangan beruang pada turn ini
         }
     
