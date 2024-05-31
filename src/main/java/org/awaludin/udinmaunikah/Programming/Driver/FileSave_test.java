@@ -13,7 +13,7 @@ public class FileSave_test {
         GameManager.SetUpUtils.useDeck(1,"default");
 
         Loader save = new TXTLoader();
-
+ 
         save.save("src\\main\\resources\\org\\awaludin\\udinmaunikah");
     }
 }
