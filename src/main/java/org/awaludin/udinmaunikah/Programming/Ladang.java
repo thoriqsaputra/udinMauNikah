@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.Map.Entry;
+import java.util.function.Consumer;
 
 import org.awaludin.udinmaunikah.Programming.Effect.Protect;
 import org.awaludin.udinmaunikah.Programming.Effect.Trap;
@@ -14,6 +15,9 @@ import javafx.scene.shape.Rectangle;
 public class Ladang {
     private List<Petak> grid;
     private boolean bearAttackActive;
+    private transient Runnable onBearAttackStart;
+    private transient Runnable onBearAttackEnd;
+    private transient Consumer<Double> onBearAttackUpdate;
 
     public Ladang() {
         grid = new ArrayList<>(30);
@@ -154,6 +158,18 @@ public class Ladang {
             }
         }
         return ingfo;
+    }
+
+    public void setOnBearAttackStart(Runnable onBearAttackStart) {
+        this.onBearAttackStart = onBearAttackStart;
+    }
+
+    public void setOnBearAttackEnd(Runnable onBearAttackEnd) {
+        this.onBearAttackEnd = onBearAttackEnd;
+    }
+
+    public void setOnBearAttackUpdate(Consumer<Double> onBearAttackUpdate) {
+        this.onBearAttackUpdate = onBearAttackUpdate;
     }
 
     public synchronized void bearAttack() {
