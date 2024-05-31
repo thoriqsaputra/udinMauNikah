@@ -150,16 +150,21 @@ public class GameController implements Initializable {
             }
         }
 
-        for (Petak dec : deck) {
-            CardBrain.cardObj tempC = dec.getCardObj();
-            if (tempC != null) {
-                Card car = tempC.getCard();
-                cardBrain.setGrid(dec, car);
-            } else {
-//                System.err.println("tempC is null in Petak 'dec'");
+//        for (Petak dec : deck) {
+//            CardBrain.cardObj tempC = dec.getCardObj();
+//            if (tempC != null) {
+//                Card car = tempC.getCard();
+//                cardBrain.setGrid(dec, car);
+//            } else {
+////                System.err.println("tempC is null in Petak 'dec'");
+//            }
+//        }
+        List<Card> c = GameManager.PlayerInterface.getHand();
+        for (int i =0; i < deck.size(); i++){
+            if (c.get(i)!=null){
+                cardBrain.setGrid(deck.get(i), c.get(i));
             }
         }
-
     }
 
     public void isiDeck(List<Card> cards){
@@ -192,6 +197,9 @@ public class GameController implements Initializable {
 
         setDeck();
 
+        String deck = String.valueOf(GameManager.PlayerInterface.getCardCount());
+        deckCount.setText(deck);
+
         shuffleMe();
     }
 
@@ -202,16 +210,16 @@ public class GameController implements Initializable {
             name.setText("Uchiha Baden");
             Image img = new Image(getClass().getResourceAsStream("Image/jin.png"));
             prof.setImage(img);
-            String gulde = String.valueOf(GameManager.getGulden(player));
-            gulden.setText(gulde);
 
         } else {
             name.setText("Peter Panik");
             Image img = new Image(getClass().getResourceAsStream("Image/bondowoso.png"));
             prof.setImage(img);
-            String gulde = String.valueOf(GameManager.getGulden(player));
-            gulden.setText(gulde);
+
         }
+
+        String gulde = String.valueOf(GameManager.getGulden(player));
+        gulden.setText(gulde);
 
         turn.setText(String.valueOf(GameManager.getTotalTurnCounter()));
     }
@@ -240,6 +248,8 @@ public class GameController implements Initializable {
 
     public void removeShufflePane(){
         paneManeh.getChildren().remove(shufflePane);
+        String deck = String.valueOf(GameManager.PlayerInterface.getCardCount());
+        deckCount.setText(deck);
     }
 
     public void openShop(MouseEvent mouseEvent) throws IOException {

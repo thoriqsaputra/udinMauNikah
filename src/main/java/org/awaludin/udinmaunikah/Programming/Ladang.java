@@ -334,11 +334,19 @@ abstract class Effect {
                 pr = (Product) hewan.Harvest();
             }
             Card prd = new Card(pr);
+            if (!GameManager.PlayerInterface.tryAddToHand(prd)){
+                CardBrain.botNot("Deck Slot FULL!");
+            }
             List<Card> k = new ArrayList<>();
             k.add(prd);
-            GameController.gameC.isiDeck(k);
             CardBrain.cardObj tempc = subject.getCardObj();
+            Petak p = tempc.getPreviousPetak();
+            if (p!=null){
+                p.setNull();
+            }
             GameController.mainPane.getChildren().remove(tempc);
+            GameController.gameC.isiDeck(k);
+
 ;        }
 
         @Override

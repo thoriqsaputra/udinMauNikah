@@ -71,10 +71,7 @@ public class GameManager {
         Toko.addItem(product);
         Product pr = (Product) product;
 
-        guldenList.set(turnCounter, guldenList.get(turnCounter) + pr.getPrice());
         int guldenNow = getGulden(getTurnCounter()) + pr.getPrice();
-
-        System.out.println(getTurnCounter() + " " + guldenNow);
 
         guldenList.set(getTurnCounter(), guldenNow);
     }

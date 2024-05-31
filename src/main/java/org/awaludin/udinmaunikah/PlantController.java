@@ -37,8 +37,10 @@ public class PlantController {
         GameController.mainPane.getChildren().remove(plantPane);
     }
 
-    public void setPlant(Card kartu, Pane pane){
+    public void setPlant(CardBrain.cardObj iskartu, Pane pane){
         plantPane = pane;
+
+        Card kartu = iskartu.getCard();
 
         GameObject gameObject = kartu.convertToGameObject();
         Plant plant = (Plant) gameObject;

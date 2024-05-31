@@ -46,8 +46,10 @@ public class AnimalController {
     private Card kar;
 
 
-    public void setAnimal(Card kartu, Pane pane) throws IOException {
+    public void setAnimal(CardBrain.cardObj iskartu, Pane pane) throws IOException {
         paneAnimal = pane;
+
+        Card kartu = iskartu.getCard();
 
         GameObject gameObject = kartu.convertToGameObject();
         Animal animal = (Animal) gameObject;
@@ -78,6 +80,7 @@ public class AnimalController {
                     car.add(hasilPanenCard);
                     GameController.gameC.isiDeck(car);
                     GameController.mainPane.getChildren().remove(paneAnimal);
+
                 } else {
                     System.out.println("Deck aktif penuh");
                 }

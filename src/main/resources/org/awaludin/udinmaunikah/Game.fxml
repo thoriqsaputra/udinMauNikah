@@ -128,17 +128,17 @@
             </ImageView>
             <Group layoutX="1049.0" layoutY="547.0">
                <children>
-                  <ImageView fx:id="deck" fitHeight="138.0" fitWidth="94.0" layoutX="102.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" rotate="31.3">
+                  <ImageView fx:id="deck" fitHeight="138.0" fitWidth="140.0" layoutX="102.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" rotate="31.3">
                      <image>
                         <Image url="@Image/kard.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="136.0" layoutY="81.0" rotate="31.0" styleClass="outlined" text="/40">
+                  <Label layoutX="146.0" layoutY="90.0" rotate="31.0" styleClass="outlined" text="/40">
                      <font>
                         <Font name="Snap ITC" size="20.0" />
                      </font>
                   </Label>
-                  <Text fx:id="deckCount" fill="WHITE" layoutX="108.0" layoutY="82.0" rotate="31.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="outlined" text="0" textAlignment="CENTER" wrappingWidth="33.4268798828125">
+                  <Text fx:id="deckCount" fill="WHITE" layoutX="97.0" layoutY="85.0" rotate="31.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="outlined" text="0" textAlignment="CENTER" wrappingWidth="67.13766479492188">
                      <font>
                         <Font name="Snap ITC" size="20.0" />
                      </font>

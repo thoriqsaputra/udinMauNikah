@@ -43,8 +43,6 @@ public class ProductController {
 
     private CardBrain.cardObj cardObj;
 
-    private GameController controller;
-
     private Pane paneProduct;
 
     @FXML
@@ -53,17 +51,9 @@ public class ProductController {
     }
 
     @FXML
-    public void setProduct(CardBrain.cardObj kart, Pane paneProduct) throws IOException {
+    public void setProduct(CardBrain.cardObj kart, Pane paneProduc) throws IOException {
 
-        paneProduct = paneProduct;
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Game.fxml"));
-
-        // Load the FXML file to initialize the controller
-        Parent root = fxmlLoader.load();
-
-        // Now get the controller
-        controller = fxmlLoader.getController();
+        paneProduct = paneProduc;
 
         kar = kart.getCard();
         cardObj = kart;
@@ -84,14 +74,14 @@ public class ProductController {
 
     @FXML
     void sell(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
 
         GameManager.sellItems(cardObj.getGameObject());
-
+        GameManager.PlayerInterface.useCardT(cardObj.getCard());
         GameController.mainPane.getChildren().remove(cardObj);
 
-        controller.setPlayer();
+        GameController.gameC.setPlayer();
+
+        GameController.mainPane.getChildren().remove(paneProduct);
 
         botNot("Sold to shop!");
     }

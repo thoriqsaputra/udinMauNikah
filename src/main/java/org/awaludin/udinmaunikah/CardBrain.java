@@ -80,7 +80,7 @@ public class CardBrain {
                     if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())
                             && p.isEnabled() && p.isEmpty()) {
                         // if product is being placed break;
-                        if (go instanceof Product){
+                        if (go instanceof Product || go instanceof Item){
                             break;
                         }
 
@@ -271,9 +271,9 @@ public class CardBrain {
                 if(event.getButton() == MouseButton.SECONDARY){
                     try {
                         if (this.gameObject instanceof Animal){
-                            dlgAnimal(isiKartu);
+                            dlgAnimal(this);
                         } else if (this.gameObject instanceof Plant) {
-                            dlgPlant(isiKartu);
+                            dlgPlant(this);
                         } else if (this.gameObject instanceof Product){
                             dlgProduct(this);
                         } else {
@@ -312,7 +312,7 @@ public class CardBrain {
             return this.previousPetak;
         }
 
-        public void dlgAnimal(Card isiKartu) throws IOException {
+        public void dlgAnimal(CardBrain.cardObj isiKartu) throws IOException {
             try{
                 FXMLLoader dlgLoad = new FXMLLoader(getClass().getResource("Animal.fxml"));
                 Pane root = dlgLoad.load();
@@ -328,7 +328,7 @@ public class CardBrain {
             }
         }
 
-        public void dlgPlant(Card isiKartu) throws IOException {
+        public void dlgPlant(CardBrain.cardObj isiKartu) throws IOException {
             try{
                 FXMLLoader dlgLoad = new FXMLLoader(getClass().getResource("Plant.fxml"));
                 Pane root = dlgLoad.load();

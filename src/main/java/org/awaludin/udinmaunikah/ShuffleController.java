@@ -136,8 +136,6 @@ public class ShuffleController {
 
         GameManager.PlayerInterface.endDraftPick();
 
-
-
         if (GameController.gameC!=null){
             GameController.gameC.removeShufflePane();
             GameController.gameC.isiDeck(c);

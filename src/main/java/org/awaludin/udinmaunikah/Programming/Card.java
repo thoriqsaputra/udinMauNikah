@@ -18,7 +18,6 @@ public class Card {
     //private Image displayImage
     // you could move description here, depends ig
 
-
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Card) {
@@ -26,20 +25,15 @@ public class Card {
                 return true;
             }
         }
-
         return false;
     }
 
     public Card(GameObject thing){
         this.thing = thing;
-
-
     }
 
     public Card(Card copycard){
         this.thing = copycard.thing;
-
-
     }
 
     public GameObject convertToGameObject(){
