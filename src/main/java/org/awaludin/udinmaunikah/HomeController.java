@@ -97,8 +97,14 @@ public class HomeController {
             FXMLLoader startGame = new FXMLLoader(getClass().getResource("Game.fxml"));
             Parent root = startGame.load();
 
-            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            GameController gameController = startGame.getController();
 
+            gameController.initializePlaceHolders();
+
+            gameController.changeDeck();
+            gameController.setPlayer();
+
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

@@ -81,8 +81,14 @@ public class CardBrain {
                     for (Petak p : lp) {
                         Rectangle r = p.getRectangle();
                         if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())) {
-                            if (go instanceof Item) {
-                                Item item = (Item) go;
+                            if (go instanceof Item item) {
+                                Effect effect = item.getEffect();
+                                if (!(effect instanceof Effect.Delay) && !(effect instanceof Effect.Destroy)) {
+                                    CardBrain.botNot("Nuh uh");
+                                    node.setLayoutX(initialPosition[0]);
+                                    node.setLayoutY(initialPosition[1]);
+                                    return;
+                                }
 
                                 if (node.getPreviousPetak() != null) {
                                     Petak petak = node.getPreviousPetak();
@@ -110,6 +116,7 @@ public class CardBrain {
                             && p.isEnabled() && p.isEmpty()) {
                         // if product is being placed break;
                         if (go instanceof Product || go instanceof Item) {
+
                             break;
                         }
                         // place is valid

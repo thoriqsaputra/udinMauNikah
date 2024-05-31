@@ -94,10 +94,23 @@ public class GameController implements Initializable {
         gameC = this;
         enemy = false;
 
-        initializePlaceHolders();
+        List<Rectangle> rectangles = mainPane.getChildren().stream()
+                .filter(node -> node instanceof Rectangle)
+                .map(node -> (Rectangle) node)
+                .collect(Collectors.toList());
 
-        changeDeck();
-        setPlayer();
+        // Sort rectangles by their IDs
+        rectangles.sort(Comparator.comparing(Rectangle::getId, Comparator.nullsLast(Comparator.naturalOrder())));
+
+        int k = 0;
+        for (Rectangle rectangle : rectangles) {
+            if (rectangle.getId() != null) {
+                rec.put(k, rectangle);
+                recReverse.put(rectangle, k);
+                k++;
+            }
+        }
+
     }
 
     public void onBearAttackStart() {
@@ -127,39 +140,8 @@ public class GameController implements Initializable {
     public void onBearAttackUpdate(double timeRemaining) {
         Platform.runLater(() -> bearAttackTimer.setText(String.format("%.1f", timeRemaining)));
     }
-//
-//    private void startBearAttackTimer() {
-//        bearAttackTimeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-//            // Timer logic here if needed
-//        }));
-//        bearAttackTimeline.setCycleCount(Timeline.INDEFINITE);
-//        bearAttackTimeline.play();
-//    }
-//
-//    private void stopBearAttackTimer() {
-//        if (bearAttackTimeline != null) {
-//            bearAttackTimeline.stop();
-//        }
-//    }
 
     public void initializePlaceHolders() {
-        List<Rectangle> rectangles = mainPane.getChildren().stream()
-                .filter(node -> node instanceof Rectangle)
-                .map(node -> (Rectangle) node)
-                .collect(Collectors.toList());
-
-        // Sort rectangles by their IDs
-        rectangles.sort(Comparator.comparing(Rectangle::getId, Comparator.nullsLast(Comparator.naturalOrder())));
-
-        int k = 0;
-        for (Rectangle rectangle : rectangles) {
-            if (rectangle.getId() != null) {
-                rec.put(k, rectangle);
-                recReverse.put(rectangle, k);
-                k++;
-            }
-        }
-
         for (int i = 0; i < 2; i++) {
             Ladang ldp = GameManager.getLadangList().get(i);
             Ladang lda = GameManager.getLadangDeckList().get(i);
