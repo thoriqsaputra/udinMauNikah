@@ -1,11 +1,16 @@
 package org.awaludin.udinmaunikah.Programming;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.nio.file.*;
 import java.util.Map;
+import java.io.FileReader;
 
 public class TXTLoader implements Loader {
     private Field temp;
@@ -37,6 +42,26 @@ public class TXTLoader implements Loader {
         }
         return retval;
     }
+
+    private void fieldSetter(Object master, String fname, Object value){
+        try{
+            boolean reset_on_done = false;
+            Field f = master.getClass().getDeclaredField(fname);
+            if (!f.canAccess(this)){
+                reset_on_done = true;
+                f.setAccessible(true);
+            }
+
+            f.set(master, value);
+
+            if (reset_on_done){
+                f.setAccessible(false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+//    private void fieldSetter(Field[] flist, String field, Object value );
 
     private List<CardDeck> expose_decklist(){
         GameManager gm = new GameManager();
@@ -79,9 +104,92 @@ public class TXTLoader implements Loader {
 
     @Override
     public boolean load(String path) {
+        GameManager gm = new GameManager();
         Path fpath = Paths.get(path);
         if (Files.isDirectory(fpath)) {
+            try {
+                Path gstate = fpath.resolve("gamestate.txt");
+                Path p1 = fpath.resolve("player1.txt");
+                Path p2 = fpath.resolve("player2.txt");
+                Path[] files = {gstate, p1, p2};
+                for (Path p : files){
+                    if (!Files.isRegularFile(p)) {
+                        throw new FileNotFoundException("File not found: " + p.toString());
+                    }
+                }
 
+                //BEGIM
+
+                GameManager.initGameManager();
+                GameObjectFactory.Load();
+
+                String line = null;
+                //gamestate.txt reader
+                BufferedReader gom_state = new BufferedReader(new FileReader(gstate.toString()));
+                line = gom_state.readLine();
+                int turns = Integer.parseInt(line);
+                fieldSetter(gm, "totalTurnCounter", turns);
+                fieldSetter(gm, "turnCounter", turns % 2);
+                int shopItemCount = Integer.parseInt(gom_state.readLine());
+                Toko.createToko();
+                for (int i = 0; i < shopItemCount; i++) {
+                    GameObject item = GameObjectFactory.CreateGameObjectByID(gom_state.readLine());
+                }
+
+                gom_state.close();
+
+                //players
+                Field gold_field = gm.getClass().getDeclaredField("guldenList");
+                Field ladang_field = gm.getClass().getDeclaredField("ladangList");
+                Field deck_field = gm.getClass().getDeclaredField("deckList");
+
+                Field[] tempfields = {gold_field,ladang_field,deck_field};
+                for (Field f : tempfields) {
+                    f.setAccessible(true);
+                }
+
+                List<Integer> gold_list = (ArrayList<Integer>) gold_field.get(gm);
+                List<Ladang> ladang_list = (ArrayList<Ladang>) ladang_field.get(gm);
+                List<CardDeck> deck_list = (ArrayList<CardDeck>) deck_field.get(gm);
+
+                for (int i = 0; i < GameManager.defaultPlayerCount; i++) {
+                    BufferedReader playerstates = new BufferedReader(new FileReader(files[1+i].toString()));
+                    //GULDEN, JMLAH DECK, JMLAH DECK ACTIVE, LIST OF ACTIVE DECK,  JUMLAH KARTU LADANG, LIST OF KARTU LADANG
+                    gold_list.set(i, Integer.parseInt(playerstates.readLine()));
+                    deck_list.get(i).reduceUntil(Integer.parseInt(playerstates.readLine()));
+                    int card_count = Integer.parseInt(playerstates.readLine());
+                    for (int j = 0; j < card_count; j++) {
+                        String[] thing = playerstates.readLine().split(" ");
+                        Card c = new Card(GameObjectFactory.CreateGameObjectByID(thing[1]));
+                        deck_list.get(i).getHand().set(Integer.parseInt(thing[0]),c);
+                        //might cause null/ordering issues
+                    }
+                    int ladang_count = Integer.parseInt(playerstates.readLine());
+//                    for (int j = 0; i < ladang_count; j++){
+//                        String[] thing = playerstates.readLine().split(" ");
+//                        Card c = new Card(GameObjectFactory.CreateGameObjectByID(thing[1]));
+//                        deck_list.get(i).getHand().set(Integer.parseInt(thing[0]),c);
+//                    }
+                    playerstates.close();
+                }
+
+                for (Field f: tempfields){
+                    f.setAccessible(false);
+                }
+
+
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (NumberFormatException e){
+                e.printStackTrace();
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e){
+                e.printStackTrace();
+            }
         }
         return false;
     }

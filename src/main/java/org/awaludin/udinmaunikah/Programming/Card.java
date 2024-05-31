@@ -84,6 +84,17 @@ class CardDeck {
         return deck;
     }
 
+    public void immolate(int burn_ammt){
+        for (int i = 0; i < Math.max(burn_ammt,40); i++) {
+            draw();
+        }
+    }
+
+    public void reduceUntil(int remainder){
+        int burnammt = Math.max(0,getCardCount() - remainder);
+        immolate(burnammt);
+    }
+
     public boolean load_deck(String deck_name){
         String fname = Paths.get(deck_template_location).toAbsolutePath().toString();
         System.out.println(fname);
