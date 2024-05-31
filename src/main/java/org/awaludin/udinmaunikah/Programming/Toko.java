@@ -1,7 +1,6 @@
 package org.awaludin.udinmaunikah.Programming;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Toko {
@@ -47,7 +46,7 @@ public class Toko {
         for (Map.Entry<GameObject, Integer> entry : listItemToko.entrySet()) {
             GameObject item = entry.getKey();
             int quantity = entry.getValue();
-            
+
             if (listItemToko.containsKey(item)) {
                 int currentQuantity = listItemToko.get(item);
                 listItemToko.put(item, currentQuantity + quantity);
@@ -56,8 +55,8 @@ public class Toko {
             }
         }
     }
-    
-    public static List<Item> getListItems() {
+
+    public static Map<GameObject, Integer> getListItems() {
         return listItemToko;
     }
 

@@ -99,7 +99,7 @@ public class TXTLoader implements Loader {
                 content.add(exposeFieldValue(flist, "totalTurnCounter").toString());
 
                 Toko shop = (Toko) exposeFieldValue(flist, "shop");
-                List<Item> shopItems = shop.getListItems();
+                List<Item> shopItems = (List<Item>) shop.getListItems();
                 content.add(String.valueOf(shopItems.size()));
                 for (Item item : shopItems) {
                     content.add(item.getId());
@@ -151,7 +151,9 @@ public class TXTLoader implements Loader {
 
             } catch (Exception e) {
                 e.printStackTrace();
+                return false;
             }
+            return true;
         }
         return false;
     }
