@@ -13,6 +13,8 @@ import org.awaludin.udinmaunikah.Programming.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Formatter;
 import java.util.List;
 
 public class AnimalController {
@@ -41,17 +43,24 @@ public class AnimalController {
 
     private Card kar;
 
+    private CardBrain.cardObj gg;
+
 
     public void setAnimal(CardBrain.cardObj iskartu, Pane pane) throws IOException {
         paneAnimal = pane;
 
+        gg = iskartu;
+
         Card kartu = iskartu.getCard();
         Petak petak = iskartu.getPreviousPetak();
+
 
         GameObject gameObject = kartu.convertToGameObject();
         Animal animal = (Animal) gameObject;
 
-        String weight = String.valueOf(animal.GetWeight());
+        int weightToHarvest = animal.GetWeightToHarvest();
+
+        String weight = String.format("%d (%d)", animal.GetWeight(), weightToHarvest);
         Image image = new Image(String.valueOf(AnimalController.class.getResource(kartu.getImagePath())));
         String name = animal.GetName();
 
@@ -74,13 +83,17 @@ public class AnimalController {
                 Card hasilPanenCard = new Card(hasilPanen);
 
                 if (hasilPanenCard != null && GameManager.PlayerInterface.tryAddToHand(hasilPanenCard)) {
-                    List<Card> car = new ArrayList<>();
-                    car.add(hasilPanenCard);
-                    GameController.gameC.isiDeck(car);
-                    GameController.mainPane.getChildren().remove(paneAnimal);
+                    Petak p = gg.getPreviousPetak();
+                    if (p!=null){
+                        p.setNull();
+                    }
 
+                    GameController.gameC.isiDeck(Collections.singletonList(hasilPanenCard));
+                    GameController.mainPane.getChildren().remove(paneAnimal);
+                    GameController.mainPane.getChildren().remove(gg);
                 } else {
-                    System.out.println("Deck aktif penuh");
+                    GameController.mainPane.getChildren().remove(paneAnimal);
+                    CardBrain.botNot("Hand Full!");
                 }
             } else{
                 GameController.mainPane.getChildren().remove(paneAnimal);

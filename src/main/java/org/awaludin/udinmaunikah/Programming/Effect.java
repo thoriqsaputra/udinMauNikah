@@ -48,15 +48,17 @@ abstract public class Effect {
                 }
             }
 
-            if (subject instanceof IGrowable) {
-                Plant tanaman = (Plant) subject.getGameObject();
+            GameObject go = subject.getGameObject();
+
+            if (go instanceof Plant) {
+                Plant tanaman = (Plant) go;
                 if (tanaman.GetAge() >= 2) {
                     tanaman.Tick(-2);
                 } else {
                     tanaman.Tick(tanaman.GetAge() * -1);
                 }
             } else {
-                Animal hewan = (Animal) subject.getGameObject();
+                Animal hewan = (Animal) go;
                 if (hewan.GetWeight() >= 5) {
                     hewan.Feed(-5);
                 } else {
@@ -108,11 +110,13 @@ abstract public class Effect {
             for (Entry<Item, Integer> item : subject.getItem().entrySet()) {
                 if (item.getKey().getEffect() instanceof Protect) {
                     subject.kurangItems(item.getKey());
+                    CardBrain.botNot("Guarded by almighty");
                     return;
                 }
             }
-
-            subject.setGameObject(null);
+            CardBrain.cardObj tp = subject.getCardObj();
+            GameController.mainPane.getChildren().remove(tp);
+            subject.setNull();
         }
 
         @Override

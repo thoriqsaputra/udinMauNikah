@@ -29,7 +29,7 @@ public class GameManager {
         }
         Toko.createToko();
         turnCounter = 0;
-        totalTurnCounter = 0;
+        totalTurnCounter = 1;
     }
 
     public static List<Ladang> getLadangList(){

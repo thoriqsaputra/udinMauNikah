@@ -1,6 +1,8 @@
 package org.awaludin.udinmaunikah;
+import javafx.animation.Interpolator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.CacheHint;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -12,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.awaludin.udinmaunikah.Programming.*;
 
 import java.io.IOException;
@@ -19,6 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 
 public class ShuffleController {
 
@@ -112,18 +118,31 @@ public class ShuffleController {
 
     void selectCard(Card card, Group group) {
 
-        if(group.getEffect() == null){
+        if (group.getEffect() == null) {
             GameManager.PlayerInterface.takeCard(card);
+
             DropShadow ds = new DropShadow();
             ds.setColor(Color.WHITE);
             ds.setSpread(0.5);
-            ds.setRadius(20);
+            ds.setRadius(0);
+
             group.setEffect(ds);
-        } else{
+            group.setCache(true); // Enable caching
+            group.setCacheHint(CacheHint.SPEED); // Hint for caching usage
+
+            Timeline timeline = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(ds.radiusProperty(), 0, Interpolator.EASE_BOTH)),
+                    new KeyFrame(Duration.seconds(1), new KeyValue(ds.radiusProperty(), 20, Interpolator.EASE_BOTH)),
+                    new KeyFrame(Duration.seconds(2), new KeyValue(ds.radiusProperty(), 0, Interpolator.EASE_BOTH))
+            );
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.setAutoReverse(true);
+            timeline.play();
+        } else {
             GameManager.PlayerInterface.returnCard(card);
             group.setEffect(null);
+            group.setCache(false); // Disable caching when not needed
         }
-
     }
 
     @FXML

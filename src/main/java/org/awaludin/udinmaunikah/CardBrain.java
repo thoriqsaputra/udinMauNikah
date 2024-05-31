@@ -16,6 +16,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -35,7 +36,7 @@ public class CardBrain {
     }
 
     public void makeDraggable(cardObj node){
-        ArrayList<Petak> targets = this.petaks;
+        ArrayList<Petak> targets = new ArrayList<>(this.petaks);
         final boolean[] yesKah = {false};
         double[] initialPosition = new double[2];
 
@@ -67,9 +68,37 @@ public class CardBrain {
         });
 
         node.setOnMouseReleased(mouseEvent -> {
+            node.setCursor(Cursor.DEFAULT);
+            GameObject go = node.getGameObject();
+
             if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-                node.setCursor(Cursor.DEFAULT);
-                GameObject go = node.getGameObject();
+                System.out.println("ENEMY: " + GameController.enemy);
+                if (GameController.enemy) {
+                    int idx = (GameManager.getTurnCounter() == 0) ? 1 : 0;
+                    Ladang l = GameManager.getLadangList().get(idx);
+                    List<Petak> lp = l.getList();
+
+                    for (Petak p : lp) {
+                        Rectangle r = p.getRectangle();
+                        if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())) {
+                            if (go instanceof Item) {
+                                Item item = (Item) go;
+
+                                if (node.getPreviousPetak() != null) {
+                                    Petak petak = node.getPreviousPetak();
+                                    petak.setNull();
+                                    if (petak.getRectangle().getId().startsWith("DA")) {
+                                        GameManager.PlayerInterface.useCardT(node.getCard());
+                                    }
+                                }
+
+                                GameController.mainPane.getChildren().remove(node);
+                                p.setItem(item);
+                            }
+                        }
+                    }
+                }
+
                 // set false first
                 boolean placed = false;
                 // itterate throough all the placeHolders/ladang
@@ -80,10 +109,9 @@ public class CardBrain {
                     if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())
                             && p.isEnabled() && p.isEmpty()) {
                         // if product is being placed break;
-                        if (go instanceof Product || go instanceof Item){
+                        if (go instanceof Product || go instanceof Item) {
                             break;
                         }
-
                         // place is valid
                         placed = true;
 
@@ -102,7 +130,7 @@ public class CardBrain {
                             Petak petak = node.getPreviousPetak();
                             petak.setNull();
                             // Remove card from deck if placing a card to ladang
-                            if(petak.getRectangle().getId().startsWith("DA")){
+                            if (petak.getRectangle().getId().startsWith("DA")) {
                                 GameManager.PlayerInterface.useCardT(node.getCard());
                             }
                         }
@@ -112,58 +140,66 @@ public class CardBrain {
                         break;
                     }
                     // for expanding layout
-//                    if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())
-//                            && !p.isEnabled()){
-//
-//                    }
+                    //                    if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())
+                    //                            && !p.isEnabled()){
+                    //
+                    //                    }
 
                     // for items and product
                     if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())
-                    && !p.isEmpty() && p.isEnabled()
-                    && node.previousPetak != p){
+                            && !p.isEmpty() && p.isEnabled()
+                            && node.previousPetak != p) {
                         // if its a product
-                        if (go instanceof Product){
+                        if (go instanceof Product) {
                             Product pr = (Product) go;
                             GameObject go2 = p.getGameObject();
                             // if its an animal feed it
-                            if (go2 instanceof Animal){
+                            if (go2 instanceof Animal) {
                                 Animal animal = (Animal) go2;
                                 // try to feed if can
-                                if (animal.isEatAble(pr)){
+                                if (animal.isEatAble(pr)) {
                                     animal.Feed(pr.getWeight());
                                     botNot("Success: Weight now " + animal.GetWeight());
                                     placed = true;
-                                }else {
+                                } else {
                                     botNot("Cannot Feed That");
                                 }
-                            } else{
+                            } else {
                                 botNot("Not Animal");
                             }
-                        // if it is an item try applying it
+                            // if it is an item try applying it
                         } else if (go instanceof Item) {
-                            System.out.println("bat");
-                            Item  item = (Item) go;
+                            Item item = (Item) go;
+                            Effect effect = item.getEffect();
+                            if (effect instanceof Effect.Destroy || effect instanceof Effect.Delay) {
+                                if (!GameController.enemy) {
+                                    botNot("WHY?!?!?");
+                                    node.setLayoutX(initialPosition[0]);
+                                    node.setLayoutY(initialPosition[1]);
+                                    return;
+                                }
+                            }
+
                             if (node.getPreviousPetak() != null) {
                                 Petak petak = node.getPreviousPetak();
                                 petak.setNull();
-
-                                if(petak.getRectangle().getId().startsWith("DA")){
+                                if (petak.getRectangle().getId().startsWith("DA")) {
                                     GameManager.PlayerInterface.useCardT(node.getCard());
                                 }
                             }
+
                             GameController.mainPane.getChildren().remove(node);
                             p.setItem(item);
-                            placed = true;
-                        } else{
+                        } else {
                             botNot("Can't do that!");
                         }
 
-                        if (placed){
+                        if (placed) {
                             if (node.getPreviousPetak() != null) {
                                 Petak petak = node.getPreviousPetak();
                                 petak.setNull();
 
-                                if(petak.getRectangle().getId().startsWith("DA")){
+                                if (petak.getRectangle().getId().startsWith("DA")) {
                                     GameManager.PlayerInterface.useCardT(node.getCard());
                                 }
                             }

@@ -32,6 +32,8 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+
+
 public class GameController implements Initializable {
 
     @FXML
@@ -59,7 +61,13 @@ public class GameController implements Initializable {
     private Text zenemy;
 
     @FXML
-    private Label bearAttackTimer;
+    private Text bearAttackTimer;
+
+    @FXML
+    private Label turntext;
+
+    @FXML
+    private Group turnbut;
 
     public static Pane mainPane;
 
@@ -77,8 +85,11 @@ public class GameController implements Initializable {
 
     private Timeline bearAttackTimeline;
 
+    @FXML
+    private Group timer;
+
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources){
         mainPane = paneManeh;
         gameC = this;
         enemy = false;
@@ -87,46 +98,49 @@ public class GameController implements Initializable {
 
         changeDeck();
         setPlayer();
-
-        // Set bear attack listeners
-        for (Ladang ladang : GameManager.getLadangList()) {
-            ladang.setOnBearAttackStart(this::onBearAttackStart);
-            ladang.setOnBearAttackEnd(this::onBearAttackEnd);
-            ladang.setOnBearAttackUpdate(this::onBearAttackUpdate);
-        }
     }
 
-    private void onBearAttackStart() {
+    public void onBearAttackStart() {
         Platform.runLater(() -> {
+            turntext.setText("GOOD LUCK!");
+            turnbut.setMouseTransparent(true);
+            timer.setOpacity(1.0);
             bearAttackTimer.setOpacity(1.0);
-            startBearAttackTimer();
         });
     }
 
-    private void onBearAttackEnd() {
+    public void removeCard(CardBrain.cardObj car){
         Platform.runLater(() -> {
-            bearAttackTimer.setOpacity(0.5);
-            stopBearAttackTimer();
+           mainPane.getChildren().remove(car);
         });
     }
 
-    private void onBearAttackUpdate(double timeRemaining) {
+    public void onBearAttackEnd() {
+        Platform.runLater(() -> {
+            turntext.setText("NEXT TURN");
+            turnbut.setMouseTransparent(false);
+            timer.setOpacity(0.0);
+            bearAttackTimer.setOpacity(0.5);
+        });
+    }
+
+    public void onBearAttackUpdate(double timeRemaining) {
         Platform.runLater(() -> bearAttackTimer.setText(String.format("%.1f", timeRemaining)));
     }
-
-    private void startBearAttackTimer() {
-        bearAttackTimeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-            // Timer logic here if needed
-        }));
-        bearAttackTimeline.setCycleCount(Timeline.INDEFINITE);
-        bearAttackTimeline.play();
-    }
-
-    private void stopBearAttackTimer() {
-        if (bearAttackTimeline != null) {
-            bearAttackTimeline.stop();
-        }
-    }
+//
+//    private void startBearAttackTimer() {
+//        bearAttackTimeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+//            // Timer logic here if needed
+//        }));
+//        bearAttackTimeline.setCycleCount(Timeline.INDEFINITE);
+//        bearAttackTimeline.play();
+//    }
+//
+//    private void stopBearAttackTimer() {
+//        if (bearAttackTimeline != null) {
+//            bearAttackTimeline.stop();
+//        }
+//    }
 
     public void initializePlaceHolders() {
         List<Rectangle> rectangles = mainPane.getChildren().stream()
@@ -193,6 +207,8 @@ public class GameController implements Initializable {
             if (tempC != null) {
                 Card car = tempC.getCard();
                 cardBrain.setGrid(p, car);
+            } else {
+//                System.err.println("tempC is null in Petak 'p'");
             }
         }
 
@@ -200,6 +216,8 @@ public class GameController implements Initializable {
         for (int i = 0; i < deck.size(); i++) {
             if (c.get(i) != null && !deck.isEmpty()) {
                 cardBrain.setGrid(deck.get(i), c.get(i));
+            } else {
+                deck.get(i).setNull();
             }
         }
     }
@@ -208,19 +226,21 @@ public class GameController implements Initializable {
         Ladang deckAktif = GameManager.getLadangDeckList().get(GameManager.getTurnCounter());
         List<Petak> deck = deckAktif.getList();
 
-        if (!cards.isEmpty()) {
-            int j = 0;
-            for (Petak p : deck) {
-                if (j >= cards.size()) {
-                    break;
-                }
-                if (p.isEmpty()) {
-                    cardBrain.setGrid(p, cards.get(j));
-                    System.out.println("CARD NAME: " + cards.get(j).convertToGameObject().GetName());
-                    j++;
+        Platform.runLater(()->{
+            if (!cards.isEmpty()) {
+                int j = 0;
+                for (Petak p : deck) {
+                    if (j >= cards.size()) {
+                        break;
+                    }
+                    if (p.isEmpty()) {
+                        cardBrain.setGrid(p, cards.get(j));
+                        System.out.println("CARD NAME: " + cards.get(j).convertToGameObject().GetName());
+                        j++;
+                    }
                 }
             }
-        }
+        });
     }
 
     public void clearLadang(int index) {
@@ -232,6 +252,7 @@ public class GameController implements Initializable {
                 mainPane.getChildren().remove(tempc);
             }
         }
+
     }
 
     @FXML
@@ -254,6 +275,7 @@ public class GameController implements Initializable {
         }
 
         Ladang ladang = GameManager.getLadangList().get(idx);
+
         List<Petak> lad = ladang.getList();
 
         for (Petak p : lad) {
@@ -261,6 +283,8 @@ public class GameController implements Initializable {
             if (tempC != null) {
                 Card car = tempC.getCard();
                 cardBrain.setGrid(p, car);
+            } else {
+//                System.err.println("tempC is null in Petak 'p'");
             }
         }
     }
@@ -272,14 +296,20 @@ public class GameController implements Initializable {
         cardBrain = new CardBrain(new ArrayList<>(lad));
 
         removePrevCards();
+
         setDeck();
+
         String deck = String.valueOf(GameManager.PlayerInterface.getCardCount());
         deckCount.setText(deck);
 
         shuffleMe();
+
     }
 
-    public void setPlayer() {
+    public void setPlayer(){
+
+
+
         int player = GameManager.getTurnCounter();
         if (player == 0) {
             name.setText("Uchiha Baden");
@@ -318,6 +348,8 @@ public class GameController implements Initializable {
         paneManeh.getChildren().remove(shufflePane);
         String deck = String.valueOf(GameManager.PlayerInterface.getCardCount());
         deckCount.setText(deck);
+        Ladang la = GameManager.getLadangList().get(GameManager.getTurnCounter());
+        la.bearAttack();
     }
 
     public void openShop(MouseEvent mouseEvent) throws IOException {
@@ -334,7 +366,9 @@ public class GameController implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        } catch (Exception e) {
+
+        }
+        catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
@@ -356,6 +390,11 @@ public class GameController implements Initializable {
     public void nextTurn(MouseEvent event) {
         GameManager.nextTurn();
         System.out.println(GameManager.getTurnCounter());
+
+        enemy = false;
+        zenemy.setText("Enemy's Territory");
+        zenemy.setFill(Color.RED);
+
         changeDeck();
         setPlayer();
     }

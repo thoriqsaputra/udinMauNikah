@@ -6,6 +6,16 @@ import java.util.concurrent.Executors;
 import java.util.Map.Entry;
 import java.util.function.Consumer;
 
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.scene.CacheHint;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.paint.Color;
+import javafx.util.Duration;
+import org.awaludin.udinmaunikah.CardBrain;
+import org.awaludin.udinmaunikah.GameController;
 import org.awaludin.udinmaunikah.Programming.Effect.Protect;
 import org.awaludin.udinmaunikah.Programming.Effect.Trap;
 import org.awaludin.udinmaunikah.Programming.GameManager;
@@ -180,25 +190,57 @@ public class Ladang {
         Random random = new Random();
         int attackHappens = random.nextInt(4);
         if (attackHappens != 1) {
+            System.out.println("No beruang for you");
             return; // Tidak ada serangan beruang pada turn ini
         }
-    
-        bearAttackActive = true;
+
         System.out.println("Bear attack initiated");
     
         int duration = 30 + random.nextInt(31); // Durasi serangan 30-60 detik
+
         System.out.println("Bear attack duration: " + duration + " seconds");
     
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
             try {
+                List<Integer> subgridIndices = selectSubgrid();
+                GameController.gameC.onBearAttackStart();
+
+                for (Integer i : subgridIndices) {
+                    Rectangle tempc = grid.get(i).getRectangle();
+
+                    DropShadow ds = new DropShadow();
+                    ds.setColor(Color.RED);
+                    ds.setSpread(0.5);
+                    ds.setRadius(0);
+
+                    tempc.setEffect(ds);
+                    tempc.setCache(true); // Enable caching
+                    tempc.setCacheHint(CacheHint.SPEED); // Hint for caching usage
+
+                    Timeline timeline = new Timeline(
+                            new KeyFrame(Duration.ZERO, new KeyValue(ds.radiusProperty(), 0, Interpolator.EASE_BOTH)),
+                            new KeyFrame(Duration.seconds(1), new KeyValue(ds.radiusProperty(), 20, Interpolator.EASE_BOTH)),
+                            new KeyFrame(Duration.seconds(2), new KeyValue(ds.radiusProperty(), 0, Interpolator.EASE_BOTH))
+                    );
+                    timeline.setCycleCount(Timeline.INDEFINITE);
+                    timeline.setAutoReverse(true);
+                    timeline.play();
+                }
+
                 for (int i = 0; i < duration * 10; i++) {
+                    GameController.gameC.onBearAttackUpdate(duration - (i / 10.0));
                     System.out.println("Time remaining: " + (duration - (i / 10.0)) + " seconds");
                     Thread.sleep(100);
                 }
-    
+                for (Integer i : subgridIndices) {
+                    Rectangle tempc = grid.get(i).getRectangle();
+                    tempc.setEffect(null);
+                    tempc.setCache(false);
+                }
+                GameController.gameC.onBearAttackEnd();
+
                 // Pilih subgrid berukuran 1-6 yang berkesinambungan
-                List<Integer> subgridIndices = selectSubgrid();
                 System.out.println("Bear attack subgrid: " + subgridIndices);
     
                 // Setelah durasi berakhir, hilangkan tumbuhan/hewan yang masih berada dalam subgrid
@@ -217,22 +259,39 @@ public class Ladang {
                 if (trapFound) {
                     System.out.println("Trap found! Bear attack stopped.");
                     // mengubah beruang menjadi kartu Hewan yang bisa ditanam
-                    Card beruang = new Card(new Animal("Beruang", 1, 25, AnimalType.OMNIVORE));
+                    GameObject ber = GameObjectFactory.CreateGameObjectByID("HEWAN_006");
                     // memasukkan beruang ke dalam deck aktif jika masih ada tempat, jika tidak ada, maka tidak perlu melakukan apa apa
-                    GameManager.PlayerInterface.tryAddToHand(beruang);
+                    Card beruang = new Card(ber);
+                    if (GameManager.PlayerInterface.tryAddToHand(beruang)){
+                        GameController.gameC.isiDeck(Collections.singletonList(beruang));
+                    } else {
+                        CardBrain.botNot("Hand Full");
+                    }
                 } else {
                     for (int index : subgridIndices) {
+                        boolean protect = false;
                         for (Entry<Item, Integer> p : this.grid.get(index).getItem().entrySet()) {
                             if (p.getKey().getEffect() instanceof Protect) {
                                 this.grid.get(index).kurangItems(p.getKey());
+                                protect = true;
                                 break;
                             }
                         }
 
                         // kalo gaada protect, petak akan dihancurkan, diganti dengan yang baru
-                        Rectangle temp1 = this.grid.get(index).getRectangle();
-                        Petak temp = new Petak(temp1);
-                        this.grid.set(index, temp);
+//                        Rectangle temp1 = this.grid.get(index).getRectangle();
+//                        Petak temp = new Petak(temp1);
+//                        this.grid.set(index, temp);
+                        if (!protect && !getPetak(index).isEmpty()){
+                            Petak p = this.grid.get(index);
+
+                            CardBrain.cardObj tp = p.getCardObj();
+
+                            System.out.println("Card "+ getPetak(index).getGameObject().GetName());
+
+                            GameController.gameC.removeCard(tp);
+                            p.setNull();
+                        }
                     }
                     System.out.println("Bear attack ended, plants/animals removed from subgrid");
                 }

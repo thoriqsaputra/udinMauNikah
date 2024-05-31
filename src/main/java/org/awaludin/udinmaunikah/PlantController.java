@@ -11,6 +11,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.awaludin.udinmaunikah.Programming.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class PlantController {
 
     @FXML
@@ -29,12 +33,16 @@ public class PlantController {
 
     private Pane plantPane;
 
+    private CardBrain.cardObj go;
+
     @FXML
     void closeWindow(MouseEvent event) {
         GameController.mainPane.getChildren().remove(plantPane);
     }
 
     public void setPlant(CardBrain.cardObj iskartu, Pane pane){
+        go = iskartu;
+
         plantPane = pane;
 
         Card kartu = iskartu.getCard();
@@ -42,8 +50,9 @@ public class PlantController {
 
         GameObject gameObject = kartu.convertToGameObject();
         Plant plant = (Plant) gameObject;
+        int umurToHarvest = plant.GetAgeToHarvest();
 
-        String umur = String.valueOf(plant.GetAge());
+        String umur = String.format("%d (%d)", plant.GetAge(), umurToHarvest);
         Image image = new Image(String.valueOf(AnimalController.class.getResource(kartu.getImagePath())));
         String name = plant.GetName();
 
@@ -57,13 +66,32 @@ public class PlantController {
 
     public void panenBugi(MouseEvent event) {
         if (kar != null) {
+
             Plant plant = (Plant) kar.convertToGameObject();
-            GameObject hasilPanen = plant.Harvest();
-            Card hasilPanenCard = new Card(hasilPanen);
-            if (hasilPanenCard != null && GameManager.PlayerInterface.getHand().size() < 6) {
-                GameManager.PlayerInterface.tryAddToHand(hasilPanenCard);
+
+            if(plant.isReadyToHarvest()){
+                GameObject hasilPanen = plant.Harvest();
+
+                Card hasilPanenCard = new Card(hasilPanen);
+
+                if (hasilPanenCard != null && GameManager.PlayerInterface.tryAddToHand(hasilPanenCard)) {
+                    Petak p = go.getPreviousPetak();
+
+                    if (p != null){
+                        p.setNull();
+                    }
+
+                    GameController.gameC.isiDeck(Collections.singletonList(hasilPanenCard));
+                    GameController.mainPane.getChildren().remove(plantPane);
+                    GameController.mainPane.getChildren().remove(go);
+
+                } else {
+                    GameController.mainPane.getChildren().remove(plantPane);
+                    CardBrain.botNot("Hand Full!");
+                }
             } else {
-                System.out.println("Deck aktif penuh");
+                GameController.mainPane.getChildren().remove(plantPane);
+                CardBrain.botNot("Not Ready!");
             }
         }
     }
