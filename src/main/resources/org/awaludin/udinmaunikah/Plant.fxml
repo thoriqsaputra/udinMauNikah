@@ -31,7 +31,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </ImageView>
-                <ImageView fitHeight="208.0" fitWidth="183.0" layoutX="540.0" layoutY="440.0" onMouseClicked="#panenBugi" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="208.0" fitWidth="183.0" layoutX="540.0" layoutY="460.0" onMouseClicked="#panenBugi" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Image/btnPanen.png" />
                     </image>
@@ -39,7 +39,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </ImageView>
-                <ImageView fx:id="img" fitHeight="117.0" fitWidth="140.0" layoutX="758.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="img" fitHeight="117.0" fitWidth="140.0" layoutX="758.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Image/corn.png" />
                     </image>
@@ -59,7 +59,7 @@
                   <Font name="Snap ITC" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="itemAktif" layoutX="585.0" layoutY="349.0" prefHeight="56.0" prefWidth="177.0" styleClass="outlined">
+            <Label fx:id="itemAktif" layoutX="440.0" layoutY="396.0" prefHeight="56.0" prefWidth="455.0" styleClass="outlined">
                <font>
                   <Font name="Snap ITC" size="20.0" />
                </font>

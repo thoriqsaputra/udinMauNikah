@@ -9,11 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.awaludin.udinmaunikah.Programming.Animal;
-import org.awaludin.udinmaunikah.Programming.Card;
-import org.awaludin.udinmaunikah.Programming.GameObject;
-import org.awaludin.udinmaunikah.Programming.Product;
-import org.awaludin.udinmaunikah.Programming.GameManager;
+import org.awaludin.udinmaunikah.Programming.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,6 +46,7 @@ public class AnimalController {
         paneAnimal = pane;
 
         Card kartu = iskartu.getCard();
+        Petak petak = iskartu.getPreviousPetak();
 
         GameObject gameObject = kartu.convertToGameObject();
         Animal animal = (Animal) gameObject;
@@ -58,6 +55,7 @@ public class AnimalController {
         Image image = new Image(String.valueOf(AnimalController.class.getResource(kartu.getImagePath())));
         String name = animal.GetName();
 
+        this.aktifItems.setText(petak.getItemsToList());
         this.berat.setText(weight);
         this.imag.setImage(image);
         this.name.setText(name);

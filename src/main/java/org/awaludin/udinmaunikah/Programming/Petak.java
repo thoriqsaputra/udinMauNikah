@@ -49,6 +49,7 @@ public class Petak implements IHarvestable{
     public void setNull(){
         this.gameObject = null;
         this.cardObj = null;
+        this.item.clear();
     }
 
     public void setGameObject(GameObject gameObject) {
@@ -57,6 +58,26 @@ public class Petak implements IHarvestable{
 
     public Map<Item, Integer> getItem() {
         return item;
+    }
+
+    public String getItemsToList() {
+        StringBuilder temp = new StringBuilder();
+        for (Map.Entry<Item, Integer> entry : item.entrySet()) {
+            // Append item and its quantity to the string builder
+            temp.append(entry.getKey().GetName())
+                    .append(" (")
+                    .append(entry.getValue())
+                    .append("), ");
+        }
+
+        // Remove the trailing comma and space
+        if (temp.length() > 0) {
+            temp.setLength(temp.length() - 2);
+        }
+
+        System.out.println(temp.toString());
+
+        return temp.toString();
     }
 
     public void setItem(Item item) {

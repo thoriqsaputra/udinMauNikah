@@ -31,6 +31,8 @@ import org.awaludin.udinmaunikah.Programming.*;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+
+
 public class GameController implements Initializable {
 
     @FXML
@@ -54,6 +56,9 @@ public class GameController implements Initializable {
     @FXML
     private Pane paneManeh;
 
+    @FXML
+    private Text zenemy;
+
     public static Pane mainPane;
 
     public static Map<Integer, Rectangle> rec = new HashMap<>();
@@ -66,10 +71,13 @@ public class GameController implements Initializable {
 
     public static GameController gameC;
 
+    public static boolean enemy;
+
     @Override
     public void initialize(URL location, ResourceBundle resources){
         mainPane = paneManeh;
         gameC = this;
+        enemy = false;
 
         initializePlaceHolders();
 
@@ -161,7 +169,7 @@ public class GameController implements Initializable {
 //        }
         List<Card> c = GameManager.PlayerInterface.getHand();
         for (int i =0; i < deck.size(); i++){
-            if (c.get(i)!=null){
+            if (c.get(i)!=null && !deck.isEmpty()){
                 cardBrain.setGrid(deck.get(i), c.get(i));
             }
         }
@@ -183,6 +191,57 @@ public class GameController implements Initializable {
                     System.out.println("CARD NAME: "+ cards.get(j).convertToGameObject().GetName());
                     j++;
                 }
+            }
+        }
+    }
+
+    public void clearLadang(int index){
+        Ladang ladang = GameManager.getLadangList().get(index);
+        List<Petak> lad = ladang.getList();
+        for (Petak p : lad){
+            CardBrain.cardObj tempc = p.getCardObj();
+            if (tempc != null){
+                mainPane.getChildren().remove(tempc);
+            }
+        }
+
+    }
+
+
+    @FXML
+    void seeEnemy(MouseEvent event) {
+
+        int idx = 0;
+
+        if (!enemy){
+            clearLadang(GameManager.getTurnCounter());
+            idx = (GameManager.getTurnCounter() == 0) ? 1 : 0;
+            enemy = true;
+            zenemy.setText("My Territory");
+            zenemy.setFill(Color.GREEN);
+        } else {
+
+            int who = (GameManager.getTurnCounter() == 0) ? 1 : 0;
+
+            clearLadang(who);
+
+            idx = GameManager.getTurnCounter();
+            enemy = false;
+            zenemy.setText("Enemy's Territory");
+            zenemy.setFill(Color.RED);
+        }
+
+        Ladang ladang = GameManager.getLadangList().get(idx);
+
+        List<Petak> lad = ladang.getList();
+
+        for (Petak p : lad) {
+            CardBrain.cardObj tempC = p.getCardObj();
+            if (tempC != null) {
+                Card car = tempC.getCard();
+                cardBrain.setGrid(p, car);
+            } else {
+//                System.err.println("tempC is null in Petak 'p'");
             }
         }
     }

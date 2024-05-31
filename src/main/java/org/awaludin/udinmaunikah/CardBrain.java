@@ -111,7 +111,13 @@ public class CardBrain {
 
                         break;
                     }
+                    // for expanding layout
+//                    if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())
+//                            && !p.isEnabled()){
+//
+//                    }
 
+                    // for items and product
                     if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())
                     && !p.isEmpty() && p.isEnabled()
                     && node.previousPetak != p){
@@ -146,7 +152,7 @@ public class CardBrain {
                                 }
                             }
                             GameController.mainPane.getChildren().remove(node);
-                            item.applyEffect(p);
+                            p.setItem(item);
                             placed = true;
                         } else{
                             botNot("Can't do that!");

@@ -1,8 +1,13 @@
 package org.awaludin.udinmaunikah;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,9 +15,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import org.awaludin.udinmaunikah.Programming.GameObject;
 import org.awaludin.udinmaunikah.Programming.Toko;
 
@@ -24,6 +31,11 @@ public class ShopController {
 
     @FXML
     private GridPane productGrid;
+
+    @FXML
+    private Pane shopMain;
+
+    private Pane poine;
 
     public void setProductGrid() {
 
@@ -51,20 +63,17 @@ public class ShopController {
                         FXMLLoader fxmlLoader2 = new FXMLLoader();
                         fxmlLoader2.setLocation(getClass().getResource("ShopDlg.fxml"));
 
-                        Parent parent = fxmlLoader2.load();
+                        Pane parent = fxmlLoader2.load();
 
                         ShopDlgController controller = fxmlLoader2.getController();
 
-                        controller.setDlgBuy(item);
+                        poine = parent;
+
+                        controller.setDlgBuy(item, parent);
                         controller.setShpcontroller(this);
 
-                        Scene scene = new Scene(parent);
-                        scene.setFill(Color.TRANSPARENT);
-                        Stage stage = new Stage();
-                        stage.setScene(scene);
-                        stage.initModality(Modality.APPLICATION_MODAL);
-                        stage.initStyle(StageStyle.TRANSPARENT);
-                        stage.show();
+                        shopMain.getChildren().add(parent);
+
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -88,10 +97,44 @@ public class ShopController {
         }
     }
 
+    public void closeShop(){
+        shopMain.getChildren().remove(poine);
+    }
+
+    public void botNot(String message){
+        Group myGroup = (Group) shopMain.lookup("#boardError");
+        Text text = (Text) myGroup.lookup("#error");
+
+        text.setText(message);
+        if (myGroup != null) {
+            // Change opacity to 1
+            Timeline fadeIn = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(myGroup.opacityProperty(), 0)),
+                    new KeyFrame(Duration.seconds(1), new KeyValue(myGroup.opacityProperty(), 1))
+            );
+
+            // Wait for 3 seconds
+            PauseTransition wait = new PauseTransition(Duration.seconds(2));
+
+            // Change opacity back to 0
+            Timeline fadeOut = new Timeline(
+                    new KeyFrame(Duration.ZERO, new KeyValue(myGroup.opacityProperty(), 1)),
+                    new KeyFrame(Duration.seconds(1), new KeyValue(myGroup.opacityProperty(), 0))
+            );
+
+            // Sequentially play the animations
+            fadeIn.setOnFinished(event -> wait.play());
+            wait.setOnFinished(event -> fadeOut.play());
+
+            fadeIn.play();
+        } else {
+            System.out.println("Group with fx:id 'myGroup' not found.");
+        }
+    }
+
     public void goBack(MouseEvent mouseEvent) {
 
         System.out.println("WOO");
-
         try {
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
@@ -101,6 +144,8 @@ public class ShopController {
                 stage.setScene(previousScene);
                 stage.show();
             }
+
+            GameController.gameC.setPlayer();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

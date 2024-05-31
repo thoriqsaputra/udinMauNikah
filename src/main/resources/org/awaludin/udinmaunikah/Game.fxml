@@ -24,12 +24,24 @@
                     </image>
                 </ImageView>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e5c24e" height="136.0" layoutX="419.0" layoutY="584.0" stroke="#b44040" strokeType="INSIDE" width="570.0" />
-                <ImageView fitHeight="78.0" fitWidth="389.0" layoutX="531.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@Image/enemys-territories.png" />
-                    </image>
-                </ImageView>
-            <ImageView fitHeight="709.0" fitWidth="285.0" layoutX="-26.0" layoutY="-141.0" pickOnBounds="true" preserveRatio="true">
+            <Group layoutX="531.0" layoutY="-10.0" onMouseClicked="#seeEnemy">
+               <children>
+                      <ImageView fitHeight="78.0" fitWidth="389.0" onMouseClicked="#seeEnemy" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@Image/buttonSee.png" />
+                          </image>
+                      </ImageView>
+                  <Text fx:id="zenemy" fill="RED" layoutX="5.0" layoutY="39.91200065612793" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemy's Territory" textAlignment="CENTER" wrappingWidth="377.1428833007812">
+                     <font>
+                        <Font name="Elephant" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Group>
+            <ImageView fitHeight="709.0" fitWidth="285.0" layoutX="-26.0" layoutY="-141.0" onMouseClicked="#seeEnemy" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Image/banner.png" />
                </image>

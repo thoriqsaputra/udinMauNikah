@@ -9,10 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.awaludin.udinmaunikah.Programming.Card;
-import org.awaludin.udinmaunikah.Programming.GameManager;
-import org.awaludin.udinmaunikah.Programming.GameObject;
-import org.awaludin.udinmaunikah.Programming.Plant;
+import org.awaludin.udinmaunikah.Programming.*;
 
 public class PlantController {
 
@@ -41,6 +38,7 @@ public class PlantController {
         plantPane = pane;
 
         Card kartu = iskartu.getCard();
+        Petak petak = iskartu.getPreviousPetak();
 
         GameObject gameObject = kartu.convertToGameObject();
         Plant plant = (Plant) gameObject;
@@ -49,6 +47,7 @@ public class PlantController {
         Image image = new Image(String.valueOf(AnimalController.class.getResource(kartu.getImagePath())));
         String name = plant.GetName();
 
+        this.itemAktif.setText(petak.getItemsToList());
         this.umur.setText(umur);
         this.img.setImage(image);
         this.name.setText(name);

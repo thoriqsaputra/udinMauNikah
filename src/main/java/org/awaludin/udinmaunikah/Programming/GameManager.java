@@ -76,6 +76,14 @@ public class GameManager {
         guldenList.set(getTurnCounter(), guldenNow);
     }
 
+    public static void buyItems(GameObject product){
+        Toko.removeItems(product);
+        Product pr = (Product) product;
+
+        int guldenNow = getGulden(getTurnCounter()) - pr.getPrice();
+        guldenList.set(getTurnCounter(), guldenNow);
+    }
+
     public static int getTurnCounter() {
         return turnCounter;
     }
