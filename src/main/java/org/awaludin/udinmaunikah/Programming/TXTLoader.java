@@ -135,7 +135,8 @@ public class TXTLoader implements Loader {
                         Card c = cdlist.get(i).getHand().get(j);
                         if (c != null) {
                             handcount++;
-                            temp_idholder.add(c.convertToGameObject().getId());
+                            temp_idholder.add(String.format("%d %s", j, c.convertToGameObject().getId()));
+
                         }
                     }
                     content.add(String.valueOf(handcount));
@@ -145,8 +146,29 @@ public class TXTLoader implements Loader {
                     Ladang ld = ldlist.get(i);
                     Map<Integer, GameObject> ld_info = ld.getIngfo();
                     content.add(String.valueOf(ld_info.size()));
-                    for (GameObject go : ld_info.values()) {
-                        content.add(go.getId());
+                    for (int j = 0; j < 30; j++) {
+                        if (ld.getGrid().get(j).getGameObject() != null) {
+                            Petak temp = ld.getGrid().get(j);
+                            StringBuilder sb = new StringBuilder();
+                            sb.append(String.format("%d ", j));
+                            sb.append(String.format("%s ", temp.getGameObject().getId()));
+                            if(temp.getGameObject().getClass().equals(Plant.class)){
+                                Plant plant = (Plant) temp.getGameObject();
+                                sb.append(String.format("%d ", plant.GetAge()));
+                            }else if(temp.getGameObject().getClass().equals(Animal.class)){
+                                Animal animal = (Animal) temp.getGameObject();
+                                sb.append(String.format("%d ", animal.GetWeight()));
+                            }
+                            sb.append(String.format("%d ", temp.getCount()));
+
+                            for(var x : temp.getItem().entrySet()){
+                                for(int k=0; k<x.getValue(); k++){
+                                    sb.append(String.format("%s ", x.getKey().getId()));
+                                }
+                            }
+
+                            content.add(sb.toString());
+                        }
                     }
 
                     Files.write(Path.of(path + "\\" + filename), content, StandardCharsets.UTF_8);

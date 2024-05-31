@@ -10,18 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9872f381-9741-4559-8d7c-5e5cfc072acd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/AnimalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/AnimalController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/CardBrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/CardBrain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/PlantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/PlantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Ladang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Ladang.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/ShuffleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/ShuffleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/Game.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/deck_template.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/deck_template.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Petak.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/Petak.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/TXTLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/awaludin/udinmaunikah/Programming/TXTLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/gamestate.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/gamestate.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/player1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/player1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/player2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/awaludin/udinmaunikah/player2.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,10 +136,5 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <pin-to-top-manager>
-      <pinned-members>
-        <PinnedItemInfo parentTag="org.awaludin.udinmaunikah.Programming.Product" memberName="price" />
-      </pinned-members>
-    </pin-to-top-manager>
   </component>
 </project>

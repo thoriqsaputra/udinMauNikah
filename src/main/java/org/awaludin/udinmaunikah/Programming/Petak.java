@@ -146,4 +146,13 @@ public class Petak implements IHarvestable{
         this.rectangle.setOpacity(1.0);
         this.rectangle.setMouseTransparent(false);
     }
+
+    public int getCount(){
+        int count=0;
+        for(var x : item.entrySet()){
+            count += x.getValue();
+        }
+        return count;
+    }
+
 }
