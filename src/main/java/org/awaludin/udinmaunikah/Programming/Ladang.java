@@ -1,13 +1,11 @@
 package org.awaludin.udinmaunikah.Programming;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.Map;
 
+import org.awaludin.udinmaunikah.CardBrain;
+import org.awaludin.udinmaunikah.GameController;
 import org.awaludin.udinmaunikah.Programming.Effect.Layout;
 import org.awaludin.udinmaunikah.Programming.Effect.Protect;
 import org.awaludin.udinmaunikah.Programming.Effect.Trap;
@@ -292,14 +290,21 @@ abstract class Effect {
         @Override
         public void applyEffect(Petak subject) {
             // Melakukan harvest secara langsung untuk kartu tanaman/hewan yang dipilih.
+            Product pr;
             if (subject.getGameObject() instanceof Plant) {
                 Plant tanaman = (Plant) subject.getGameObject();
-                tanaman.Harvest();
+                pr = (Product) tanaman.Harvest();
             } else {
                 Animal hewan = (Animal) subject.getGameObject();
-                hewan.Harvest();
+                pr = (Product) hewan.Harvest();
             }
-        }
+            Card prd = new Card(pr);
+            List<Card> k = new ArrayList<>();
+            k.add(prd);
+            GameController.gameC.isiDeck(k);
+            CardBrain.cardObj tempc = subject.getCardObj();
+            GameController.mainPane.getChildren().remove(tempc);
+;        }
 
         @Override
         public void applyEffectBonus(boolean attacking, Ladang ladang) {}

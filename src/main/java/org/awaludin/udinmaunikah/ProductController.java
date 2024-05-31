@@ -91,7 +91,7 @@ public class ProductController {
 
         GameController.mainPane.getChildren().remove(cardObj);
 
-        controller.setPlayer(false);
+        controller.setPlayer();
 
         botNot("Sold to shop!");
     }

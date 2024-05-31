@@ -45,11 +45,8 @@ public class AnimalController {
 
     private Card kar;
 
-    private GameController gameController;
 
-    public void setAnimal(Card kartu, Pane pane, GameController gameController) throws IOException {
-
-        gameController = gameController;
+    public void setAnimal(Card kartu, Pane pane) throws IOException {
         paneAnimal = pane;
 
         GameObject gameObject = kartu.convertToGameObject();
@@ -76,11 +73,10 @@ public class AnimalController {
 
                 Card hasilPanenCard = new Card(hasilPanen);
 
-                if (hasilPanenCard != null && GameManager.PlayerInterface.getHand().size() < 6) {
-                    GameManager.PlayerInterface.tryAddToHand(hasilPanenCard);
+                if (hasilPanenCard != null && GameManager.PlayerInterface.tryAddToHand(hasilPanenCard)) {
                     List<Card> car = new ArrayList<>();
                     car.add(hasilPanenCard);
-                    gameController.isiDeck(car);
+                    GameController.gameC.isiDeck(car);
                     GameController.mainPane.getChildren().remove(paneAnimal);
                 } else {
                     System.out.println("Deck aktif penuh");

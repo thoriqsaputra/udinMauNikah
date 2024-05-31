@@ -5,11 +5,11 @@ import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -20,22 +20,18 @@ import java.util.ArrayList;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+
 import javafx.util.Duration;
 import org.awaludin.udinmaunikah.Programming.*;
 
 public class CardBrain {
 
     private ArrayList<Petak> petaks;
-    private static GameController gameController;
     private double mouseAnchorX;
     private double mouseAnchorY;
 
-    public CardBrain(ArrayList<Petak> petaks, GameController gameController) {
+    public CardBrain(ArrayList<Petak> petaks) {
         this.petaks = petaks;
-        gameController = gameController;
     }
 
     public void makeDraggable(cardObj node){
@@ -73,6 +69,7 @@ public class CardBrain {
         node.setOnMouseReleased(mouseEvent -> {
             if (mouseEvent.getButton() == MouseButton.PRIMARY) {
                 node.setCursor(Cursor.DEFAULT);
+                GameObject go = node.getGameObject();
                 // set false first
                 boolean placed = false;
                 // itterate throough all the placeHolders/ladang
@@ -82,6 +79,11 @@ public class CardBrain {
                     // if the mouse is over the rectangle, is enabled (for bonus purposes), and not have card in it
                     if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())
                             && p.isEnabled() && p.isEmpty()) {
+                        // if product is being placed break;
+                        if (go instanceof Product){
+                            break;
+                        }
+
                         // place is valid
                         placed = true;
 
@@ -95,15 +97,16 @@ public class CardBrain {
                         // set card on petak
                         p.setCardObj(node);
 
+                        // if previous petak is not null set it to null
                         if (node.getPreviousPetak() != null) {
                             Petak petak = node.getPreviousPetak();
                             petak.setNull();
-
+                            // Remove card from deck if placing a card to ladang
                             if(petak.getRectangle().getId().startsWith("DA")){
                                 GameManager.PlayerInterface.useCardT(node.getCard());
                             }
                         }
-
+                        // set the previous petak with the placed petak
                         node.setPreviousPetak(p);
 
                         break;
@@ -112,35 +115,53 @@ public class CardBrain {
                     if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())
                     && !p.isEmpty() && p.isEnabled()
                     && node.previousPetak != p){
-
-                        System.out.println("masuk");
-                        GameObject go = node.getGameObject();
-
+                        // if its a product
                         if (go instanceof Product){
                             Product pr = (Product) go;
                             GameObject go2 = p.getGameObject();
-
+                            // if its an animal feed it
                             if (go2 instanceof Animal){
                                 Animal animal = (Animal) go2;
-
+                                // try to feed if can
                                 if (animal.isEatAble(pr)){
                                     animal.Feed(pr.getWeight());
                                     botNot("Success: Weight now " + animal.GetWeight());
-                                    if (node.getPreviousPetak() != null) {
-                                        Petak petak = node.getPreviousPetak();
-                                        petak.setNull();
-                                    }
-                                    GameController.mainPane.getChildren().remove(node);
+                                    placed = true;
                                 }else {
                                     botNot("Cannot Feed That");
                                 }
-
                             } else{
                                 botNot("Not Animal");
                             }
-
+                        // if it is an item try applying it
                         } else if (go instanceof Item) {
                             System.out.println("bat");
+                            Item  item = (Item) go;
+                            if (node.getPreviousPetak() != null) {
+                                Petak petak = node.getPreviousPetak();
+                                petak.setNull();
+
+                                if(petak.getRectangle().getId().startsWith("DA")){
+                                    GameManager.PlayerInterface.useCardT(node.getCard());
+                                }
+                            }
+                            GameController.mainPane.getChildren().remove(node);
+                            item.applyEffect(p);
+                            placed = true;
+                        } else{
+                            botNot("Can't do that!");
+                        }
+
+                        if (placed){
+                            if (node.getPreviousPetak() != null) {
+                                Petak petak = node.getPreviousPetak();
+                                petak.setNull();
+
+                                if(petak.getRectangle().getId().startsWith("DA")){
+                                    GameManager.PlayerInterface.useCardT(node.getCard());
+                                }
+                            }
+                            GameController.mainPane.getChildren().remove(node);
                         }
 
                     }
@@ -298,7 +319,7 @@ public class CardBrain {
 
                 AnimalController animalController = dlgLoad.getController();
 
-                animalController.setAnimal(isiKartu, root, CardBrain.gameController);
+                animalController.setAnimal(isiKartu, root);
 
                 GameController.mainPane.getChildren().add(root);
 

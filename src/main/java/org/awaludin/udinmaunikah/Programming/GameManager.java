@@ -95,6 +95,7 @@ public class GameManager {
 
         public static void reroll(){
             deckList.get(turnCounter).return_draft_pick(draftList);
+            deckList.get(turnCounter).return_draft_pick(pickList);
             beginDraftPick();
         }
 

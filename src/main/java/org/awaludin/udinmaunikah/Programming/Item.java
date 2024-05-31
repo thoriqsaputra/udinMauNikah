@@ -10,6 +10,9 @@ public class Item extends GameObject {
         this.effect = effect;
     }
 
+    public void applyEffect(Petak petak) {
+        this.effect.applyEffect(petak);
+    }
 
     public int getPrice() {
         return price;

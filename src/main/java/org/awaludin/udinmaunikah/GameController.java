@@ -54,24 +54,27 @@ public class GameController implements Initializable {
     @FXML
     private Pane paneManeh;
 
-    private List<Card> cartu = new ArrayList<>();
-
     public static Pane mainPane;
 
     public static Map<Integer, Rectangle> rec = new HashMap<>();
+    public static Map<Rectangle, Integer> recReverse = new HashMap<>();
 
     private Pane shufflePane;
     private Pane settingsPane;
 
     private CardBrain cardBrain;
 
+    public static GameController gameC;
+
     @Override
     public void initialize(URL location, ResourceBundle resources){
         mainPane = paneManeh;
+        gameC = this;
 
         initializePlaceHolders();
 
-        setPlayer(true);
+        changeDeck();
+        setPlayer();
     }
 
     public void initializePlaceHolders(){
@@ -88,6 +91,7 @@ public class GameController implements Initializable {
         for (Rectangle rectangle : rectangles) {
             if (rectangle.getId() != null){
                 rec.put(k, rectangle);
+                recReverse.put(rectangle, k);
                 k++;
             }
         }
@@ -178,33 +182,20 @@ public class GameController implements Initializable {
         }
     }
 
-    //        if (!cartu.isEmpty()) {
-//            int j = 0;
-//            for (Petak p : deck) {
-//                if (j >= cartu.size()) {
-//                    break;
-//                }
-//                if (p.isEmpty()) {
-//                    CardBrain.cardObj cor = new CardBrain.cardObj(cartu.get(j), p);
-//                    p.setCardObj(cor);
-//                    j++;
-//                }
-//            }
-//        }
-//        System.out.println("size cartu baru: "+ cards.size());
-
-    public void setPlayer(boolean shuffle){
+    public void changeDeck(){
         Ladang la = GameManager.getLadangList().get(GameManager.getTurnCounter());
         List<Petak> lad = la.getList();
 
-        cardBrain = new CardBrain(new ArrayList<Petak>(lad), this);
+        cardBrain = new CardBrain(new ArrayList<Petak>(lad));
 
         removePrevCards();
 
         setDeck();
 
         shuffleMe();
+    }
 
+    public void setPlayer(){
 
         int player = GameManager.getTurnCounter();
         if ( player == 0){
@@ -235,7 +226,7 @@ public class GameController implements Initializable {
             shufflePane = shuffle.load();
 
             ShuffleController shuffleController = shuffle.getController();
-            shuffleController.setGameController(this);
+
             shuffleController.setShuffleCards(cards);
 
             shufflePane.toFront();
@@ -293,6 +284,7 @@ public class GameController implements Initializable {
 
         System.out.println(GameManager.getTurnCounter());
 
-        setPlayer(true);
+        changeDeck();
+        setPlayer();
     }
 }

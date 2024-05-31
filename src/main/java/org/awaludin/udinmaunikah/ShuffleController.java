@@ -63,12 +63,6 @@ public class ShuffleController {
 
     private List<Card> cars;
 
-    private GameController gameController;
-
-    public void setGameController(GameController gameController) {
-        this.gameController = gameController;
-    }
-
     public boolean setShuffleCards(List<Card> cards) throws IOException {
         cars = new ArrayList<Card>(cards);
 
@@ -144,9 +138,9 @@ public class ShuffleController {
 
 
 
-        if (gameController!=null){
-            gameController.removeShufflePane();
-            gameController.isiDeck(c);
+        if (GameController.gameC!=null){
+            GameController.gameC.removeShufflePane();
+            GameController.gameC.isiDeck(c);
         }
     }
 
