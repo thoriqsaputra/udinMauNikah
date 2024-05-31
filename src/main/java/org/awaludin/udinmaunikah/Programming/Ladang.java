@@ -209,15 +209,13 @@ public class Ladang {
                     Card beruang = new Card(new Animal("Beruang", 1, 25, AnimalType.OMNIVORE));
                     // memasukkan beruang ke dalam deck aktif jika masih ada tempat, jika tidak ada, maka tidak perlu melakukan apa apa
                     
-                } else if (protectFound) {
-                    System.out.println("Protect found! Bear attack stopped.");
                 } else {
-                    for (int index : subgridIndices) {
-                        if (index < grid.size()) {
-                            grid.set(index, new Petak(new Rectangle(), false)); // Hapus objek
-                        }
-                    }
-                    System.out.println("Bear attack ended, plants/animals removed from subgrid");
+//                    for (int index : subgridIndices) {
+//                        if (index < grid.size() && grid.get(index).getItem().containsKey()) {
+//                            grid.set(index, new Petak(new Rectangle(), false)); // Hapus objek
+//                        }
+//                    }
+//                    System.out.println("Bear attack ended, plants/animals removed from subgrid");
                 }
     
                 bearAttackActive = false;
