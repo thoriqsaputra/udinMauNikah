@@ -198,6 +198,10 @@ public class GameManager {
             }
             return false;
         }
+
+        public static int getCardCount(){
+            return deckList.get(turnCounter).getHandSize();
+        }
     }
 
     public static class EventManager{
