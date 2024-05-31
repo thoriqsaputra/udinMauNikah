@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 import org.awaludin.udinmaunikah.Programming.Effect.Protect;
 import org.awaludin.udinmaunikah.Programming.Effect.Trap;
+import org.awaludin.udinmaunikah.Programming.GameManager;
 
 import javafx.scene.shape.Rectangle;
 
@@ -202,7 +203,7 @@ public class Ladang {
                     // mengubah beruang menjadi kartu Hewan yang bisa ditanam
                     Card beruang = new Card(new Animal("Beruang", 1, 25, AnimalType.OMNIVORE));
                     // memasukkan beruang ke dalam deck aktif jika masih ada tempat, jika tidak ada, maka tidak perlu melakukan apa apa
-                    
+                    GameManager.PlayerInterface.tryAddToHand(beruang);
                 } else {
                     for (int index : subgridIndices) {
                         for (Entry<Item, Integer> p : this.grid.get(index).getItem().entrySet()) {
