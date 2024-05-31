@@ -3,6 +3,7 @@ package org.awaludin.udinmaunikah.Programming;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.Map.Entry;
 
 import org.awaludin.udinmaunikah.CardBrain;
 import org.awaludin.udinmaunikah.GameController;
@@ -85,13 +86,8 @@ public class Ladang {
     public boolean tryToUseItem(GameObject go, int x, boolean attacking) {
         if (go instanceof Item) {
             Item item = (Item) go;
-            if (item.getEffect() instanceof Layout) {
-                grid.get(x).setItemBonus(item, this, attacking);
-                return true;
-            } else {
-                grid.get(x).setItem(item);
-                return true;
-            }
+            grid.get(x).setItem(item);
+            return true;
         } else if (go instanceof Product) {
             Product product = (Product) go;
             if (grid.get(x).getGameObject() instanceof Animal) {
@@ -166,20 +162,19 @@ public class Ladang {
         if (bearAttackActive) {
             return; // Serangan beruang sedang aktif, tidak melakukan serangan baru
         }
-
+    
         Random random = new Random();
         boolean attackHappens = random.nextBoolean();
         if (!attackHappens) {
             return; // Tidak ada serangan beruang pada turn ini
         }
-
+    
         bearAttackActive = true;
-        int subgridStartIndex = random.nextInt(25); // Pilih indeks awal subgrid (0-24)
-        System.out.println("Bear attack starts at index " + subgridStartIndex);
-
+        System.out.println("Bear attack initiated");
+    
         int duration = 30 + random.nextInt(31); // Durasi serangan 30-60 detik
         System.out.println("Bear attack duration: " + duration + " seconds");
-
+    
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
             try {
@@ -187,23 +182,27 @@ public class Ladang {
                     System.out.println("Time remaining: " + (duration - (i / 10.0)) + " seconds");
                     Thread.sleep(100);
                 }
-
+    
+                // Pilih subgrid berukuran 1-6 yang berkesinambungan
+                List<Integer> subgridIndices = selectSubgrid();
+                System.out.println("Bear attack subgrid: " + subgridIndices);
+    
                 // Setelah durasi berakhir, hilangkan tumbuhan/hewan yang masih berada dalam subgrid
                 boolean trapFound = false;
                 boolean protectFound = false;
-                for (int i = subgridStartIndex; i < subgridStartIndex + 6; i++) {
-                    if (i < grid.size()) {
-                        Petak petak = grid.get(i);
-                        for (Item item : petak.getItem()) {
-                            if (item.getEffect() instanceof Protect) {
+                for (int index : subgridIndices) {
+                    if (index < grid.size()) {
+                        Petak petak = grid.get(index);
+                        for (Entry<Item, Integer> item : petak.getItem().entrySet()) {
+                            if (item.getKey().getEffect() instanceof Protect) {
                                 protectFound = true;
-                            } else if (item.getEffect() instanceof Trap) {
+                            } else if (item.getKey().getEffect() instanceof Trap) {
                                 trapFound = true;
                             }
                         }
                     }
                 }
-
+    
                 if (trapFound) {
                     System.out.println("Trap found! Bear attack stopped.");
                     // mengubah beruang menjadi kartu Hewan yang bisa ditanam
@@ -213,22 +212,58 @@ public class Ladang {
                 } else if (protectFound) {
                     System.out.println("Protect found! Bear attack stopped.");
                 } else {
-                    for (int i = subgridStartIndex; i < subgridStartIndex + 6; i++) {
-                        if (i < grid.size()) {
-                            grid.set(i, new Petak(new Rectangle(), false)); // Hapus objek
+                    for (int index : subgridIndices) {
+                        if (index < grid.size()) {
+                            grid.set(index, new Petak(new Rectangle(), false)); // Hapus objek
                         }
                     }
                     System.out.println("Bear attack ended, plants/animals removed from subgrid");
                 }
-
+    
                 bearAttackActive = false;
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
         });
-
+    
         executor.shutdown();
     }
+    
+    private List<Integer> selectSubgrid() {
+        Random random = new Random();
+        int gridRows = 4; // Jumlah baris dalam grid
+        int gridCols = 5; // Jumlah kolom dalam grid
+        List<Integer> subgrid = new ArrayList<>();
+    
+        int startRow = random.nextInt(gridRows);
+        int startCol = random.nextInt(gridCols);
+        int subGridMax = random.nextInt(6);
+    
+        // Mulai dari titik acak dan tambahkan tetangga yang berdekatan sampai subgrid memiliki ukuran 1-6
+        subgrid.add(startRow * gridCols + startCol);
+        while (subgrid.size() < subGridMax) {
+            int index = subgrid.get(random.nextInt(subgrid.size()));
+            int row = index / gridCols;
+            int col = index % gridCols;
+    
+            // Tambahkan tetangga yang valid
+            addIfValid(subgrid, row - 1, col, gridRows, gridCols); // atas
+            addIfValid(subgrid, row + 1, col, gridRows, gridCols); // bawah
+            addIfValid(subgrid, row, col - 1, gridRows, gridCols); // kiri
+            addIfValid(subgrid, row, col + 1, gridRows, gridCols); // kanan
+        }
+    
+        return subgrid;
+    }
+    
+    private void addIfValid(List<Integer> subgrid, int row, int col, int gridRows, int gridCols) {
+        if (row >= 0 && row < gridRows && col >= 0 && col < gridCols) {
+            int index = row * gridCols + col;
+            if (!subgrid.contains(index)) {
+                subgrid.add(index);
+            }
+        }
+    }    
 }
 
 abstract class Effect {
@@ -314,9 +349,9 @@ abstract class Effect {
         @Override
         public void applyEffect(Petak subject) {
             // jika subject mempunyai item protect, maka subject tidak akan dihancurkan
-            for (Item item : subject.getItem()) {
-                if (item.getEffect() instanceof Protect) {
-                    subject.getItem().remove(item);
+            for (Entry<Item, Integer> item : subject.getItem().entrySet()) {
+                if (item.getKey().getEffect() instanceof Protect) {
+                    subject.getItem().remove(item.getKey(), item.getValue());
                     return;
                 }
             }
