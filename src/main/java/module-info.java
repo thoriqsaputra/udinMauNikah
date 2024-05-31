@@ -10,4 +10,6 @@ module org.awaludin.udinmaunikah {
 
     opens org.awaludin.udinmaunikah to javafx.fxml;
     exports org.awaludin.udinmaunikah;
+    exports org.awaludin.udinmaunikah.Programming;
+    opens org.awaludin.udinmaunikah.Programming to javafx.fxml;
 }

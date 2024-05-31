@@ -1,6 +1,7 @@
 package org.awaludin.udinmaunikah.Programming;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Toko {
@@ -56,7 +57,7 @@ public class Toko {
         }
     }
     
-    public static Map<GameObject, Integer> getListItems() {
+    public static List<Item> getListItems() {
         return listItemToko;
     }
 

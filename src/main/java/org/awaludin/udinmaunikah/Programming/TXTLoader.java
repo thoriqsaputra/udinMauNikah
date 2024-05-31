@@ -92,58 +92,66 @@ public class TXTLoader implements Loader {
         Path fpath = Paths.get(path);
         Field[] flist = gm.getClass().getDeclaredFields();
         if (Files.isDirectory(fpath)) {
-            try{
-                List<String> content = new ArrayList<String>();
-                //gamestate.txt
+            try {
+                List<String> content = new ArrayList<>();
+
+                // Save game state to gamestate.txt
                 content.add(exposeFieldValue(flist, "totalTurnCounter").toString());
-                //toko items
+
                 Toko shop = (Toko) exposeFieldValue(flist, "shop");
-                content.add("SHOP ITEM AMMOUNT");
+                List<Item> shopItems = shop.getListItems();
+                content.add(String.valueOf(shopItems.size()));
+                for (Item item : shopItems) {
+                    content.add(item.getId());
+                }
 
+                Files.write(Path.of(path + "\\gamestate.txt"), content, StandardCharsets.UTF_8);
 
-                Files.write(Path.of(path + "\\gamestate.txt"),content, StandardCharsets.UTF_8);
-
-            //player.txt
-                List<CardDeck> cdlist = expose_decklist();//(List<CardDeck>) exposeFieldValue(flist,"deckList");
+                // Save player data
+                List<CardDeck> cdlist = expose_decklist();
                 List<Ladang> ldlist = expose_ladanglist();
-                for (int i = 0; i < GameManager.defaultPlayerCount; i++){
+                for (int i = 0; i < GameManager.defaultPlayerCount; i++) {
                     content.clear();
-                    String filename = String.format("player%d.txt",i+1);
-                    content.add((((List<Integer>)exposeFieldValue(flist,"guldenList")).get(i)).toString());
-                    //player deck
-                    CardDeck cd = cdlist.get(i);
-                    content.add(String.valueOf(cd.getCardCount()));
-                    for (CardSlot cs : cd.getDeck()){
-                        for (int j = 0; j < cs.count(); j++){
-                            content.add(cs.GetCardThing().convertToGameObject().getId());
-                        }
-                    }
-                    //deck active
+                    String filename = String.format("player%d.txt", i + 1);
+
+                    content.add((((List<Integer>) exposeFieldValue(flist, "guldenList")).get(i)).toString());
+
+                    // Player deck
+//                    CardDeck cd = cdlist.get(i);
+//                    content.add(String.valueOf(cd.getCardCount()));
+//                    for (CardSlot cs : cd.getDeck()) {
+//                        for (int j = 0; j < cs.count(); j++) {
+//                            content.add(cs.GetCardThing().convertToGameObject().getId());
+//                        }
+//                    }
+
+                    // Deck active
                     int handcount = 0;
                     List<String> temp_idholder = new ArrayList<>();
-                    for (int j = 0; j < GameManager.maxHandCount; j++){
-                        Card c = cd.getHand().get(j);
-                        if (c != null){
+                    for (int j = 0; j < GameManager.maxHandCount; j++) {
+                        Card c = cdlist.get(i).getHand().get(j);
+                        if (c != null) {
                             handcount++;
                             temp_idholder.add(c.convertToGameObject().getId());
                         }
-                    };
+                    }
                     content.add(String.valueOf(handcount));
                     content.addAll(temp_idholder);
 
-                    //ladang
+                    // Ladang
                     Ladang ld = ldlist.get(i);
                     Map<Integer, GameObject> ld_info = ld.getIngfo();
-                    //total
                     content.add(String.valueOf(ld_info.size()));
+                    for (GameObject go : ld_info.values()) {
+                        content.add(go.getId());
+                    }
 
-                    Files.write(Path.of(path + "\\" + filename),content, StandardCharsets.UTF_8);
-
+                    Files.write(Path.of(path + "\\" + filename), content, StandardCharsets.UTF_8);
                 }
 
-            } catch (Exception e){
-                    e.printStackTrace();
-                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
