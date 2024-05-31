@@ -62,6 +62,9 @@ public class GameManager {
                 }
             }
         };
+
+        System.out.println(PlayerInterface.getCardCount());
+
     }
 
     public static void sellItems(GameObject product){
@@ -102,7 +105,7 @@ public class GameManager {
 
         //Use to get the usual 4 cards, DONT FORGET TO RETURN CARDS
         public static void beginDraftPick(){
-            draftList = deckList.get(turnCounter).draft_pick(4);
+            draftList = deckList.get(turnCounter).draft_pick(Math.min(4,maxHandCount-deckList.get(turnCounter).getHandSize()));
             pickList = new ArrayList<>();
         }
 
@@ -213,7 +216,7 @@ public class GameManager {
         }
 
         public static int getCardCount(){
-            return deckList.get(turnCounter).getHandSize();
+            return deckList.get(turnCounter).getCardCount();
         }
     }
 
