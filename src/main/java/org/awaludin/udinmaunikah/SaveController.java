@@ -17,7 +17,7 @@ public class SaveController {
     }
 
     public void saveState(MouseEvent event) {
-        String path = "your/save/directory"; // replace with actual path or get from a TextField
+        String path = "src\\main\\resources\\org\\awaludin\\udinmaunikah"; // replace with actual path or get from a TextField
         boolean result = txtLoader.save(path);
         if (result) {
             System.out.println("State saved successfully!");

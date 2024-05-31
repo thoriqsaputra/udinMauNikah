@@ -99,10 +99,13 @@ public class TXTLoader implements Loader {
                 content.add(exposeFieldValue(flist, "totalTurnCounter").toString());
 
                 Toko shop = (Toko) exposeFieldValue(flist, "shop");
-                List<Item> shopItems = (List<Item>) shop.getListItems();
+                Map<GameObject, Integer> shopItems =  shop.getListItems();
                 content.add(String.valueOf(shopItems.size()));
-                for (Item item : shopItems) {
-                    content.add(item.getId());
+                for (Map.Entry<GameObject, Integer> listThing : shopItems.entrySet()) {
+                    int amount = listThing.getValue();
+                    for (int k=0; k<amount; k++) {
+                        content.add(listThing.getKey().getId());
+                    }
                 }
 
                 Files.write(Path.of(path + "\\gamestate.txt"), content, StandardCharsets.UTF_8);
