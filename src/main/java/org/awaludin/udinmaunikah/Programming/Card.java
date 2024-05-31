@@ -212,11 +212,10 @@ class CardDeck {
     }
 
     public void return_draft_pick(List<Card> remainingCards){
-        for (int i = 0; i < remainingCards.size(); i++){
-            this.add(remainingCards.get(0));
-            remainingCards.remove(0);
+        for (Card c : remainingCards){
+            this.add(c);
         }
-
+        remainingCards.clear();
         assert remainingCards.isEmpty();
     }
 
