@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 import org.awaludin.udinmaunikah.CardBrain;
 import org.awaludin.udinmaunikah.Programming.Effect.Layout;
+import org.awaludin.udinmaunikah.Programming.Item;
 
 public class Petak implements IHarvestable{
     private GameObject gameObject;
@@ -90,6 +91,25 @@ public class Petak implements IHarvestable{
         }
         this.item.put(item, 1);
         item.getEffect().applyEffect(this);
+    }
+
+    public void kurangItems(GameObject item) {
+        if (item instanceof Item) {
+            int quantity = 0;
+            Item baru = (Item) item;
+            for (Entry<Item, Integer> x : this.item.entrySet()) {
+                if (x.getKey().equals(baru)) {
+                    quantity = x.getValue();
+                }
+            }
+            if (quantity > 1) {
+                this.item.replace(baru, quantity - 1);
+            } else if (quantity == 1){
+                this.item.remove(baru);
+            } else {
+                return;
+            }
+        }
     }
 
     // public void setItemBonus(Item item, Ladang ladang, boolean attacking) {

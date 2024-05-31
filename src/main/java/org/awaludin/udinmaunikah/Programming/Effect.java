@@ -41,6 +41,13 @@ abstract public class Effect {
         @Override
         public void applyEffect(Petak subject) {
             // Mengurangi umur tanaman sebanyak 2 turn (umur tanaman minimal bernilai 0) atau mengurangi berat kartu hewan sebesar 5 (berat hewan minimal bernilai 0).
+            for (Entry<Item, Integer> item : subject.getItem().entrySet()) {
+                if (item.getKey().getEffect() instanceof Protect) {
+                    subject.kurangItems(item.getKey());
+                    return;
+                }
+            }
+
             if (subject instanceof IGrowable) {
                 Plant tanaman = (Plant) subject.getGameObject();
                 if (tanaman.GetAge() >= 2) {
@@ -100,7 +107,7 @@ abstract public class Effect {
             // jika subject mempunyai item protect, maka subject tidak akan dihancurkan
             for (Entry<Item, Integer> item : subject.getItem().entrySet()) {
                 if (item.getKey().getEffect() instanceof Protect) {
-                    subject.getItem().remove(item.getKey(), item.getValue());
+                    subject.kurangItems(item.getKey());
                     return;
                 }
             }

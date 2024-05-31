@@ -207,7 +207,7 @@ public class Ladang {
                     for (int index : subgridIndices) {
                         for (Entry<Item, Integer> p : this.grid.get(index).getItem().entrySet()) {
                             if (p.getKey().getEffect() instanceof Protect) {
-                                this.grid.get(index).getItem().replace(p.getKey(), p.getValue()-1);
+                                this.grid.get(index).kurangItems(p.getKey());
                                 break;
                             }
                         }
