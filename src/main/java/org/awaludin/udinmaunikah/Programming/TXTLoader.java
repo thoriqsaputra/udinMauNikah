@@ -13,7 +13,6 @@ import java.util.Map;
 import java.io.FileReader;
 
 public class TXTLoader implements Loader {
-    private Field temp;
 
     private Object exposeFieldValue(Field[] flist, String field){
         Object retval = null;
@@ -47,7 +46,10 @@ public class TXTLoader implements Loader {
         try{
             boolean reset_on_done = false;
             Field f = master.getClass().getDeclaredField(fname);
-            if (!f.canAccess(this)){
+            try{
+                f.canAccess(this);
+            }
+            catch (IllegalArgumentException e){
                 reset_on_done = true;
                 f.setAccessible(true);
             }
@@ -70,7 +72,6 @@ public class TXTLoader implements Loader {
             try {
                 if (f.getName().equals("deckList")) {
                     f.setAccessible(true);
-                    temp = f;
                     return (List<CardDeck>) f.get(this);
                 }
             } catch (IllegalAccessException e) {
@@ -89,7 +90,6 @@ public class TXTLoader implements Loader {
             try {
                 if (f.getName().equals("ladangList") ) {
                     f.setAccessible(true);
-                    temp = f;
                     return (List<Ladang>) f.get(this);
                 }
             } catch (IllegalAccessException e) {
@@ -171,7 +171,7 @@ public class TXTLoader implements Loader {
                     for (int j = 0; j < card_count; j++) {
                         String local_line = playerstates.readLine();
                         String[] thing = local_line.split(" ");
-                        if (thing.length != 3){
+                        if (thing.length != 2){
                             throw new IllegalArgumentException(String.format("Incorrect format for handcard state! (%s)",local_line));
                         }
                         Card c = new Card(GameObjectFactory.CreateGameObjectByID(thing[1]));
@@ -185,6 +185,9 @@ public class TXTLoader implements Loader {
                     for (int j = 0; i < ladang_count; j++){
                         String temp_line = playerstates.readLine();
                         String[] thing = temp_line.split(" ");
+                        if (thing.length < 4){
+                            throw new IllegalArgumentException(String.format("Incorrect format for petak state! (%s)",temp_line));
+                        }
                         Petak temp_petak = new Petak(null);
                         //LOKASI //KARTU //ANGKA_SIGNIFIKAN //JUMLAH ITEM AKTIF //ITEMS
                         int location = Integer.parseInt(thing[0]);
@@ -305,6 +308,7 @@ public class TXTLoader implements Loader {
 //                            content.add(cs.GetCardThing().convertToGameObject().getId());
 //                        }
 //                    }
+                    content.add(String.format("%d",cdlist.get(i).getCardCount()));
 
                     // Deck active
                     int handcount = 0;
