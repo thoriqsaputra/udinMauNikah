@@ -88,6 +88,11 @@ public class GameController implements Initializable {
     @FXML
     private Group timer;
 
+    @FXML
+    private Group shopbut;
+
+    @FXML
+    private ImageView settingBut;
 
     @FXML
     private Group enemybut;
@@ -122,6 +127,8 @@ public class GameController implements Initializable {
             turntext.setText("GOOD LUCK!");
             turnbut.setMouseTransparent(true);
             enemybut.setMouseTransparent(true);
+            settingBut.setMouseTransparent(true);
+            shopbut.setMouseTransparent(true);
             timer.setOpacity(1.0);
             bearAttackTimer.setOpacity(1.0);
         });
@@ -138,6 +145,8 @@ public class GameController implements Initializable {
             turntext.setText("NEXT TURN");
             turnbut.setMouseTransparent(false);
             enemybut.setMouseTransparent(false);
+            settingBut.setMouseTransparent(false);
+            shopbut.setMouseTransparent(false);
             timer.setOpacity(0.0);
             bearAttackTimer.setOpacity(0.5);
         });
@@ -261,6 +270,19 @@ public class GameController implements Initializable {
             zenemy.setText("Enemy's Territory");
             zenemy.setFill(Color.RED);
         }
+
+        if (idx == 0) {
+            name.setText("Uchiha Baden");
+            Image img = new Image(getClass().getResourceAsStream("Image/jin.png"));
+            prof.setImage(img);
+        } else {
+            name.setText("Peter Panik");
+            Image img = new Image(getClass().getResourceAsStream("Image/bondowoso.png"));
+            prof.setImage(img);
+        }
+
+        String gulde = String.valueOf(GameManager.getGulden(idx));
+        gulden.setText(gulde);
 
         Ladang ladang = GameManager.getLadangList().get(idx);
 
