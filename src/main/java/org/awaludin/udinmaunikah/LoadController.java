@@ -16,6 +16,7 @@ import org.awaludin.udinmaunikah.Programming.GameObjectFactory;
 import org.awaludin.udinmaunikah.Programming.TXTLoader;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -55,6 +56,15 @@ public class LoadController {
             return;
         }
 
+        String basePath = "src\\main\\resources\\org\\awaludin\\udinmaunikah";
+        Path dirPath = Paths.get(basePath, folde);
+
+        if (!Files.exists(dirPath)) {
+            botNot.setText("Folder not found. Please check the folder name and try again.");
+            botNot.setOpacity(1.0);
+            return;
+        }
+
         FXMLLoader startGame = new FXMLLoader(getClass().getResource("Game.fxml"));
         Parent root = startGame.load();
         // Initialize Game
@@ -68,8 +78,6 @@ public class LoadController {
 
         // gameController.changeDeck();
 
-        String basePath = "src\\main\\resources\\org\\awaludin\\udinmaunikah";
-        Path dirPath = Paths.get(basePath, folde);
         txtLoader.load(dirPath.toAbsolutePath().toString());
 
         gameController.refresh();
