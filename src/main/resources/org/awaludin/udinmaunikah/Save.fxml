@@ -65,7 +65,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </ImageView>
-                <Label layoutX="553.0" layoutY="481.0" styleClass="outlined" text="State saved successfully!" textFill="#70db31">
+                <Label fx:id="statusLabel" layoutX="553.0" layoutY="481.0" styleClass="outlined" textFill="#70db31">
                     <font>
                         <Font name="Arial Black" size="12.0" />
                     </font>

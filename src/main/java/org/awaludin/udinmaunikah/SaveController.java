@@ -2,11 +2,13 @@ package org.awaludin.udinmaunikah;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.awaludin.udinmaunikah.Programming.TXTLoader;
 import org.awaludin.udinmaunikah.Programming.JSONLoader;
+import org.awaludin.udinmaunikah.Programming.YAMLLoader;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,8 +23,12 @@ public class SaveController {
     @FXML
     private TextField folderField;
 
+    @FXML
+    private Label statusLabel; // Add this
+
     private TXTLoader txtLoader = new TXTLoader();
     private JSONLoader jsonLoader = new JSONLoader();
+    private YAMLLoader yamlLoader = new YAMLLoader();
 
     public void closeWindow(MouseEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -34,8 +40,8 @@ public class SaveController {
         String format = formatField.getText().trim().toLowerCase();
         String folder = folderField.getText().trim();
 
-        if (!format.equals("txt") && !format.equals("json")) {
-            System.out.println("Invalid format. Please use 'txt' or 'json'.");
+        if (!format.equals("txt") && !format.equals("json") && !format.equals("yaml")) {
+            statusLabel.setText("Invalid format. Please use 'txt', 'json', or 'yaml'.");
             return;
         }
 
@@ -52,15 +58,18 @@ public class SaveController {
                 result = txtLoader.save(path);
             } else if (format.equals("json")) {
                 result = jsonLoader.save(path);
+            } else if (format.equals("yaml")) {
+                result = yamlLoader.save(path);
             }
 
             if (result) {
-                System.out.println("State saved successfully!");
+                statusLabel.setText("State saved successfully!");
             } else {
-                System.out.println("Failed to save state.");
+                statusLabel.setText("Failed to save state.");
             }
         } catch (IOException e) {
             e.printStackTrace();
+            statusLabel.setText("Failed to save state due to an exception.");
         }
     }
 }
