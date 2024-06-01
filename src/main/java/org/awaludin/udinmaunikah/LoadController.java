@@ -6,8 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.awaludin.udinmaunikah.Programming.GameManager;
 import org.awaludin.udinmaunikah.Programming.GameObjectFactory;
@@ -18,6 +20,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class LoadController {
+
+    @FXML
+    private Text botNot;
+
+    @FXML
+    private TextField folder;
+
+    @FXML
+    private TextField format;
 
     private TXTLoader txtLoader = new TXTLoader();
 
@@ -35,6 +46,15 @@ public class LoadController {
 
     @FXML
     void loadGame(MouseEvent event) throws IOException {
+        String forma = format.getText().trim().toLowerCase();
+        String folde = folder.getText().trim();
+
+        if (!forma.equals("txt") && !forma.equals("json") && !forma.equals("yaml")) {
+            botNot.setText("Invalid format. Please use 'txt', 'json', or 'yaml'.");
+            botNot.setOpacity(1.0);
+            return;
+        }
+
         FXMLLoader startGame = new FXMLLoader(getClass().getResource("Game.fxml"));
         Parent root = startGame.load();
         //Initialize Game
