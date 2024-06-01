@@ -6,8 +6,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.awaludin.udinmaunikah.CardBrain;
-import org.awaludin.udinmaunikah.Programming.Effect.Layout;
-import org.awaludin.udinmaunikah.Programming.Item;
 
 public class Petak implements IHarvestable{
     private GameObject gameObject;
@@ -41,6 +39,9 @@ public class Petak implements IHarvestable{
     public void setCardObj(CardBrain.cardObj cardObj) {
         this.cardObj = cardObj;
         this.gameObject = cardObj.getGameObject();
+    }
+    public void addItem(Item item) {
+        this.item.put(item, this.item.getOrDefault(item, 0) + 1);
     }
 
     public CardBrain.cardObj getCardObj() {
