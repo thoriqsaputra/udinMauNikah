@@ -72,6 +72,8 @@ public class LoadController {
         Path dirPath = Paths.get(path);
         txtLoader.load(dirPath.toAbsolutePath().toString());
 
+        gameController.refresh();
+
         gameController.setPlayer();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
