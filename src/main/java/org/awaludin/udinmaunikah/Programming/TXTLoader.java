@@ -1,5 +1,7 @@
 package org.awaludin.udinmaunikah.Programming;
 
+import org.awaludin.udinmaunikah.CardBrain;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -129,8 +131,6 @@ public class TXTLoader implements Loader {
                 BufferedReader gom_state = new BufferedReader(new FileReader(gstate.toString()));
                 line = gom_state.readLine();
                 int turns = Integer.parseInt(line);
-                fieldSetter(gm, "totalTurnCounter", turns);
-                fieldSetter(gm, "turnCounter", turns % 2);
                 int shopItemCount = Integer.parseInt(gom_state.readLine());
                 List<GameObject> go = new ArrayList<>();
                 for (int i = 0; i < shopItemCount; i++) {
@@ -161,7 +161,7 @@ public class TXTLoader implements Loader {
                     BufferedReader playerstates = new BufferedReader(new FileReader(files[1+i].toString()));
                     //GULDEN, JMLAH DECK, JMLAH DECK ACTIVE, LIST OF ACTIVE DECK,  JUMLAH KARTU LADANG, LIST OF KARTU LADANG
                     temp_gold_list.add(Integer.parseInt(playerstates.readLine()));
-                    CardDeck tempCardDeck = new CardDeck();
+                    CardDeck tempCardDeck = new CardDeck(6);
                     tempCardDeck.load_deck("default");
                     tempCardDeck.reduceUntil(Integer.parseInt(playerstates.readLine()));
                     temp_deck_list.add(tempCardDeck);
@@ -182,7 +182,7 @@ public class TXTLoader implements Loader {
                     //ladang
                     temp_ladang_list.add(new HashMap<>());
                     int ladang_count = Integer.parseInt(playerstates.readLine());
-                    for (int j = 0; i < ladang_count; j++){
+                    for (int j = 0; j < ladang_count; j++){
                         String temp_line = playerstates.readLine();
                         String[] thing = temp_line.split(" ");
                         if (thing.length < 4){
@@ -213,6 +213,7 @@ public class TXTLoader implements Loader {
                                 }
                             }
                             fieldSetter(temp_petak,"item",item_list);
+                            temp_ladang_list.get(i).put(location,temp_petak);
                         }
                         else{
                             throw new IllegalArgumentException(String.format("Incorrect format for petak (\"%s\")",temp_line));
@@ -222,6 +223,9 @@ public class TXTLoader implements Loader {
                 }
 
                 //ini adder, bisa diseret kebawah
+                fieldSetter(gm, "totalTurnCounter", turns);
+                fieldSetter(gm, "turnCounter", (turns-1) % 2);
+
                 Toko.createToko();
                 for (GameObject item : go){
                     Toko.addItem(item);
@@ -240,16 +244,25 @@ public class TXTLoader implements Loader {
                     petakField.setAccessible(true);
                     List<Petak> tempPetakList = (List<Petak>) petakField.get(masterLadang);
                     for (Map.Entry<Integer,Petak> tempLadangEntry : temp_ladang_list.get(i).entrySet()){
-                        tempPetakList.set(tempLadangEntry.getKey(),tempLadangEntry.getValue());
+                        //tempPetakList.set(tempLadangEntry.getKey(),tempLadangEntry.getValue());
+                        Petak temp = tempLadangEntry.getValue();
+                        Petak target = tempPetakList.get(tempLadangEntry.getKey());
+                        Card thisCardThing = new Card(temp.getGameObject());
+                        CardBrain.cardObj thiscardobj = new CardBrain.cardObj(thisCardThing,target);
+                        fieldSetter(target,"gameObject",temp.getGameObject());
+                        fieldSetter(target,"item",temp.getItem());
+                        fieldSetter(target,"cardObj",thiscardobj);
                     }
                     petakField.setAccessible(false);
                 }
-
 
                 for (Field f: tempfields){
                     f.setAccessible(false);
                 }
 
+                fieldSetter(gm,"guldenList",gold_list);
+                fieldSetter(gm,"deckList",deck_list);
+                fieldSetter(gm,"ladangList",ladang_list);
 
 
             } catch (FileNotFoundException e) {

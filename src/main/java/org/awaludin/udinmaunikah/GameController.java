@@ -317,6 +317,20 @@ public class GameController implements Initializable {
         shuffleMe();
     }
 
+    public void refresh() {
+        Ladang la = GameManager.getLadangList().get(GameManager.getTurnCounter());
+        List<Petak> lad = la.getList();
+
+        cardBrain = new CardBrain(new ArrayList<>(lad));
+
+        removePrevCards();
+
+        setDeck();
+
+        String deck = String.valueOf(GameManager.PlayerInterface.getCardCount());
+        deckCount.setText(deck);
+    }
+
     public void setPlayer(){
         int player = GameManager.getTurnCounter();
         if (player == 0) {
