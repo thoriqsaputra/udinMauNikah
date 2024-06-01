@@ -1,11 +1,11 @@
 package org.awaludin.udinmaunikah;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -29,7 +29,7 @@ public class LoadController {
     private TextField folder;
 
     @FXML
-    private TextField format;
+    private ComboBox<String> formatComboBox;
 
     private TXTLoader txtLoader = new TXTLoader();
 
@@ -47,10 +47,10 @@ public class LoadController {
 
     @FXML
     void loadGame(MouseEvent event) throws IOException {
-        String forma = format.getText().trim().toLowerCase();
+        String forma = formatComboBox.getValue();
         String folde = folder.getText().trim();
 
-        if (!forma.equals("txt") && !forma.equals("json") && !forma.equals("yaml")) {
+        if (forma == null || (!forma.equals("txt") && !forma.equals("json") && !forma.equals("yaml"))) {
             botNot.setText("Invalid format. Please use 'txt', 'json', or 'yaml'.");
             botNot.setOpacity(1.0);
             return;

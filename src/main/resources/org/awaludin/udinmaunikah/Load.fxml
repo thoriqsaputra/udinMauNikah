@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
@@ -11,6 +12,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <AnchorPane prefHeight="720.0" prefWidth="0.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.awaludin.udinmaunikah.LoadController">
     <children>
         <Pane layoutX="-8.0" prefHeight="720.0" prefWidth="1280.0">
@@ -25,60 +28,68 @@
                         <Image url="@Image/loadTitle.png" />
                     </image>
                 </ImageView>
-            <Pane layoutX="337.0" layoutY="250.0">
-               <children>
-                      <ImageView fitHeight="177.0" fitWidth="495.0" layoutX="170.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
-                          <image>
-                              <Image url="@Image/textContainer.png" />
-                          </image>
-                      </ImageView>
-                      <ImageView fitHeight="152.0" fitWidth="578.0" layoutX="171.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
-                          <image>
-                              <Image url="@Image/textContainer.png" />
-                          </image>
-                      </ImageView>
-                      <Label layoutX="2.0" layoutY="53.0" styleClass="outlined" text=" FORMAT  :" textFill="WHITE">
-                          <font>
-                              <Font name="Snap ITC" size="27.0" />
-                          </font>
-                      </Label>
-                      <Label layoutX="36.0" layoutY="104.0" prefHeight="33.0" prefWidth="156.0" styleClass="outlined" text="FOLDER  :" textAlignment="CENTER" textFill="WHITE">
-                          <font>
-                              <Font name="Snap ITC" size="25.0" />
-                          </font>
-                      </Label>
-                  <TextField fx:id="format" layoutX="223.0" layoutY="57.0" prefHeight="27.0" prefWidth="395.0" />
-                  <TextField fx:id="folder" layoutX="223.0" layoutY="110.0" prefHeight="27.0" prefWidth="395.0">
-                     <effect>
-                        <Blend mode="COLOR_DODGE" />
-                     </effect>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </TextField>
-               </children>
-            </Pane>
+                <Pane layoutX="337.0" layoutY="250.0">
+                    <children>
+                        <ImageView fitHeight="177.0" fitWidth="495.0" layoutX="170.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Image/textContainer.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="152.0" fitWidth="578.0" layoutX="171.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Image/textContainer.png" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="2.0" layoutY="53.0" styleClass="outlined" text=" FORMAT  :" textFill="WHITE">
+                            <font>
+                                <Font name="Snap ITC" size="27.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="104.0" prefHeight="33.0" prefWidth="156.0" styleClass="outlined" text="FOLDER  :" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font name="Snap ITC" size="25.0" />
+                            </font>
+                        </Label>
+                        <ComboBox fx:id="formatComboBox" layoutX="223.0" layoutY="57.0" prefHeight="27.0" prefWidth="395.0">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="txt" />
+                                    <String fx:value="json" />
+                                    <String fx:value="yaml" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                        <TextField fx:id="folder" layoutX="223.0" layoutY="110.0" prefHeight="27.0" prefWidth="395.0">
+                            <effect>
+                                <Blend mode="COLOR_DODGE" />
+                            </effect>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </TextField>
+                    </children>
+                </Pane>
                 <ImageView fitHeight="44.0" fitWidth="40.0" layoutX="1002.0" layoutY="177.0" onMouseClicked="#closeWindow" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Image/btnX.png" />
                     </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
                 </ImageView>
                 <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="548.0" layoutY="417.0" onMouseClicked="#loadGame" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Image/btnLoad.png" />
                     </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
                 </ImageView>
-            <Text fx:id="botNot" fill="WHITE" layoutX="436.0" layoutY="513.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="outlined" text="State loaded successfully!" textAlignment="CENTER" wrappingWidth="454.17356300354004">
-               <font>
-                  <Font name="Snap ITC" size="12.0" />
-               </font>
-            </Text>
+                <Text fx:id="botNot" fill="WHITE" layoutX="436.0" layoutY="513.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="outlined" text="State loaded successfully!" textAlignment="CENTER" wrappingWidth="454.17356300354004">
+                    <font>
+                        <Font name="Snap ITC" size="12.0" />
+                    </font>
+                </Text>
             </children>
         </Pane>
     </children>

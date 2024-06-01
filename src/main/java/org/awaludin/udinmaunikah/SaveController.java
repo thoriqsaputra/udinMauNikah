@@ -1,12 +1,11 @@
 package org.awaludin.udinmaunikah;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import org.awaludin.udinmaunikah.Programming.TXTLoader;
 import org.awaludin.udinmaunikah.Programming.JSONLoader;
 import org.awaludin.udinmaunikah.Programming.YAMLLoader;
@@ -19,7 +18,7 @@ import java.nio.file.Paths;
 public class SaveController {
 
     @FXML
-    private TextField formatField;
+    private ComboBox<String> formatComboBox;
 
     @FXML
     private TextField folderField;
@@ -45,10 +44,10 @@ public class SaveController {
 
     @FXML
     public void saveState(MouseEvent event) {
-        String format = formatField.getText().trim().toLowerCase();
+        String format = formatComboBox.getValue();
         String folder = folderField.getText().trim();
 
-        if (!format.equals("txt") && !format.equals("json") && !format.equals("yaml")) {
+        if (format == null || (!format.equals("txt") && !format.equals("json") && !format.equals("yaml"))) {
             statusLabel.setText("Invalid format. Please use 'txt', 'json', or 'yaml'.");
             return;
         }
