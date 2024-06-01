@@ -4,11 +4,18 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class LoadController {
+
+    private HomeController hc;
+
     public void closeWindow(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+        hc.closeL();
+    }
+
+    public void setHom(HomeController hsc){
+        hc = hsc;
     }
 }

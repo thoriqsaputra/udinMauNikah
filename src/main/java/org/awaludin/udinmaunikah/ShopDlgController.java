@@ -57,8 +57,6 @@ public class ShopDlgController {
                 return;
             }
 
-            Toko.removeItems(product);
-
             GameController.gameC.isiDeck(Collections.singletonList(ko));
 
             shpcontroller.setProductGrid();

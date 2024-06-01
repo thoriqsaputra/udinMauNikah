@@ -5,8 +5,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class PluginController {
+
+    private HomeController hc;
+
     public void closeWindow(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+        hc.closeP();
+    }
+
+    public void setHc(HomeController hc) {
+        this.hc = hc;
     }
 }

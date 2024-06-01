@@ -24,7 +24,7 @@
                     </image>
                 </ImageView>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e5c24e" height="136.0" layoutX="419.0" layoutY="584.0" stroke="#b44040" strokeType="INSIDE" width="570.0" />
-            <Group layoutX="531.0" layoutY="-10.0" onMouseClicked="#seeEnemy">
+            <Group fx:id="enemybut" layoutX="531.0" layoutY="-10.0" onMouseClicked="#seeEnemy">
                <children>
                       <ImageView fitHeight="78.0" fitWidth="389.0" onMouseClicked="#seeEnemy" pickOnBounds="true" preserveRatio="true">
                           <image>
