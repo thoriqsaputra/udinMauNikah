@@ -102,6 +102,10 @@ public class TXTLoader implements Loader {
         return null;
     }
 
+    /* WARNING! CALL THESE BEFORE CALLING LOAD (IF HAVENT BEFORE) :
+                GameManager.initGameManager();
+                GameObjectFactory.Load();
+     */
     @Override
     public boolean load(String path) {
         GameManager gm = new GameManager();
@@ -119,9 +123,6 @@ public class TXTLoader implements Loader {
                 }
 
                 //BEGIM
-
-                GameManager.initGameManager();
-                GameObjectFactory.Load();
 
                 String line = null;
                 //gamestate.txt reader
@@ -141,6 +142,7 @@ public class TXTLoader implements Loader {
                         throw new IllegalArgumentException(String.format("Gameobject ID not found! (\"%s\")",shopline));
                     }
                 }
+                gom_state.close();
 
                 //players
                 Field gold_field = gm.getClass().getDeclaredField("guldenList");
@@ -178,6 +180,7 @@ public class TXTLoader implements Loader {
                     }
 
                     //ladang
+                    temp_ladang_list.add(new HashMap<>());
                     int ladang_count = Integer.parseInt(playerstates.readLine());
                     for (int j = 0; i < ladang_count; j++){
                         String temp_line = playerstates.readLine();
@@ -215,19 +218,30 @@ public class TXTLoader implements Loader {
                     playerstates.close();
                 }
 
-                //START OVERRIDING GAMEMANAGER
-
                 //ini adder, bisa diseret kebawah
                 Toko.createToko();
                 for (GameObject item : go){
                     Toko.addItem(item);
                 }
-                gom_state.close();
 
                 //ini buat override nanti kalo udah bener
                 List<Integer> gold_list = (ArrayList<Integer>) gold_field.get(gm);
                 List<Ladang> ladang_list = (ArrayList<Ladang>) ladang_field.get(gm);
                 List<CardDeck> deck_list = (ArrayList<CardDeck>) deck_field.get(gm);
+
+                for(int i = 0; i < 2 ; i++){
+                    gold_list.set(i,temp_gold_list.get(i));
+                    deck_list.set(i,temp_deck_list.get(i));
+                    Ladang masterLadang = ladang_list.get(i);
+                    Field petakField = masterLadang.getClass().getDeclaredField("grid");
+                    petakField.setAccessible(true);
+                    List<Petak> tempPetakList = (List<Petak>) petakField.get(masterLadang);
+                    for (Map.Entry<Integer,Petak> tempLadangEntry : temp_ladang_list.get(i).entrySet()){
+                        tempPetakList.set(tempLadangEntry.getKey(),tempLadangEntry.getValue());
+                    }
+                    petakField.setAccessible(false);
+                }
+
 
                 for (Field f: tempfields){
                     f.setAccessible(false);
