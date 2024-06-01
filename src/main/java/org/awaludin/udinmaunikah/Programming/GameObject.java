@@ -17,6 +17,13 @@ public class GameObject {
         this("BLANK","<BLANK DESCRIPTION>");
     }
 
+    public GameObject(GameObject g){
+        this.gulden_value = g.gulden_value;
+        this.id = g.id;
+        this.name = g.name;
+        this.description = g.description;
+    }
+
     public void setID(String id){
         this.id = id;
     }

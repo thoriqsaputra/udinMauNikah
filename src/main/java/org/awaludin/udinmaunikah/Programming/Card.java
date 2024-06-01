@@ -33,7 +33,7 @@ public class Card {
     }
 
     public Card(Card copycard){
-        this.thing = copycard.thing;
+        this.thing = new GameObject(copycard.thing);
     }
 
     public GameObject convertToGameObject(){
@@ -227,7 +227,7 @@ class CardDeck {
     //Add new permanent cards to the deck
     public void add(Card thing){
         int i = 0;
-        while (i < deck.size() && deck.get(i).GetCardThing().convertToGameObject().getId() != thing.convertToGameObject().getId()) {
+        while (i < deck.size() && !deck.get(i).GetCardThing().convertToGameObject().getId().equals(thing.convertToGameObject().getId())) {
             i++;
         }
         //needs new CardSlot
