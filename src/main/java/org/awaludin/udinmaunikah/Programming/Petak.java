@@ -83,7 +83,7 @@ public class Petak implements IHarvestable{
 
     public void setItem(Item item) {
         for (Entry<Item, Integer> hitem : this.item.entrySet()) {
-            if (hitem.getKey() == item) {
+            if (hitem.getKey().GetName().equals(item.GetName())) {
                 this.item.replace(hitem.getKey(), hitem.getValue()+1);
                 item.getEffect().applyEffect(this);
                 return;
