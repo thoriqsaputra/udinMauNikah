@@ -88,6 +88,15 @@ public class GameController implements Initializable {
     @FXML
     private Group timer;
 
+    @FXML
+    private Group shopbut;
+
+    @FXML
+    private ImageView settingBut;
+
+    @FXML
+    private Group enemybut;
+
     @Override
     public void initialize(URL location, ResourceBundle resources){
         mainPane = paneManeh;
@@ -117,6 +126,9 @@ public class GameController implements Initializable {
         Platform.runLater(() -> {
             turntext.setText("GOOD LUCK!");
             turnbut.setMouseTransparent(true);
+            enemybut.setMouseTransparent(true);
+            settingBut.setMouseTransparent(true);
+            shopbut.setMouseTransparent(true);
             timer.setOpacity(1.0);
             bearAttackTimer.setOpacity(1.0);
         });
@@ -132,6 +144,9 @@ public class GameController implements Initializable {
         Platform.runLater(() -> {
             turntext.setText("NEXT TURN");
             turnbut.setMouseTransparent(false);
+            enemybut.setMouseTransparent(false);
+            settingBut.setMouseTransparent(false);
+            shopbut.setMouseTransparent(false);
             timer.setOpacity(0.0);
             bearAttackTimer.setOpacity(0.5);
         });
@@ -256,6 +271,19 @@ public class GameController implements Initializable {
             zenemy.setFill(Color.RED);
         }
 
+        if (idx == 0) {
+            name.setText("Uchiha Baden");
+            Image img = new Image(getClass().getResourceAsStream("Image/jin.png"));
+            prof.setImage(img);
+        } else {
+            name.setText("Peter Panik");
+            Image img = new Image(getClass().getResourceAsStream("Image/bondowoso.png"));
+            prof.setImage(img);
+        }
+
+        String gulde = String.valueOf(GameManager.getGulden(idx));
+        gulden.setText(gulde);
+
         Ladang ladang = GameManager.getLadangList().get(idx);
 
         List<Petak> lad = ladang.getList();
@@ -271,6 +299,8 @@ public class GameController implements Initializable {
         }
     }
 
+
+
     public void changeDeck() {
         Ladang la = GameManager.getLadangList().get(GameManager.getTurnCounter());
         List<Petak> lad = la.getList();
@@ -285,13 +315,9 @@ public class GameController implements Initializable {
         deckCount.setText(deck);
 
         shuffleMe();
-
     }
 
     public void setPlayer(){
-
-
-
         int player = GameManager.getTurnCounter();
         if (player == 0) {
             name.setText("Uchiha Baden");

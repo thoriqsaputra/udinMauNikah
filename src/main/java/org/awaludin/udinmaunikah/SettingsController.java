@@ -27,16 +27,15 @@ public class SettingsController {
 
     public void openSave(MouseEvent mouseEvent) {
         try{
-            FXMLLoader dlgPlug = new FXMLLoader(getClass().getResource("Save.fxml"));
-            Parent root = dlgPlug.load();
+            FXMLLoader dlgSave = new FXMLLoader(getClass().getResource("Save.fxml"));
+            Pane root = dlgSave.load();
 
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            scene.setFill(Color.TRANSPARENT);
-            stage.setScene(scene);
-            stage.show();
+            SaveController controller = dlgSave.getController();
+
+            controller.setPane(settingsPane, root);
+
+            settingsPane.getChildren().add(root);
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -44,16 +43,15 @@ public class SettingsController {
 
     public void openLoad(MouseEvent mouseEvent) {
         try{
-            FXMLLoader dlgPlug = new FXMLLoader(getClass().getResource("Load.fxml"));
-            Parent root = dlgPlug.load();
+            FXMLLoader dlgLoad = new FXMLLoader(getClass().getResource("Load.fxml"));
+            Pane root = dlgLoad.load();
 
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            scene.setFill(Color.TRANSPARENT);
-            stage.setScene(scene);
-            stage.show();
+            LoadController controller = dlgLoad.getController();
+
+            controller.setPane(settingsPane, root);
+
+            settingsPane.getChildren().add(root);
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -62,15 +60,14 @@ public class SettingsController {
     public void openPlugin(MouseEvent mouseEvent) {
         try{
             FXMLLoader dlgPlug = new FXMLLoader(getClass().getResource("Plugin.fxml"));
-            Parent root = dlgPlug.load();
+            Pane root = dlgPlug.load();
 
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            scene.setFill(Color.TRANSPARENT);
-            stage.setScene(scene);
-            stage.show();
+            PluginController controller = dlgPlug.getController();
+
+            controller.setPane(settingsPane, root);
+
+            settingsPane.getChildren().add(root);
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

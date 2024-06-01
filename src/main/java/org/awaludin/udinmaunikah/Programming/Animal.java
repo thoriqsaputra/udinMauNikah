@@ -81,4 +81,9 @@ public class Animal extends GameObject implements IFeedable, IHarvestable{
 
         return success;
     };
+
+    @Override
+    public void setSignificantNumber(int value) {
+        this.weight = value;
+    }
 }

@@ -24,7 +24,7 @@
                     </image>
                 </ImageView>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e5c24e" height="136.0" layoutX="419.0" layoutY="584.0" stroke="#b44040" strokeType="INSIDE" width="570.0" />
-            <Group layoutX="531.0" layoutY="-10.0" onMouseClicked="#seeEnemy">
+            <Group fx:id="enemybut" layoutX="531.0" layoutY="-10.0" onMouseClicked="#seeEnemy">
                <children>
                       <ImageView fitHeight="78.0" fitWidth="389.0" onMouseClicked="#seeEnemy" pickOnBounds="true" preserveRatio="true">
                           <image>
@@ -46,14 +46,14 @@
                   <Image url="@Image/banner.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="prof" fitHeight="142.0" fitWidth="138.0" layoutX="48.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="prof" fitHeight="142.0" fitWidth="138.0" layoutX="58.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Image/jin.png" />
                </image>
             </ImageView>
             <Pane layoutX="2.0" layoutY="255.0" prefHeight="234.0" prefWidth="200.0">
                <children>
-                  <Group layoutX="14.0" layoutY="16.0" onMouseClicked="#openShop">
+                  <Group fx:id="shopbut" layoutX="14.0" layoutY="16.0" onMouseClicked="#openShop">
                      <children>
                         <ImageView fitHeight="118.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -100,7 +100,7 @@
                               <Image url="@Image/save.png" />
                            </image>
                            <cursor>
-                              <Cursor fx:constant="HAND" />
+                              <Cursor fx:constant="DEFAULT" />
                            </cursor>
                         </ImageView>
                         <Label layoutX="45.0" layoutY="15.0" styleClass="outlined" text="TURN">
@@ -120,7 +120,7 @@
                   </Group>
                </children>
             </Pane>
-            <ImageView fitHeight="59.0" fitWidth="65.0" layoutX="1186.0" layoutY="23.0" onMouseClicked="#openSetting" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="settingBut" fitHeight="59.0" fitWidth="65.0" layoutX="1186.0" layoutY="23.0" onMouseClicked="#openSetting" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Image/btnSettings.png" />
                </image>
@@ -128,12 +128,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label fx:id="gulden" layoutX="97.0" layoutY="226.0" styleClass="outlined" text="1">
+            <Label fx:id="gulden" layoutX="107.0" layoutY="226.0" styleClass="outlined" text="1">
                <font>
                   <Font name="Snap ITC" size="20.0" />
                </font>
             </Label>
-            <ImageView fitHeight="62.0" fitWidth="61.0" layoutX="31.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="62.0" fitWidth="61.0" layoutX="41.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Image/bitcoin.png" />
                </image>
@@ -805,7 +805,7 @@
                   </LinearGradient>
                </stroke>
             </Rectangle>
-            <Text fx:id="name" fill="WHITE" layoutX="46.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="outlined" text="Text" textAlignment="CENTER" wrappingWidth="142.8515625">
+            <Text fx:id="name" fill="WHITE" layoutX="21.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="outlined" text="Text" textAlignment="CENTER" wrappingWidth="212.0">
                <font>
                   <Font name="Snap ITC" size="20.0" />
                </font>

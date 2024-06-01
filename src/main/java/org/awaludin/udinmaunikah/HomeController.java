@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -19,6 +20,9 @@ import java.io.IOException;
 
 
 public class HomeController {
+
+    @FXML
+    private Pane homePane;
 
     public void handleMouseEnter(javafx.scene.input.MouseEvent mouseEvent) {
         Object source = mouseEvent.getSource();
@@ -52,15 +56,15 @@ public class HomeController {
     public void dlgLoad(MouseEvent mouseEvent) throws IOException {
         try{
             FXMLLoader dlgLoad = new FXMLLoader(getClass().getResource("Load.fxml"));
-            Parent root = dlgLoad.load();
+            Pane root = dlgLoad.load();
 
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            scene.setFill(Color.TRANSPARENT);
-            stage.setScene(scene);
-            stage.show();
+
+            LoadController lc = dlgLoad.getController();
+
+            lc.setPane(homePane, root);
+
+            homePane.getChildren().add(root);
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -69,15 +73,14 @@ public class HomeController {
     public void dlgPlug(MouseEvent mouseEvent) throws IOException {
         try{
             FXMLLoader dlgPlug = new FXMLLoader(getClass().getResource("Plugin.fxml"));
-            Parent root = dlgPlug.load();
+            Pane root = dlgPlug.load();
 
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            scene.setFill(Color.TRANSPARENT);
-            stage.setScene(scene);
-            stage.show();
+            PluginController lc = dlgPlug.getController();
+
+            lc.setPane(homePane, root);
+
+            homePane.getChildren().add(root);
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -102,6 +105,7 @@ public class HomeController {
             gameController.initializePlaceHolders();
 
             gameController.changeDeck();
+
             gameController.setPlayer();
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();

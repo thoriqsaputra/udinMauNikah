@@ -13,7 +13,6 @@ import java.util.Map;
 import java.io.FileReader;
 
 public class TXTLoader implements Loader {
-    private Field temp;
 
     private Object exposeFieldValue(Field[] flist, String field){
         Object retval = null;
@@ -47,7 +46,10 @@ public class TXTLoader implements Loader {
         try{
             boolean reset_on_done = false;
             Field f = master.getClass().getDeclaredField(fname);
-            if (!f.canAccess(this)){
+            try{
+                f.canAccess(this);
+            }
+            catch (IllegalArgumentException e){
                 reset_on_done = true;
                 f.setAccessible(true);
             }
@@ -70,7 +72,6 @@ public class TXTLoader implements Loader {
             try {
                 if (f.getName().equals("deckList")) {
                     f.setAccessible(true);
-                    temp = f;
                     return (List<CardDeck>) f.get(this);
                 }
             } catch (IllegalAccessException e) {
@@ -89,7 +90,6 @@ public class TXTLoader implements Loader {
             try {
                 if (f.getName().equals("ladangList") ) {
                     f.setAccessible(true);
-                    temp = f;
                     return (List<Ladang>) f.get(this);
                 }
             } catch (IllegalAccessException e) {
@@ -102,6 +102,10 @@ public class TXTLoader implements Loader {
         return null;
     }
 
+    /* WARNING! CALL THESE BEFORE CALLING LOAD (IF HAVENT BEFORE) :
+                GameManager.initGameManager();
+                GameObjectFactory.Load();
+     */
     @Override
     public boolean load(String path) {
         GameManager gm = new GameManager();
@@ -120,9 +124,6 @@ public class TXTLoader implements Loader {
 
                 //BEGIM
 
-                GameManager.initGameManager();
-                GameObjectFactory.Load();
-
                 String line = null;
                 //gamestate.txt reader
                 BufferedReader gom_state = new BufferedReader(new FileReader(gstate.toString()));
@@ -131,11 +132,16 @@ public class TXTLoader implements Loader {
                 fieldSetter(gm, "totalTurnCounter", turns);
                 fieldSetter(gm, "turnCounter", turns % 2);
                 int shopItemCount = Integer.parseInt(gom_state.readLine());
-                Toko.createToko();
+                List<GameObject> go = new ArrayList<>();
                 for (int i = 0; i < shopItemCount; i++) {
-                    GameObject item = GameObjectFactory.CreateGameObjectByID(gom_state.readLine());
+                    String shopline = gom_state.readLine();
+                    GameObject item = GameObjectFactory.CreateGameObjectByID(shopline);
+                    if (item != null) {
+                        go.add(item);
+                    } else {
+                        throw new IllegalArgumentException(String.format("Gameobject ID not found! (\"%s\")",shopline));
+                    }
                 }
-
                 gom_state.close();
 
                 //players
@@ -148,30 +154,97 @@ public class TXTLoader implements Loader {
                     f.setAccessible(true);
                 }
 
+                List<Integer> temp_gold_list = new ArrayList<>();
+                List<Map<Integer,Petak>> temp_ladang_list = new ArrayList<>();
+                List<CardDeck> temp_deck_list = new ArrayList<>();
+                for (int i = 0; i < GameManager.defaultPlayerCount; i++) {
+                    BufferedReader playerstates = new BufferedReader(new FileReader(files[1+i].toString()));
+                    //GULDEN, JMLAH DECK, JMLAH DECK ACTIVE, LIST OF ACTIVE DECK,  JUMLAH KARTU LADANG, LIST OF KARTU LADANG
+                    temp_gold_list.add(Integer.parseInt(playerstates.readLine()));
+                    CardDeck tempCardDeck = new CardDeck();
+                    tempCardDeck.load_deck("default");
+                    tempCardDeck.reduceUntil(Integer.parseInt(playerstates.readLine()));
+                    temp_deck_list.add(tempCardDeck);
+
+                    //Set hand card
+                    int card_count = Integer.parseInt(playerstates.readLine());
+                    for (int j = 0; j < card_count; j++) {
+                        String local_line = playerstates.readLine();
+                        String[] thing = local_line.split(" ");
+                        if (thing.length != 2){
+                            throw new IllegalArgumentException(String.format("Incorrect format for handcard state! (%s)",local_line));
+                        }
+                        Card c = new Card(GameObjectFactory.CreateGameObjectByID(thing[1]));
+                        temp_deck_list.get(i).getHand().set(Integer.parseInt(thing[0]),c);
+                        //might cause null/ordering issues
+                    }
+
+                    //ladang
+                    temp_ladang_list.add(new HashMap<>());
+                    int ladang_count = Integer.parseInt(playerstates.readLine());
+                    for (int j = 0; i < ladang_count; j++){
+                        String temp_line = playerstates.readLine();
+                        String[] thing = temp_line.split(" ");
+                        if (thing.length < 4){
+                            throw new IllegalArgumentException(String.format("Incorrect format for petak state! (%s)",temp_line));
+                        }
+                        Petak temp_petak = new Petak(null);
+                        //LOKASI //KARTU //ANGKA_SIGNIFIKAN //JUMLAH ITEM AKTIF //ITEMS
+                        int location = Integer.parseInt(thing[0]);
+                        GameObject object = GameObjectFactory.CreateGameObjectByID(thing[1]);
+                        if (object != null){
+                            object.setSignificantNumber(Integer.parseInt(thing[2]));
+                            temp_petak.setGameObject(object);
+                            int itemcount = Integer.parseInt(thing[3]);
+                            Map<Item, Integer> item_list = new HashMap<Item, Integer>();
+                            for (int k = 0; k < itemcount; k++){
+                                Item itemToAdd = (Item) GameObjectFactory.CreateGameObjectByID(thing[4+i]);
+                                if (itemToAdd != null){
+                                    boolean inserted = false;
+                                    for (Map.Entry<Item, Integer> keySeekTemp : item_list.entrySet()){
+                                        if (keySeekTemp.getKey().getId().equals(itemToAdd.getId())){
+                                            item_list.replace(keySeekTemp.getKey(),keySeekTemp.getValue()+1);
+                                            inserted = true;
+                                        }
+                                    }
+                                    if (!inserted){
+                                        item_list.put(itemToAdd,1);
+                                    }
+                                }
+                            }
+                            fieldSetter(temp_petak,"item",item_list);
+                        }
+                        else{
+                            throw new IllegalArgumentException(String.format("Incorrect format for petak (\"%s\")",temp_line));
+                        }
+                    }
+                    playerstates.close();
+                }
+
+                //ini adder, bisa diseret kebawah
+                Toko.createToko();
+                for (GameObject item : go){
+                    Toko.addItem(item);
+                }
+
+                //ini buat override nanti kalo udah bener
                 List<Integer> gold_list = (ArrayList<Integer>) gold_field.get(gm);
                 List<Ladang> ladang_list = (ArrayList<Ladang>) ladang_field.get(gm);
                 List<CardDeck> deck_list = (ArrayList<CardDeck>) deck_field.get(gm);
 
-                for (int i = 0; i < GameManager.defaultPlayerCount; i++) {
-                    BufferedReader playerstates = new BufferedReader(new FileReader(files[1+i].toString()));
-                    //GULDEN, JMLAH DECK, JMLAH DECK ACTIVE, LIST OF ACTIVE DECK,  JUMLAH KARTU LADANG, LIST OF KARTU LADANG
-                    gold_list.set(i, Integer.parseInt(playerstates.readLine()));
-                    deck_list.get(i).reduceUntil(Integer.parseInt(playerstates.readLine()));
-                    int card_count = Integer.parseInt(playerstates.readLine());
-                    for (int j = 0; j < card_count; j++) {
-                        String[] thing = playerstates.readLine().split(" ");
-                        Card c = new Card(GameObjectFactory.CreateGameObjectByID(thing[1]));
-                        deck_list.get(i).getHand().set(Integer.parseInt(thing[0]),c);
-                        //might cause null/ordering issues
+                for(int i = 0; i < 2 ; i++){
+                    gold_list.set(i,temp_gold_list.get(i));
+                    deck_list.set(i,temp_deck_list.get(i));
+                    Ladang masterLadang = ladang_list.get(i);
+                    Field petakField = masterLadang.getClass().getDeclaredField("grid");
+                    petakField.setAccessible(true);
+                    List<Petak> tempPetakList = (List<Petak>) petakField.get(masterLadang);
+                    for (Map.Entry<Integer,Petak> tempLadangEntry : temp_ladang_list.get(i).entrySet()){
+                        tempPetakList.set(tempLadangEntry.getKey(),tempLadangEntry.getValue());
                     }
-                    int ladang_count = Integer.parseInt(playerstates.readLine());
-//                    for (int j = 0; i < ladang_count; j++){
-//                        String[] thing = playerstates.readLine().split(" ");
-//                        Card c = new Card(GameObjectFactory.CreateGameObjectByID(thing[1]));
-//                        deck_list.get(i).getHand().set(Integer.parseInt(thing[0]),c);
-//                    }
-                    playerstates.close();
+                    petakField.setAccessible(false);
                 }
+
 
                 for (Field f: tempfields){
                     f.setAccessible(false);
@@ -235,6 +308,7 @@ public class TXTLoader implements Loader {
 //                            content.add(cs.GetCardThing().convertToGameObject().getId());
 //                        }
 //                    }
+                    content.add(String.format("%d",cdlist.get(i).getCardCount()));
 
                     // Deck active
                     int handcount = 0;

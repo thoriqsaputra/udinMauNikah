@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.awaludin.udinmaunikah.Programming.TXTLoader;
 import org.awaludin.udinmaunikah.Programming.JSONLoader;
@@ -30,9 +31,16 @@ public class SaveController {
     private JSONLoader jsonLoader = new JSONLoader();
     private YAMLLoader yamlLoader = new YAMLLoader();
 
+    private Pane base;
+    private Pane self;
+
     public void closeWindow(MouseEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+        base.getChildren().remove(self);
+    }
+
+    public void setPane(Pane base, Pane self) {
+        this.base = base;
+        this.self = self;
     }
 
     @FXML
