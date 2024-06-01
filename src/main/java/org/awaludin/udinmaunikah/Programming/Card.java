@@ -33,7 +33,7 @@ public class Card {
     }
 
     public Card(Card copycard){
-        this.thing = new GameObject(copycard.thing);
+        this.thing = GameObjectFactory.CreateGameObjectByID(copycard.thing.getId());
     }
 
     public GameObject convertToGameObject(){
