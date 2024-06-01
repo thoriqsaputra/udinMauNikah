@@ -65,7 +65,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </ImageView>
-                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="548.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="548.0" layoutY="414.0" onMouseClicked="#loadGame" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Image/btnLoad.png" />
                     </image>
