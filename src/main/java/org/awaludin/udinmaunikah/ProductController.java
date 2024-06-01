@@ -76,7 +76,13 @@ public class ProductController {
     void sell(MouseEvent event) {
 
         GameManager.sellItems(cardObj.getGameObject());
+
         GameManager.PlayerInterface.useCardT(cardObj.getCard());
+
+        Petak p = cardObj.getPreviousPetak();
+
+        p.setNull();
+
         GameController.mainPane.getChildren().remove(cardObj);
 
         GameController.gameC.setPlayer();
