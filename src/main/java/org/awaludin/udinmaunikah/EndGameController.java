@@ -15,6 +15,18 @@ import org.awaludin.udinmaunikah.Programming.GameManager;
 public class EndGameController {
 
     @FXML
+    private Pane TIEMAN;
+
+    @FXML
+    private ImageView b1;
+
+    @FXML
+    private ImageView b2;
+
+    @FXML
+    private ImageView bitcoin;
+
+    @FXML
     private Group boardError;
 
     @FXML
@@ -24,24 +36,31 @@ public class EndGameController {
     private ImageView imgWinner;
 
     @FXML
+    private Text m1;
+
+    @FXML
+    private Text m2;
+
+    @FXML
+    private ImageView ooo;
+
+    @FXML
+    private Text p1;
+
+    @FXML
+    private Text p2;
+
+    @FXML
     private Pane shopMain;
+
+    @FXML
+    private Text tie;
 
     @FXML
     private Text winnerGuld;
 
     @FXML
     private Text winnerName;
-
-
-    @FXML
-    private ImageView bitcoin;
-
-
-    @FXML
-    private ImageView ooo;
-
-    @FXML
-    private Text tie;
 
     @FXML
     void goBack(MouseEvent event) {
@@ -63,9 +82,15 @@ public class EndGameController {
     public void setWinner(int who){
 
         if (who == -1){
+            p1.setText("Uchiha Baden");
+            String gulde = String.valueOf(GameManager.getGulden(0));
+            m1.setText(gulde);
+            p2.setText("Peter Panik");
+            String gulde2 = String.valueOf(GameManager.getGulden(0));
+            m2.setText(gulde2);
             return;
         }
-        tie.setOpacity(0);
+        TIEMAN.setOpacity(0);
         ooo.setOpacity(1.0);
         winnerGuld.setOpacity(1.0);
         winnerName.setOpacity(1.0);

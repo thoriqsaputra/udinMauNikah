@@ -75,11 +75,55 @@
                   <Image url="@Image/bitcoin.png" />
                </image>
             </ImageView>
-            <Text fx:id="tie" fill="WHITE" layoutX="245.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="outlined" text="TIE" textAlignment="CENTER" wrappingWidth="767.55078125">
-               <font>
-                  <Font name="Century" size="96.0" />
-               </font>
-            </Text>
+            <Pane fx:id="TIEMAN" layoutX="243.0" layoutY="205.359375">
+               <children>
+                  <Text fx:id="tie" fill="WHITE" layoutX="2.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="outlined" text="TIE" textAlignment="CENTER" wrappingWidth="767.55078125">
+                     <font>
+                        <Font name="Century" size="96.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="p1" layoutX="68.0" layoutY="240.640625" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" textAlignment="CENTER" wrappingWidth="194.88504028320312">
+                     <font>
+                        <Font name="Century" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="m1" layoutX="159.0" layoutY="270.640625" strokeType="OUTSIDE" strokeWidth="0.0" text="money" wrappingWidth="194.88504028320312">
+                     <font>
+                        <Font name="Century" size="24.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="b1" fitHeight="54.0" fitWidth="70.0" layoutX="70.0" layoutY="236.640625" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/bitcoin.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="p2" layoutX="519.0" layoutY="240.640625" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" textAlignment="CENTER" wrappingWidth="194.88504028320312">
+                     <font>
+                        <Font name="Century" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="m2" layoutX="601.0" layoutY="269.640625" strokeType="OUTSIDE" strokeWidth="0.0" text="money" wrappingWidth="194.88504028320312">
+                     <font>
+                        <Font name="Century" size="24.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="b2" fitHeight="54.0" fitWidth="70.0" layoutX="512.0" layoutY="237.640625" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/bitcoin.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="90.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/jin.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="536.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/bondowoso.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
             </children>
 
         </Pane>
