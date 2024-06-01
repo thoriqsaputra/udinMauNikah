@@ -384,7 +384,7 @@ public class GameController implements Initializable {
         String deck = String.valueOf(GameManager.PlayerInterface.getCardCount());
         deckCount.setText(deck);
         Ladang la = GameManager.getLadangList().get(GameManager.getTurnCounter());
-//        la.bearAttack();
+        la.bearAttack();
     }
 
     public void openShop(MouseEvent mouseEvent) throws IOException {
