@@ -40,4 +40,7 @@ public class GameObject {
     public String GetName(){
         return name;
     }
+
+    //quick fix cus gotta go fast
+    public void setSignificantNumber(int value){};
 }

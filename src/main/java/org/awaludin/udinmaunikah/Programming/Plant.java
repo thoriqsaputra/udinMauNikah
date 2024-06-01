@@ -35,4 +35,8 @@ public class Plant extends GameObject implements IHarvestable, IGrowable{
         return harvestProduct;
     };
 
+    @Override
+    public void setSignificantNumber(int value) {
+        this.age = value;
+    }
 }
