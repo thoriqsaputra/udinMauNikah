@@ -85,7 +85,7 @@ class CardDeck {
     }
 
     public void immolate(int burn_ammt){
-        for (int i = 0; i < Math.max(burn_ammt,40); i++) {
+        for (int i = 0; i < Math.min(burn_ammt,40); i++) {
             draw();
         }
     }
