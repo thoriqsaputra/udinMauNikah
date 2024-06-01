@@ -24,10 +24,6 @@ public class HomeController {
     @FXML
     private Pane homePane;
 
-    private Pane loadP;
-
-    private Pane plugP;
-
     public void handleMouseEnter(javafx.scene.input.MouseEvent mouseEvent) {
         Object source = mouseEvent.getSource();
         if (source instanceof Node node) {
@@ -62,11 +58,10 @@ public class HomeController {
             FXMLLoader dlgLoad = new FXMLLoader(getClass().getResource("Load.fxml"));
             Pane root = dlgLoad.load();
 
-            loadP = root;
 
             LoadController lc = dlgLoad.getController();
 
-            lc.setHom(this);
+            lc.setPane(homePane, root);
 
             homePane.getChildren().add(root);
 
@@ -75,24 +70,14 @@ public class HomeController {
         }
     }
 
-    public void closeP(){
-        homePane.getChildren().remove(plugP);
-    }
-
-    public void closeL(){
-        homePane.getChildren().remove(loadP);
-    }
-
     public void dlgPlug(MouseEvent mouseEvent) throws IOException {
         try{
             FXMLLoader dlgPlug = new FXMLLoader(getClass().getResource("Plugin.fxml"));
             Pane root = dlgPlug.load();
 
-            plugP = root;
-
             PluginController lc = dlgPlug.getController();
 
-            lc.setHc(this);
+            lc.setPane(homePane, root);
 
             homePane.getChildren().add(root);
 

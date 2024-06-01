@@ -2,17 +2,20 @@ package org.awaludin.udinmaunikah;
 
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class PluginController {
 
-    private HomeController hc;
+    private Pane base;
+    private Pane self;
 
     public void closeWindow(MouseEvent event) {
-        hc.closeP();
+        base.getChildren().remove(self);
     }
 
-    public void setHc(HomeController hc) {
-        this.hc = hc;
+    public void setPane(Pane base, Pane self) {
+        this.base = base;
+        this.self = self;
     }
 }

@@ -21,14 +21,16 @@ public class LoadController {
 
     private TXTLoader txtLoader = new TXTLoader();
 
-    private HomeController hc;
+    private Pane base;
+    private Pane self;
 
     public void closeWindow(MouseEvent event) {
-        hc.closeL();
+        base.getChildren().remove(self);
     }
 
-    public void setHom(HomeController hsc){
-        hc = hsc;
+    public void setPane(Pane hsc, Pane sel){
+        base = hsc;
+        self = sel;
     }
 
     @FXML
