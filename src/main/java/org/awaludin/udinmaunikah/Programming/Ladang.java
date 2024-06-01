@@ -251,7 +251,7 @@ public class Ladang {
                         for (Entry<Item, Integer> item : petak.getItem().entrySet()) {
                             if (item.getKey().getEffect() instanceof Trap) {
                                 trapFound = true;
-                                petak.kurangItems(item.getKey());
+                                // petak.kurangItems(item.getKey());
                                 break;
                             }
                         }
@@ -274,7 +274,7 @@ public class Ladang {
                         boolean protect = false;
                         for (Entry<Item, Integer> p : this.grid.get(index).getItem().entrySet()) {
                             if (p.getKey().getEffect() instanceof Protect) {
-                                this.grid.get(index).kurangItems(p.getKey());
+                                // this.grid.get(index).kurangItems(p.getKey());
                                 protect = true;
                                 break;
                             }
