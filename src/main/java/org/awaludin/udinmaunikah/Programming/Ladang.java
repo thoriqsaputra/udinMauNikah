@@ -251,6 +251,8 @@ public class Ladang {
                         for (Entry<Item, Integer> item : petak.getItem().entrySet()) {
                             if (item.getKey().getEffect() instanceof Trap) {
                                 trapFound = true;
+                                petak.kurangItems(item.getKey());
+                                break;
                             }
                         }
                     }
