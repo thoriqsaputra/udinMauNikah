@@ -7,6 +7,7 @@ module org.awaludin.udinmaunikah {
     requires org.kordamp.bootstrapfx.core;
     requires java.desktop;
     requires json.simple;
+    requires org.yaml.snakeyaml;
 
     opens org.awaludin.udinmaunikah to javafx.fxml;
     exports org.awaludin.udinmaunikah;

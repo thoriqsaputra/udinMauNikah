@@ -1,5 +1,7 @@
 package org.awaludin.udinmaunikah.Programming;
 
+import org.yaml.snakeyaml.Yaml;
+
 import java.io.*;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
@@ -116,25 +118,33 @@ public class YAMLLoader implements Loader {
                 GameManager.initGameManager();
                 GameObjectFactory.Load();
 
-                // Load game state from gamestate.yaml
-                BufferedReader gom_state = Files.newBufferedReader(gstate, StandardCharsets.UTF_8);
-                Map<String, Object> gameState = parseYaml(gom_state.readLine());
-                int turns = (int) gameState.get("totalTurnCounter");
-                fieldSetter(gm, "totalTurnCounter", turns);
-                fieldSetter(gm, "turnCounter", turns % 2);
-                List<String> shopItems = (List<String>) gameState.get("shopItems");
+                // Load game state from gamestate.yaml yang berformat:
+                // totalTurnCounter: 5
+                // shopItems: [PRODUCT_007]
+                BufferedReader gameStateReader = Files.newBufferedReader(gstate, StandardCharsets.UTF_8);
+                String gameStateString = gameStateReader.readLine();
+                Map<String, Object> gameState = parseYaml(gameStateString);
+                Integer totalTurnCounterValue = (Integer) gameState.get("totalTurnCounter");
+                int totalTurnCounter = totalTurnCounterValue != null ? totalTurnCounterValue : 0;
+                fieldSetter(gm, "totalTurnCounter", totalTurnCounter);
+                fieldSetter(gm, "turnCounter", totalTurnCounter % 2);
+                gameStateString = gameStateReader.readLine();
+                gameState = parseYaml(gameStateString);
+                List<String> shopItems = gameState.get("shopItems") != null ? (List<String>) gameState.get("shopItems") : new ArrayList<>();
                 Toko.createToko();
+                List<GameObject> shopItemsList = new ArrayList<>();
                 for (String itemId : shopItems) {
                     GameObject item = GameObjectFactory.CreateGameObjectByID(itemId);
+                    shopItemsList.add(item);
                 }
-
-                gom_state.close();
-
+                
+                gameStateReader.close();
+                
                 // Load player data
                 Field gold_field = gm.getClass().getDeclaredField("guldenList");
                 Field ladang_field = gm.getClass().getDeclaredField("ladangList");
                 Field deck_field = gm.getClass().getDeclaredField("deckList");
-
+                
                 Field[] tempfields = {gold_field, ladang_field, deck_field};
                 for (Field f : tempfields) {
                     f.setAccessible(true);
@@ -146,17 +156,20 @@ public class YAMLLoader implements Loader {
 
                 for (int i = 0; i < GameManager.defaultPlayerCount; i++) {
                     BufferedReader playerstates = Files.newBufferedReader(files[1 + i], StandardCharsets.UTF_8);
-                    Map<String, Object> playerState = parseYaml(playerstates.readLine());
-                    gold_list.set(i, (Integer) playerState.get("gulden"));
-                    deck_list.get(i).reduceUntil((Integer) playerState.get("deckCount"));
-                    List<Map<String, Object>> activeDeck = (List<Map<String, Object>>) playerState.get("activeDeck");
+                    Map<String, Object> deckCount = parseYaml(playerstates.readLine());
+                    deck_list.get(i).reduceUntil((Integer) deckCount.get("deckCount"));
+                    Map<String, Object> active = parseYaml(playerstates.readLine());
+                    List<Map<String, Object>> activeDeck = (List<Map<String, Object>>) active.get("activeDeck");
                     for (Map<String, Object> cardData : activeDeck) {
                         int index = (int) cardData.get("index");
                         String cardId = (String) cardData.get("cardId");
                         Card c = new Card(GameObjectFactory.CreateGameObjectByID(cardId));
                         deck_list.get(i).getHand().set(index, c);
                     }
-                    List<Map<String, Object>> ladangData = (List<Map<String, Object>>) playerState.get("ladang");
+                    Map<String, Object> gulden = parseYaml(playerstates.readLine());
+                    gold_list.set(i, (Integer) deckCount.get("gulden"));
+                    Map<String, Object> lad = parseYaml(playerstates.readLine());
+                    List<Map<String, Object>> ladangData = (List<Map<String, Object>>) lad.get("ladang");
                     for (Map<String, Object> ladangItem : ladangData) {
                         int index = (int) ladangItem.get("index");
                         String gameObjectId = (String) ladangItem.get("gameObjectId");
@@ -166,17 +179,26 @@ public class YAMLLoader implements Loader {
                         GameObject go = GameObjectFactory.CreateGameObjectByID(gameObjectId);
                         petak.setGameObject(go);
                         petak.getCount();
+                        Map<Item, Integer> baru = new HashMap<>();
                         for (String itemId : itemIds) {
-                            Item item = (Item) GameObjectFactory.CreateGameObjectByID(itemId);
-                            petak.addItem(item);
+                            for (Map.Entry<Item, Integer> key : baru.entrySet()) {
+                                if (key.getKey().getId().equals(itemId)) {
+                                    baru.replace(key.getKey(), key.getValue()+1);
+                                    break;
+                                }
+                                baru.put(key.getKey(), 1);
+                            }
                         }
+                        fieldSetter(petak, "item", baru);
+                        ladang_list.get(i).add(petak);
                     }
+
+                    playerstates.close();
                 }
 
                 for (Field f : tempfields) {
                     f.setAccessible(false);
                 }
-
             } catch (IOException | NoSuchFieldException | IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -192,6 +214,7 @@ public class YAMLLoader implements Loader {
         if (Files.isDirectory(fpath)) {
             try {
                 Map<String, Object> gameState = new HashMap<>();
+                // nanti bentuknya {totalTurn Counter: 5}
                 gameState.put("totalTurnCounter", exposeFieldValue(flist, "totalTurnCounter"));
 
                 Toko shop = (Toko) exposeFieldValue(flist, "shop");
@@ -203,7 +226,7 @@ public class YAMLLoader implements Loader {
                         shopItemIds.add(entry.getKey().getId());
                     }
                 }
-                gameState.put("shopItems", shopItemIds);
+                gameState.put("{shopItems", shopItemIds);
 
                 writeYamlToFile(new File(path + "/gamestate.yaml"), gameState);
 
@@ -264,26 +287,24 @@ public class YAMLLoader implements Loader {
     private Map<String, Object> parseYaml(String yamlString) {
         Map<String, Object> yamlMap = new HashMap<>();
         yamlString = yamlString.trim();
-        if (yamlString.startsWith("{")) {
-            yamlString = yamlString.substring(1, yamlString.length() - 1); // Remove the curly braces
-            String[] keyValuePairs = yamlString.split(",");
-            for (String pair : keyValuePairs) {
-                String[] keyValue = pair.split(":");
-                String key = keyValue[0].trim().replaceAll("^\"|\"$", "");
-                String value = keyValue[1].trim();
-                if (value.startsWith("[")) {
-                    value = value.substring(1, value.length() - 1); // Remove the square brackets
-                    String[] arrayValues = value.split(",");
-                    List<String> list = new ArrayList<>();
-                    for (String val : arrayValues) {
-                        list.add(val.trim().replaceAll("^\"|\"$", ""));
-                    }
-                    yamlMap.put(key, list);
-                } else if (value.matches("-?\\d+(\\.\\d+)?")) {
-                    yamlMap.put(key, Integer.parseInt(value));
-                } else {
-                    yamlMap.put(key, value.replaceAll("^\"|\"$", ""));
+        yamlString = yamlString.substring(0, yamlString.length()); // Remove the curly braces
+        String[] keyValuePairs = yamlString.split(",");
+        for (String pair : keyValuePairs) {
+            String[] keyValue = pair.split(":");
+            String key = keyValue[0].trim().replaceAll("^\"|\"$", "");
+            String value = keyValue[1].trim();
+            if (value.startsWith("[")) {
+                value = value.substring(1, value.length() - 1); // Remove the square brackets
+                String[] arrayValues = value.split(",");
+                List<String> list = new ArrayList<>();
+                for (String val : arrayValues) {
+                    list.add(val.trim().replaceAll("^\"|\"$", ""));
                 }
+                yamlMap.put(key, list);
+            } else if (value.matches("-?\\d+(\\.\\d+)?")) {
+                yamlMap.put(key, Integer.parseInt(value));
+            } else {
+                yamlMap.put(key, value.replaceAll("^\"|\"$", ""));
             }
         }
         return yamlMap;
