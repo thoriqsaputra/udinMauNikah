@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.awaludin.udinmaunikah.ShopController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.awaludin.udinmaunikah.EndGameController">
     <children>
         <Pane fx:id="shopMain" layoutX="-8.0" prefHeight="720.0" prefWidth="1280.0">
             <children>
@@ -14,7 +18,7 @@
                         <Image url="@./Image/bgShop.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="174.0" fitWidth="467.0" layoutX="56.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="174.0" fitWidth="467.0" layoutX="412.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@./Image/gameover.png" />
                     </image>
@@ -38,7 +42,7 @@
                         </Text>
                     </children>
                 </Group>
-                <ImageView fitHeight="119.0" fitWidth="240.0" layoutX="520.0" layoutY="526.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="119.0" fitWidth="240.0" layoutX="518.0" layoutY="526.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@./Image/rethome.png" />
                     </image>
@@ -46,11 +50,36 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="540.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ooo" fitHeight="150.0" fitWidth="200.0" layoutX="540.0" layoutY="247.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Image/WINNER.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="imgWinner" fitHeight="211.0" fitWidth="197.0" layoutX="285.0" layoutY="323.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/bondowoso.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="winnerName" fill="WHITE" layoutX="540.0" layoutY="393.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="outlined" text="none" wrappingWidth="411.85107421875">
+               <font>
+                  <Font name="Snap ITC" size="36.0" />
+               </font>
+            </Text>
+            <Text fx:id="winnerGuld" fill="WHITE" layoutX="620.0" layoutY="458.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="outlined" text="9090" wrappingWidth="411.85107421875">
+               <font>
+                  <Font name="Snap ITC" size="36.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="bitcoin" fitHeight="72.0" fitWidth="88.0" layoutX="519.0" layoutY="414.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/bitcoin.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="tie" fill="WHITE" layoutX="245.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="outlined" text="TIE" textAlignment="CENTER" wrappingWidth="767.55078125">
+               <font>
+                  <Font name="Century" size="96.0" />
+               </font>
+            </Text>
             </children>
 
         </Pane>

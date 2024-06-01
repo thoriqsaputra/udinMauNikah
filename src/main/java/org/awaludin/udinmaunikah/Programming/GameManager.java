@@ -67,6 +67,20 @@ public class GameManager {
 
     }
 
+    public static int getWinner(){
+        int gulde1 = guldenList.get(0);
+        int gulde2 = guldenList.get(1);
+
+        if (gulde1 > gulde2){
+            return 0;
+        }else if (gulde1 < gulde2){
+            return 1;
+        } else {
+            return -1;
+        }
+
+    }
+
     public static void sellItems(GameObject product){
         Toko.addItem(product);
         Product pr = (Product) product;

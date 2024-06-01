@@ -145,7 +145,7 @@
                         <Image url="@Image/kard.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="146.0" layoutY="90.0" rotate="31.0" styleClass="outlined" text="/40">
+                  <Label layoutX="146.0" layoutY="90.0" rotate="31.0" styleClass="outlined" text="/42">
                      <font>
                         <Font name="Snap ITC" size="20.0" />
                      </font>

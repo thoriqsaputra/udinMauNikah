@@ -97,6 +97,7 @@ public class HomeController {
                 GameManager.SetUpUtils.useDeck(i,"default");
             }
 
+
             FXMLLoader startGame = new FXMLLoader(getClass().getResource("Game.fxml"));
             Parent root = startGame.load();
 
@@ -109,6 +110,7 @@ public class HomeController {
             gameController.setPlayer();
 
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            Application.pushScene(stage.getScene());
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

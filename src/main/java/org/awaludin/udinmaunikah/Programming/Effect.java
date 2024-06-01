@@ -144,6 +144,7 @@ abstract public class Effect {
     public static class Layout extends Effect {
         private int turn;
         private int who;
+        private Petak p;
 
         @Override
         public void applyEffectBonus(boolean attacking, Ladang ladang) {
@@ -160,13 +161,14 @@ abstract public class Effect {
             if (turn > 2){
                 Ladang lad = GameManager.getLadangList().get(who);
                 lad.expandEnd();
+                p.setNull();
             }
         }
 
         @Override
         public void applyEffect(Petak subject) {
             turn = 0;
-
+            p = subject;
             int idx;
             if (GameController.enemy){
                 idx = (GameManager.getTurnCounter() == 0) ? 1 : 0;

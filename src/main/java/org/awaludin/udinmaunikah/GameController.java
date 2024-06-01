@@ -401,7 +401,6 @@ public class GameController implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -426,6 +425,11 @@ public class GameController implements Initializable {
         GameManager.nextTurn();
         System.out.println(GameManager.getTurnCounter());
 
+        if (GameManager.getTotalTurnCounter() == 21){
+            int who = GameManager.getWinner();
+            showWinner(who, event);
+        }
+
         enemy = false;
         zenemy.setText("Enemy's Territory");
         zenemy.setFill(Color.RED);
@@ -434,6 +438,25 @@ public class GameController implements Initializable {
 
         changeDeck();
         setPlayer();
+    }
+
+    public void showWinner(int who, MouseEvent mouseEvent) {
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EndGame.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+
+            EndGameController endGameController = fxmlLoader.getController();
+
+            endGameController.setWinner(who);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void expandt(){
