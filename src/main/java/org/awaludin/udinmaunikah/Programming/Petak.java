@@ -113,23 +113,23 @@ public class Petak implements IHarvestable{
         }
     }
 
-    // public void setItemBonus(Item item, Ladang ladang, boolean attacking) {
-    //     this.item.add(item);
-    //     if (item.getEffect() instanceof Layout) {
-    //         item.getEffect().applyEffectBonus(attacking, ladang);
-    //     }
-    // }
-
-    // public void itemBonusHabis(Ladang ladang) {
-    //     for (Petak petak : ladang.getGrid()) {
-    //         for (Item item : petak.getItem()) {
-    //             if (item.getEffect() instanceof Layout) {
-    //                 petak.getItem().remove(item);
-    //                 continue;
-    //             }
-    //         }
-    //     }
-    // }
+//     public void setItemBonus(Item item, Ladang ladang, boolean attacking) {
+//         this.item.add(item);
+//         if (item.getEffect() instanceof Layout) {
+//             item.getEffect().applyEffectBonus(attacking, ladang);
+//         }
+//     }
+//
+//     public void itemBonusHabis(Ladang ladang) {
+//         for (Petak petak : ladang.getGrid()) {
+//             for (Item item : petak.getItem()) {
+//                 if (item.getEffect() instanceof Layout) {
+//                     petak.getItem().remove(item);
+//                     continue;
+//                 }
+//             }
+//         }
+//     }
 
     @Override
     public GameObject Harvest() {

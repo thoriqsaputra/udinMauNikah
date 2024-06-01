@@ -283,5 +283,14 @@
     "properties" : {
       "effect" : ["Trap"]
     }
+  },
+  "ITEM_007" : {
+    "name" : "Expand",
+    "description" : "<DESC>",
+    "type" : "item",
+    "value" : 20,
+    "properties" : {
+      "effect" : ["Expand"]
+    }
   }
 }

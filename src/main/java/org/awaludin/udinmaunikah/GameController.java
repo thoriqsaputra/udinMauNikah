@@ -97,11 +97,16 @@ public class GameController implements Initializable {
     @FXML
     private Group enemybut;
 
+    public static boolean expand;
+    public static int plop = 0;
+    public static int expandturn;
+
     @Override
     public void initialize(URL location, ResourceBundle resources){
         mainPane = paneManeh;
         gameC = this;
         enemy = false;
+        expand = false;
 
         List<Rectangle> rectangles = mainPane.getChildren().stream()
                 .filter(node -> node instanceof Rectangle)
@@ -200,6 +205,11 @@ public class GameController implements Initializable {
         List<Petak> lad = ladang.getList();
 
         for (Petak p : lad) {
+            if (p.isEnabled()){
+                p.enable();
+            }else {
+                p.disable();
+            }
             CardBrain.cardObj tempC = p.getCardObj();
             if (tempC != null) {
                 Card car = tempC.getCard();
@@ -289,6 +299,11 @@ public class GameController implements Initializable {
         List<Petak> lad = ladang.getList();
 
         for (Petak p : lad) {
+            if (p.isEnabled()){
+                p.enable();
+            }else{
+                p.disable();
+            }
             CardBrain.cardObj tempC = p.getCardObj();
             if (tempC != null) {
                 Card car = tempC.getCard();
@@ -298,8 +313,6 @@ public class GameController implements Initializable {
             }
         }
     }
-
-
 
     public void changeDeck() {
         Ladang la = GameManager.getLadangList().get(GameManager.getTurnCounter());
@@ -371,7 +384,7 @@ public class GameController implements Initializable {
         String deck = String.valueOf(GameManager.PlayerInterface.getCardCount());
         deckCount.setText(deck);
         Ladang la = GameManager.getLadangList().get(GameManager.getTurnCounter());
-        la.bearAttack();
+//        la.bearAttack();
     }
 
     public void openShop(MouseEvent mouseEvent) throws IOException {
@@ -417,7 +430,33 @@ public class GameController implements Initializable {
         zenemy.setText("Enemy's Territory");
         zenemy.setFill(Color.RED);
 
+        expandt();
+
         changeDeck();
         setPlayer();
+    }
+
+    public void expandt(){
+        Ladang lad1 = GameManager.getLadangList().get(0);
+        exLay(lad1);
+
+        Ladang lad2 = GameManager.getLadangList().get(1);
+        exLay(lad2);
+    }
+
+    private void exLay(Ladang lad2) {
+        List<Petak> grp2 = lad2.getList();
+        for (Petak p: grp2){
+            Map<Item, Integer> ip = p.getItem();
+            if (!ip.isEmpty()){
+                for (Map.Entry<Item, Integer> e: ip.entrySet()){
+                    Item item = e.getKey();
+                    Effect ef = item.getEffect();
+                    if (ef instanceof Effect.Layout){
+                        ((Effect.Layout) ef).removeExpand();
+                    }
+                }
+            }
+        }
     }
 }

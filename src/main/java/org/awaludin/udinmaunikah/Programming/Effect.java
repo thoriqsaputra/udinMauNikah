@@ -142,16 +142,47 @@ abstract public class Effect {
     }
 
     public static class Layout extends Effect {
+        private int turn;
+        private int who;
+
         @Override
         public void applyEffectBonus(boolean attacking, Ladang ladang) {
-            if (attacking) {
+
+        }
+
+        public void addTurn(){
+            turn++;
+            System.out.println("this "+turn);
+        }
+
+        public void removeExpand(){
+            addTurn();
+            if (turn > 2){
+                Ladang lad = GameManager.getLadangList().get(who);
+                lad.expandEnd();
+            }
+        }
+
+        @Override
+        public void applyEffect(Petak subject) {
+            turn = 0;
+
+            int idx;
+            if (GameController.enemy){
+                idx = (GameManager.getTurnCounter() == 0) ? 1 : 0;
+            } else {
+                idx = GameManager.getTurnCounter();
+            }
+
+            Ladang ladang = GameManager.getLadangList().get(idx);
+
+            who = idx;
+
+            if (GameController.enemy) {
                 ladang.bonusMusuh();
             } else {
                 ladang.bonus();
             }
         }
-
-        @Override
-        public void applyEffect(Petak subject) {}
     }
 }

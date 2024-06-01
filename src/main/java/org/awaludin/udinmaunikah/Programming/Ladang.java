@@ -38,7 +38,7 @@ public class Ladang {
     }
 
     public void bonus() {
-        for (int i = 0; i < 30; i++) {
+        for (int i = 20; i < 30; i++) {
             grid.get(i).enable();
         }
     }
@@ -47,33 +47,50 @@ public class Ladang {
         return this.grid;
     }
 
-    public void bonusHabis() {
-        for (int i = 20; i < 30; i++) {
-            grid.get(i).disable();
-        }
-
-        for (int i = 20; i < 30; i++) {
-            Rectangle temp = grid.get(i).getRectangle();
-            Petak temp2 = new Petak(temp, false);
-            grid.set(i, temp2);
-        }
-    }
-
     public void bonusMusuh() {
-        for (int i = 12; i < 30; i++) {
+        List<Integer> bab = new ArrayList<>();
+        bab.add(4);
+        bab.add(9);
+        bab.add(14);
+        for (int i = 15; i < 20; i++) {
+            bab.add(i);
+        }
+
+        for (Integer i: bab){
             grid.get(i).disable();
         }
 
-        for (int i = 20; i < 30; i++) {
-            Rectangle temp = grid.get(i).getRectangle();
-            Petak temp2 = new Petak(temp, false);
-            grid.set(i, temp2);
+        for (Integer i: bab) {
+            Petak p = grid.get(i);
+            GameController.mainPane.getChildren().remove(p.getCardObj());
+            p.setNull();
         }
     }
 
-    public void bonusMusuhHabis() {
-        for (int i = 12; i < 21; i++) {
-            grid.get(i).enable();
+    public void expandEnd(){
+        List<Integer> bab = new ArrayList<>();
+        bab.add(4);
+        bab.add(9);
+        bab.add(14);
+        for (int i = 15; i < 20; i++) {
+            bab.add(i);
+        }
+
+        if (!grid.get(4).isEnabled()){
+            for (Integer i: bab) {
+                grid.get(i).enable();
+            }
+        }
+
+        if (grid.get(20).isEnabled()){
+            for (int i = 20; i < 30; i++) {
+                Petak p = grid.get(i);
+                GameController.mainPane.getChildren().remove(p.getCardObj());
+                p.setNull();
+            }
+            for (int i = 20; i < 30; i++) {
+                grid.get(i).disable();
+            }
         }
     }
 

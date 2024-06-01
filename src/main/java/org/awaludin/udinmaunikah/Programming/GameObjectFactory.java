@@ -187,6 +187,8 @@ public class GameObjectFactory {
                 case "Trap":
                     effect = new Effect.Trap();
                     break;
+                case "Expand":
+                    effect = new Effect.Layout();
                 default:
                     break;
             }

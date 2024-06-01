@@ -80,14 +80,19 @@ public class CardBrain {
 
                     for (Petak p : lp) {
                         Rectangle r = p.getRectangle();
-                        if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())) {
+                        if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY()) && p.isEnabled()) {
                             if (go instanceof Item item) {
                                 Effect effect = item.getEffect();
-                                if (!(effect instanceof Effect.Delay) && !(effect instanceof Effect.Destroy)) {
+                                if (!(effect instanceof Effect.Delay) && !(effect instanceof Effect.Destroy)
+                                        && !(effect instanceof Effect.Layout)) {
                                     CardBrain.botNot("Nuh uh");
                                     node.setLayoutX(initialPosition[0]);
                                     node.setLayoutY(initialPosition[1]);
                                     return;
+                                }
+
+                                if (p.isEmpty() && !(effect instanceof Effect.Layout)){
+                                    break;
                                 }
 
                                 if (node.getPreviousPetak() != null) {
@@ -100,6 +105,12 @@ public class CardBrain {
 
                                 GameController.mainPane.getChildren().remove(node);
                                 p.setItem(item);
+                                return;
+                            } else {
+                                CardBrain.botNot("Nuh uh");
+                                node.setLayoutX(initialPosition[0]);
+                                node.setLayoutY(initialPosition[1]);
+                                return;
                             }
                         }
                     }
@@ -146,11 +157,24 @@ public class CardBrain {
 
                         break;
                     }
-                    // for expanding layout
-                    //                    if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())
-                    //                            && !p.isEnabled()){
-                    //
-                    //                    }
+
+                    if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())
+                            && !p.isEnabled() && (go instanceof Item)){
+
+                        Effect ef = ((Item) go).getEffect();
+                        if (ef instanceof Effect.Layout) {
+                            if (node.getPreviousPetak() != null) {
+                                Petak petak = node.getPreviousPetak();
+                                petak.setNull();
+                                if (petak.getRectangle().getId().startsWith("DA")) {
+                                    GameManager.PlayerInterface.useCardT(node.getCard());
+                                }
+                            }
+
+                            GameController.mainPane.getChildren().remove(node);
+                            p.setItem((Item) go);
+                        }
+                    }
 
                     // for items and product
                     if (r.getBoundsInParent().contains(mouseEvent.getSceneX(), mouseEvent.getSceneY())
