@@ -39,7 +39,7 @@ public class LoadController {
         base.getChildren().remove(self);
     }
 
-    public void setPane(Pane hsc, Pane sel){
+    public void setPane(Pane hsc, Pane sel) {
         base = hsc;
         self = sel;
     }
@@ -57,7 +57,7 @@ public class LoadController {
 
         FXMLLoader startGame = new FXMLLoader(getClass().getResource("Game.fxml"));
         Parent root = startGame.load();
-        //Initialize Game
+        // Initialize Game
         GameManager.initGameManager();
 
         GameObjectFactory.Load();
@@ -66,10 +66,10 @@ public class LoadController {
 
         gameController.initializePlaceHolders();
 
-        //gameController.changeDeck();
+        // gameController.changeDeck();
 
-        String path = "src\\main\\resources\\org\\awaludin\\udinmaunikah";
-        Path dirPath = Paths.get(path);
+        String basePath = "src\\main\\resources\\org\\awaludin\\udinmaunikah";
+        Path dirPath = Paths.get(basePath, folde);
         txtLoader.load(dirPath.toAbsolutePath().toString());
 
         gameController.refresh();
