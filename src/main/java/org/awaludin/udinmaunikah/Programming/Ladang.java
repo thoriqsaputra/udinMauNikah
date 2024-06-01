@@ -189,7 +189,7 @@ public class Ladang {
     
         Random random = new Random();
         int attackHappens = random.nextInt(4);
-        if (attackHappens != 1) {
+        if (attackHappens != 0) {
             System.out.println("No beruang for you");
             return; // Tidak ada serangan beruang pada turn ini
         }
@@ -323,12 +323,18 @@ public class Ladang {
             int index = subgrid.get(random.nextInt(subgrid.size()));
             int row = index / gridCols;
             int col = index % gridCols;
-    
+            
+            int rand = random.nextInt(3);
             // Tambahkan tetangga yang valid
-            addIfValid(subgrid, row - 1, col, gridRows, gridCols); // atas
-            addIfValid(subgrid, row + 1, col, gridRows, gridCols); // bawah
-            addIfValid(subgrid, row, col - 1, gridRows, gridCols); // kiri
-            addIfValid(subgrid, row, col + 1, gridRows, gridCols); // kanan
+            if (rand == 0) {
+                addIfValid(subgrid, row - 1, col, gridRows, gridCols); // atas
+            } else if (rand == 1) {
+                addIfValid(subgrid, row + 1, col, gridRows, gridCols); // bawah
+            } else if (rand == 2) {
+                addIfValid(subgrid, row, col - 1, gridRows, gridCols); // kiri
+            } else {
+                addIfValid(subgrid, row, col + 1, gridRows, gridCols); // kanan
+            }
         }
     
         return subgrid;
